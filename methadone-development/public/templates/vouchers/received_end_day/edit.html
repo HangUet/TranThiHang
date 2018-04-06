@@ -1,0 +1,170 @@
+<style type="text/css">
+  .select2-results .select2-disabled.select2-highlighted{
+    color: #ffffff !important;
+    background-color: #3c66a0 !important;
+  }
+</style>
+<form ng-submit="createVoucherForm.$valid && editVoucher()" name="createVoucherForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"add"| translator: 'medicine'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <div class="col-xs-12 col-md-6 form-group">
+        <label class="required">{{"type_export"| translator: 'medicine'}}:</label>
+        <ui-select ng-model="new_voucher.typee" ng-disabled="true"
+                   ng-required="true" name="typee" search-enabled="false"
+                   theme="select2" append-to-body="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+            {{$select.selected | translator: 'medicine'}}
+          </ui-select-match>
+          <ui-select-choices repeat="item in ['import_end_day']">
+            <span ng-bind-html="item | translator: 'medicine' | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        <div ng-messages="createVoucherForm.typee.$error"
+             ng-show="createVoucherForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-6 form-group">
+        <label class="required">{{"sender"| translator: 'medicine'}}:</label>
+        <input ng-model="new_voucher.sender" type="text"
+               name="sender" class="form-control input-sm" required>
+        <div ng-messages="createVoucherForm.sender.$error"
+             ng-show="createVoucherForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-6 form-group">
+        <label class="required">{{"receiver"| translator: 'medicine'}}:</label>
+        <input ng-model="new_voucher.receiver" type="text" name="receiver"
+               class="form-control input-sm" required>
+        <div ng-messages="createVoucherForm.receiver.$error"
+             ng-show="createVoucherForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-6 form-group">
+        <label class="required">Ngày xuất phiếu:</label>
+        <label class="input-group margin-0">
+          <input ng-model="new_voucher.datee" ng-disabled="true"
+                 class="form-control input-sm" datepicker required>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="col-xs-12 form-group">
+        <table class="table table-hover table-striped table-custom">
+          <tr>
+            <th>{{"name"| translator: 'medicine'}}</th>
+            <th>{{"composition"| translator: 'medicine'}}</th>
+            <th>{{"concentration"| translator: 'medicine'}}</th>
+            <th>{{"unit"| translator: 'category'}}</th>
+            <th>{{"packing"| translator: 'medicine'}}</th>
+            <th>{{"production_batch"| translator: 'medicine'}}</th>
+            <th>Ngày tạo thuốc</th>
+            <th>{{"manufacturer"| translator: 'medicine'}}</th>
+            <th>{{"provider"| translator: 'medicine'}}</th>
+            <th>{{"source"| translator: 'medicine'}}</th>
+            <th>{{"expiration_date"| translator: 'medicine'}}</th>
+            <th>Số lượng khả dụng</th>
+            <th>{{"remaining_number"| translator: 'medicine'}}</th>
+            <th>Xóa</th>
+          </tr>
+          <tr ng-repeat="medicine in new_voucher.medicines track by $index">
+            <td>
+              <ui-select ng-model="medicine"
+                         theme="select2"
+                         append-to-body="true"
+                         ng-change="reloadInfoMedicine(medicine, $index)"
+                         ng-required="true" class="ui-select-width-full">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                  {{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="medicine in available_medicines | filter: $select.search" ui-disable-choice="medicine.name == 'Tên thuốc' &&
+              medicine.composition == 'Thành phần'">
+                  <table class="table-select" style="width: 800px;">
+                    <tr>
+                      <td style="width: 10%;" ng-bind-html="medicine.name"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.composition"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.concentration"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.unit"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.packing"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.production_batch"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.manufacturer"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.provider"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.source"></td>
+                      <td style="width: 10%;" ng-bind-html="medicine.expiration_date"></td>
+                      <td ng-if="medicine.name == 'Tên thuốc'" style="width: 10%">
+                        Số lượng khả dụng
+                      </td>
+                      <td ng-if="medicine.name != 'Tên thuốc'" style="width: 10%;"
+                        ng-bind-html="medicine.remaining_number"></td>
+                    </tr>
+                  </table>
+                </ui-select-choices>
+              </ui-select>
+            </td>
+
+            <td ng-bind-html="medicine.composition"></td>
+            <td ng-bind-html="medicine.concentration"></td>
+            <td ng-bind-html="medicine.unit"></td>
+            <td ng-bind-html="medicine.packing"></td>
+            <td ng-bind-html="medicine.production_batch"></td>
+            <td ng-bind-html="medicine.init_date"></td>
+            <td ng-bind-html="medicine.manufacturer"></td>
+            <td ng-bind-html="medicine.provider"></td>
+            <td ng-bind-html="medicine.source"></td>
+            <td ng-bind-html="medicine.expiration_date + '</br>' +
+              '<span class=\'text-warning\'>' + addExpirationText($index) + '</span>'"
+              ng-if="new_voucher.typee=='export_allocation'"></td>
+            <td ng-bind-html="medicine.expiration_date"
+              ng-if="new_voucher.typee!='export_allocation'"></td>
+            <td ng-bind-html="medicine.remaining_number"></td>
+
+            <td style="min-width: 10px;">
+              <input ng-model="medicine.number_order"
+                   less-than="medicine.remaining_number"
+                   type="number" name="{{$index}}" class="form-control input-sm" required>
+              <div ng-messages="createVoucherForm[$index].$error"
+                   ng-show="createVoucherForm.$submitted"
+                   class="text-error">
+                <div ng-message="lessThan">{{"lessThan" | translator: 'validate' | stringFormat: medicine.remaining_number - medicine.booking}}</div>
+              </div>
+              <div ng-messages="createVoucherForm[$index].$error"
+                   ng-show="createVoucherForm.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </td>
+            <td>
+              <a href="#" ng-click="removeMedicine($index)" tooltip=""
+                data-original-title="Xóa">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <a href="#" class="btn blue-custom btn-sm" ng-click="addMoreMedicine()"
+      ng-show="available_medicines.length > 0">
+      <i class="fa fa-plus"></i> Thêm
+    </a>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm"
+           type="button" data-dismiss="modal"
+           value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-5 padding-right-3" ng-class="{'hidden-sm hidden-xs': state.current.name != 'main.received_vouchers'}">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"list_received_docket"| translator: 'main'}}
+          </span>
+        </div>
+        <div class="inputs">
+          <a ng-click="showCreateVoucherModal()"
+             class="btn blue-custom btn-sm"
+             ui-sref-opts="{reload: true}">
+            <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-custom table-striped" fixed-header>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{"date"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"type"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"sender"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"receiver"| translator: 'medicine'}}</th>
+                <!-- <th>{{ "edit" | translator: 'main' }}</th>
+                <th>{{ "delete" | translator: 'main' }}</th> -->
+              </tr>
+            </thead>
+            <tbody style="max-height: calc(100vh - 320px) !important">
+              <tr ng-repeat="voucher in vouchers track by $index" ng-class="{active: state.params.id == voucher.id}">
+                <td>{{$index + 1}}</td>
+                <td>
+                  <a ui-sref="main.received_vouchers.medicines({id: voucher.id})">
+                    {{voucher.datee}}
+                  </a>
+                </td>
+                <td class="text-left">{{voucher.typee| translator: 'medicine'}}</td>
+                <td class="text-left">{{voucher.sender| translator: 'medicine'}}</td>
+                <td class="text-left">{{voucher.receiver| translator: 'medicine'}}</td>
+                <!-- <td>
+                  <a href="#" ng-click='showEditVoucherModal(voucher.id)' tooltip>
+                    <i class="fa fa-pencil-square-o"></i>
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click='showDeleteVoucherModal(voucher)'
+                    title="Delete" tooltip>
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 padding-left-3">
+    <div ui-view></div>
+  </div>
+</div>

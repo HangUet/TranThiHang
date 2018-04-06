@@ -1,0 +1,89 @@
+<div class="portlet light">
+  <div class="portlet-title">
+    <div class="caption caption-md">
+      <span class="caption-subject font-blue-madison bold uppercase font-custom">
+        {{"admin_list"| translator: 'main'}}
+      </span>
+    </div>
+    <div class="inputs">
+      <div class="portlet-input input-inline">
+        <div class="input-icon right">
+          <i class="icon-magnifier"></i>
+          <form ng-submit="search()">
+            <input ng-model="keyword" class="form-control input-sm"
+                   placeholder='{{"search" | translator: "main"}}'>
+          </form>
+        </div>
+      </div>
+      <a href="#" class="btn blue-custom btn-sm" ng-click='showCreateAdminModal()'>
+        <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <!-- <div class="">
+      <form class="form-inline" ng-submit="search()">
+          <div class="form-group">
+            <input type="button" class="btn btn-success btn-sm" value='{{"add" | translator: "main"}}'
+               ng-click='showCreateAdminModal()'>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+                <input ng-model="keyword" class="form-control input-sm"
+                placeholder='{{"search" | translator: "main"}}'>
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </span>
+              </div>
+          </div>
+      </form>
+    </div> -->
+
+    <div class="max-width-100-pc scrollable">
+      <table class="table table-hover table-custom table-striped" fixed-header>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="text-left">{{"name"| translator: 'patient'}}</th>
+            <th class="text-left">{{"email"| translator: 'patient'}}</th>
+            <th class="text-left">{{"role"| translator: 'patient'}}</th>
+            <th class="text-left">{{"agency"| translator: 'main'}}</th>
+            <th>{{ "edit" | translator: 'main' }}</th>
+            <th>{{ "delete" | translator: 'main' }}</th>
+          </tr>
+        </thead>
+        <tbody style="max-height: calc(100vh - 290px) !important">
+          <tr ng-repeat="administrator in administrators.data">
+            <td>{{administrators.per_page * administrators.page + $index - administrators.per_page + 1}}</td>
+            <td class="text-left">{{administrator.full_name}}</td>
+            <td class="text-left">
+              <a>
+                {{administrator.email}}
+              </a>
+            </td>
+            <td class="text-left">{{administrator.role | translator: 'role'}}</td>
+            <td class="text-left">{{administrator.issuing_agency}}</td>
+            <td>
+              <a href="#" ng-click='showUpdateAdminModal(administrator.id)' title='{{"edit" | translator: "main"}}' tooltip>
+                 <i class="fa fa-edit"></i>
+               </a>
+            </td>
+            <td>
+              <a href="#" ng-click='showDeleteAdminModal(administrator)' title="Xóa" tooltip>
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="administrators.total"
+          ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="administrators.per_page"
+          previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      <div class="pull-right">{{"total_records"| translator: "main"}}: {{administrators.total}}</div>
+    </div>
+  </div>
+</div>

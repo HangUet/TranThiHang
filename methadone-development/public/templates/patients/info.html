@@ -1,0 +1,102 @@
+<div class="row row-flex">
+  <div class="col-xs-12 col-md-6">
+    <div class="tabbable-line">
+      <!-- <ul>
+        <li>
+          <a href="#tab_15_2" data-toggle="tab" aria-expanded="true"> {{ 'contact_info' | translator: 'main'}} </a>
+        </li>
+      </ul> -->
+      <div>
+        <div>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td class="align-left">{{'employment' | translator: 'patient'}}:</td>
+                <td class="align-left">{{patient.jobs | translator: 'patient'}}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{'ethnicity' | translator: 'prescription'}}:</td>
+                <td class="align-left">{{patient.ethnicity_name}}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{"telephone"| translator: 'patient'}}:</td>
+                <td class="align-left">{{patient.mobile_phone}}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{"marital_status"| translator: 'patient'}}:</td>
+                <td class="align-left">{{patient.marital_status| translator: 'patient'}}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{"education_level"| translator: 'patient'}}:</td>
+                <td class="align-left">{{patient.education_level| translator: 'patient' }}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{"financial_status"| translator: 'patient'}}:</td>
+                <td class="align-left">{{patient.financial_status| translator: 'patient'}}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{"referral_agency"| translator: 'patient'}}:</td>
+                <td class="align-left">{{patient.referral_agency}}</td>
+              </tr>
+              <tr>
+                <td class="align-left">{{"household"| translator: 'main'}}:</td>
+                <td class="align-left">{{patient.household}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="max-width-100-pc scrollable">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td class="text-left" colspan="2"><b>{{patient.identification_type |
+              translator: 'patient'}}:</b></td>
+          </tr>
+          <tr>
+            <td class="text-left">{{"number"| translator: 'patient'}}:</td>
+            <td class="text-left">{{patient.identification_number}}</td>
+          </tr>
+          <tr>
+            <td class="text-left">{{"issued_date"| translator: 'patient'}}:</td>
+            <td class="text-left">{{patient.identification_issued_date}}</td>
+          </tr>
+          <tr>
+            <td class="text-left">{{"issuing_agency"| translator: 'patient'}}:</td>
+            <td class="text-left">{{patient.identification_issued_by}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tabbable-line">
+      <p class="bold"> {{ 'family_contact' | translator: 'prescription'}}: </p>
+      <div>
+        <div>
+          <div class="max-width-100-pc scrollable">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td class="align-left">{{ 'name' | translator: 'patient' }}</td>
+                  <td class="align-left">{{ 'phone_number' | translator: 'patient' }}</td>
+                  <td class="align-left">{{ 'address' | translator: 'main' }}</td>
+                </tr>
+                <tr ng-repeat="contact in patient.contacts">
+                  <td class="align-left">
+                    <div>{{contact.name}} ({{ contact.contact_type | translator: 'contact' }})</div>
+                  </td>
+                  <td class="align-left">
+                    <div>{{ contact.telephone }}</div>
+                  </td>
+                  <td class="align-left"> {{ contact.address }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

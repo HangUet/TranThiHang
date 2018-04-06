@@ -1,0 +1,22 @@
+1 Kho chính
+
+1.1 Nhập
+1.1.1 Từ nhà phân phối
+Create: Tạo thuốc vào kho chính (medicines) với trạng thái pending, phân khu của thuốc là main
+Accept: Update thuốc từ pending → accepted
+
+1.2 Xuất
+1.2.1 Cho cơ sở cấp phát
+Mô tả: Xuất thuốc xuống kho phụ cấp phát
+Luồng:
+- Create: hệ thống kiểm tra ngày tạo phiếu còn thuốc có phân khu là main hay không, hiển thị danh sách thuốc có trong kho để người dùng chọn.
+- Save: tạo VoucherMedicine có number là lượng cần xuất, update booking của thuốc
+- Sửa phiếu: tương tự
+- Accept: Tạo thuốc mới có phân khu là allocated và có medicine_origin_id là id của thuốc cũ, update booking của thuốc cũ
+1.2.2 Để Hủy
+Tương tự
+
+1.1.3 Cuối ngày
+- Create: hiển thị thuốc còn lại ở kho cấp phát trong ngày (phân khu là allocated) để người dùng chọn
+- Save: Tạo VoucherMedicine với number là số thuốc muốn trả lại kho chính, update booking thuốc
+- Accept: Trừ remaining thuốc ở kho cấp phát với number, cộng thuốc cha của thuốc đã trừ (medicine_origin_id) với number, update lại booking thuốc

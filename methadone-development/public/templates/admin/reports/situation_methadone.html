@@ -1,0 +1,33 @@
+<div class="portlet-body">
+  <div class="max-width-100-pc scrollable">
+    <table class="table table-hover table-bordered table-custom">
+      <thead>
+        <tr>
+          <th rowspan="2">{{ "no." | translator: "main" }}</th>
+          <th rowspan="2">Tên cơ sở</th>
+          <th colspan="2">Ngày/tháng/năm mở cơ sở</th>
+          <th rowspan="2">Số BN đang điều trị ( tính đến {{report.from_date}})</th>
+          <th rowspan="2">Số BN mới vào điều trị từ {{report.from_date}} đến {{report.to_date}} </th>
+          <th rowspan="2">Số BN bỏ điều trị từ {{report.from_date}} đến {{report.to_date}} </th>
+          <th rowspan="2">Tổng số bệnh nhân đang điều trị đến {{report.to_date}}</th>
+        </tr>
+        <tr>
+          <th>Cơ sở điều trị</th>
+          <th>Cơ sở cấp phát thuốc</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="i in data track by $index">
+          <td>{{$index + 1}}</td>
+          <td class="text-left">{{i.name}}</td>
+          <td>{{i.date_agency}}</td>
+          <td>{{i.date_agency}}</td>
+          <td>{{i.total_patient_old}}</td>
+          <td>{{i.total_patient_new}}</td>
+          <td>{{i.total_patient_stop}}</td>
+          <td>{{i.total_patient}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

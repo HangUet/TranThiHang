@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 padding-right-3">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <i class="font-green"></i>
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"stock_received_docket_in"| translator: 'main'}}
+          </span>
+        </div>
+        <div class="actions"
+             ng-show="sub_medicines.status != 'accepted'">
+          <a href="#" class="btn blue-custom btn-sm" ng-click="showEditSubVoucherModal()">
+            <i class="fa fa-edit"></i> Sửa phiếu
+          </a>
+          <a href="#" class="btn blue-custom btn-sm" ng-click="showDeleteSubVoucherModal()">
+            <i class="fa fa-trash-o"></i> Xóa phiếu
+          </a>
+          <a href="#" class="btn blue-custom btn-sm" ng-click="showAcceptSubVoucherModal()">
+            <i class="fa fa-check-square-o"></i> Xác nhận phiếu
+          </a>
+          <!-- <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> In
+          </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> Gửi
+          </a> -->
+        </div>
+      </div>
+      <div class="portlet-body">
+
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-custom table-striped" fixed-header>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="text-left">{{"name"| translator: 'medicine'}}</th>
+                <th>{{"composition"| translator: 'medicine'}}</th>
+                <th>{{"concentration"| translator: 'medicine'}}</th>
+                <th>{{"unit"| translator: 'category'}}</th>
+                <th>{{"production_batch"| translator: 'medicine'}}</th>
+                <th>{{"expiration_date"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"manufacturer"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"provider"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"source"| translator: 'medicine'}}</th>
+                <th>{{"remaining_number"| translator: 'medicine'}}</th>
+              </tr>
+            </thead>
+            <tbody class="max-height-table">
+              <tr ng-repeat="medicine in sub_medicines.sub_medicines track by $index">
+                <td>{{$index + 1}}</td>
+                <td class="text-left">{{medicine.name}}</td>
+                <td>{{medicine.composition}}</td>
+                <td>{{medicine.concentration}}</td>
+                <td>{{medicine.unit}}</td>
+                <td>{{medicine.production_batch}}</td>
+                <td>{{medicine.expiration_date}}</td>
+                <td class="text-left">{{medicine.manufacturer}}</td>
+                <td class="text-left">{{medicine.provider}}</td>
+                <td class="text-left">{{medicine.source}}</td>
+                <td>{{medicine.number_order}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div ng-if="medicine_received.length == 0">
+            <p class="text-center">Không có thuốc nào</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

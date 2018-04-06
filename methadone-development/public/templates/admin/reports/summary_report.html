@@ -1,0 +1,185 @@
+<form ng-submit="form.$valid && createReport()" name="form" novalidate>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="portlet light bordered" style="margin-bottom: 5px;">
+        <div class="portlet-body">
+          <div class="row row-flex">
+            <div class="col-xs-12 col-md-3">
+              <div class="form-group">
+                <label class="required">{{"type_report"| translator: 'main'}}</label>
+                <ui-select ng-model="report.type"
+                    name="report_type" theme="select2"
+                    append-to-body="true" search-enabled="false" ng-required="true">
+                  <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                    {{$select.selected | translator: "report"}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="type in ['situation_methadone', 'new_patient_report', 'stop_treatment_patient_report']">
+                    <span ng-bind-html="type | translator: 'report' | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+                <div ng-messages="form.report_type.$error" ng-show="form.$submitted" class="text-error">
+                  <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <label class="required">{{"from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="report.from_date" class="form-control input-sm" required datepicker name="from_date">
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.from_date.$error"
+                ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <label class="required">{{"to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="report.to_date" class="form-control input-sm" required datepicker date-bigger="report.from_date" name="to_date">
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.to_date.$error"
+                ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+                <div ng-message="dateBigger">{{"date_bigger_start" | translator: 'validate'}}</div>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label class="required">{{"province"| translator: 'main'}}</label>
+                <ui-select ng-model="report.province_id"
+                          on-select="reloadDistrict(report.province_id)"
+                          name="province_id" theme="select2" append-to-body="true"
+                          ng-required="true">
+                  <ui-select-match
+                    placeholder="{{'please_select_province'| translator: 'main'}}">
+                    {{$select.selected.name}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="item.id as item in provinces | filter: $select.search">
+                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+
+                <div ng-messages="form.province_id.$error" ng-show="form.$submitted" class="text-error">
+                  <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row row-flex">
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label>{{"district"| translator: 'main'}}</label>
+                <ui-select ng-model="report.district_id"
+                           on-select="reloadWard(report.district_id)"
+                           name="district_id" theme="select2" append-to-body="true">
+                  <ui-select-match
+                    placeholder="{{'please_select_district'| translator: 'main'}}"
+                    data-allow-clear="true">
+                    {{$select.selected.name}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="item.id as item in districts | filter: $select.search">
+                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label>{{"ward"| translator: 'main'}}</label>
+                <ui-select ng-model="report.ward_id"
+                           name="ward_id" theme="select2" append-to-body="true"
+                           on-select="reloadIssuingAgency(report.ward_id)">
+                  <ui-select-match
+                    placeholder="{{'please_select_ward'| translator: 'main'}}"
+                    data-allow-clear="true">
+                    {{$select.selected.name}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="item.id as item in wards | filter: $select.search">
+                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+
+            <div class="col-xs-3">
+              <div class="form-group">
+                <label>{{'name_issuing_agency_'| translator: 'main'}}</label>
+                <ui-select ng-model="report.issuing_agency_id"
+                           name="ward_id" theme="select2" append-to-body="true"
+                           on-select="reloadIssuingAgency(report.ward_id)">
+                  <ui-select-match
+                    placeholder="{{'please_select'| translator: 'main'}}"
+                    data-allow-clear="true">
+                    {{$select.selected.name}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="item.id as item in issuing_agencies | filter: $select.search">
+                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+
+            <div class="col-xs-3" style="margin-top: 24px;">
+              <button type="submit" class="btn blue-custom btn-sm"><i class="fa fa-search"></i> Tạo báo cáo</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row" ng-if="check && data.length == 0"
+      style="text-align: center;">
+  <div class="col-xs-12">
+    <div class="portlet light bordered">
+      <p>Không có dữ liệu</p>
+    </div>
+  </div>
+</div>
+<div class="row" ng-if="check && data.length > 0" style="height: 60vh; overflow: scroll;">
+  <div class="col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase"
+            ng-if="type == 'situation_methadone'">
+            {{type | translator: "title_report"}} {{report.to_date}}
+          </span>
+
+          <span class="caption-subject font-blue-madison bold uppercase"
+            ng-if="type != 'situation_methadone'">
+            {{type | translator: "title_report"}} {{report.from_date}} đến {{report.to_date}}
+          </span>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm" ng-click="export_excel()">
+            <i class="fa fa-file-excel-o"></i> Xuất excel </a>
+        </div>
+      </div>
+      <div ng-if="type == 'situation_methadone'">
+        <div ng-include="'templates/admin/reports/situation_methadone.html'"></div>
+      </div>
+      <div ng-if="type == 'new_patient_report'">
+        <div ng-include="'templates/admin/reports/new_patient_report.html'"></div>
+      </div>
+      <div ng-if="type == 'stop_treatment_patient_report'">
+        <div ng-include="'templates/admin/reports/stop_treatment_patient_report.html'"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-5 padding-right-3"
+       ng-class="{'hidden-sm hidden-xs': state.current.name != 'main.received_vouchers'}">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"list_voucher_delivery"| translator: 'medicine'}}
+          </span>
+        </div>
+        <div class="inputs">
+          <a class="btn blue-custom btn-sm" ng-click="showSearchModal()">
+            <i class="fa fa-search"></i> {{"advance_search" | translator: "main"}}
+          </a>
+          <a ng-click="showCreateSubVoucherModal()"
+             class="btn blue-custom btn-sm" ui-sref-opts="{reload: true}">
+            <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="max-width-100-pc scrollable">
+          <div class="col-xs-12" style="padding-left: 0px; margin-bottom: 10px;">
+            <div class="input-icon right">
+              <i ng-click="search()" class="icon-magnifier" style="margin: 8px 2px 4px 10px;"></i>
+              <form ng-submit="search()">
+                <input ng-model="keyword" class="form-control input-sm"
+                       placeholder='{{"search" | translator: "main"}}'>
+              </form>
+            </div>
+          </div>
+          <table class="table table-hover table-custom table-striped" fixed-header>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{"date"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"type"| translator: 'medicine'}}</th>
+                <th class="text-left">Số phiếu</th>
+                <th class="text-left">{{"sender"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"receiver"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"status"| translator: 'main'}}</th>
+              </tr>
+            </thead>
+            <tbody style="max-height: calc(100vh - 270px) !important">
+              <tr ng-repeat="voucher in sub_vouchers track by $index"
+                  ng-class="{active: state.params.id == voucher.id}">
+                <td>{{$index + 1}}</td>
+                <td>
+                  <a ui-sref="main.delivery_sub_vouchers.sub_medicines({id: voucher.id})">
+                    {{voucher.datee}}
+                  </a>
+                </td>
+                <td class="text-left">{{voucher.typee| translator: 'medicine'}}</td>
+                <td class="text-left">{{voucher.code.split("_").slice(0, 3).join("_") + " _" + voucher.code.split("_")[3]}}</td>
+                <td class="text-left">{{voucher.sender| translator: 'medicine'}}</td>
+                <td class="text-left">{{voucher.receiver| translator: 'medicine'}}</td>
+                <td class="text-left">{{voucher.status| translator: 'medicine'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 padding-left-3">
+    <div ui-view></div>
+  </div>
+</div>

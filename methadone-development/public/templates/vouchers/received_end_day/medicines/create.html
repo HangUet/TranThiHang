@@ -1,0 +1,69 @@
+<table class="table table-hover table-striped table-custom">
+  <tr>
+    <th>{{"name"| translator: 'medicine'}}</th>
+    <th>{{"composition"| translator: 'medicine'}}</th>
+    <th>{{"concentration"| translator: 'medicine'}}</th>
+    <th>{{"packing"| translator: 'medicine'}}</th>
+    <th>{{"production_batch"| translator: 'medicine'}}</th>
+    <th>{{"manufacturer"| translator: 'medicine'}}</th>
+    <th>{{"provider"| translator: 'medicine'}}</th>
+    <th>{{"source"| translator: 'medicine'}}</th>
+    <th>{{"expiration_date"| translator: 'medicine'}}</th>
+    <th>{{"remaining_number"| translator: 'medicine'}}</th>
+    <th>Xóa</th>
+  </tr>
+  <tr ng-repeat="medicine in new_voucher.medicines track by $index">
+    <td>
+      <ui-select ng-model="medicine"
+                 theme="select2"
+                 append-to-body="true"
+                 ng-change="reloadInfoMedicine(medicine, $index)"
+                 ng-required="true" class="ui-select-width-full">
+        <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+          {{$select.selected.name}}
+        </ui-select-match>
+        <ui-select-choices repeat="medicine in available_medicines | filter: $select.search">
+          <table class="table-select" style="width: 700px;">
+            <tr>
+              <td style="width: 14%;" ng-bind-html="medicine.name"></td>
+              <td style="width: 14%;" ng-bind-html="medicine.composition"></td>
+              <td style="width: 14%;" ng-bind-html="medicine.concentration"></td>
+              <td style="width: 14%;" ng-bind-html="medicine.packing"></td>
+              <td style="width: 14%;" ng-bind-html="medicine.manufacturer"></td>
+              <td style="width: 14%;" ng-bind-html="medicine.provider"></td>
+              <td style="width: 16%;" ng-bind-html="medicine.expiration_date"></td>
+            </tr>
+          </table>
+        </ui-select-choices>
+      </ui-select>
+    </td>
+
+    <td ng-bind-html="medicine.composition"></td>
+    <td ng-bind-html="medicine.concentration"></td>
+    <td ng-bind-html="medicine.packing"></td>
+    <td ng-bind-html="medicine.production_batch"></td>
+    <td ng-bind-html="medicine.manufacturer"></td>
+    <td ng-bind-html="medicine.provider"></td>
+    <td ng-bind-html="medicine.source"></td>
+    <td ng-bind-html="medicine.expiration_date"></td>
+
+    <td style="min-width: 10px;">
+      <input ng-model="medicine.number" max="{{medicine.remaining}}" min="0"
+           type="number" name="{{$index}}" class="form-control input-sm" required>
+      <div ng-messages="createVoucherForm[$index].$error" class="text-error">
+        <div ng-message="max">Số lượng không được quá {{medicine.remaining}}.</div>
+        <div ng-message="min">Số lượng không được nhỏ hơn 0.</div>
+      </div>
+      <div ng-messages="createVoucherForm[$index].$error"
+           ng-show="createVoucherForm.$submitted" class="text-error">
+        <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+      </div>
+    </td>
+    <td>
+      <a href="#" ng-click="removeMedicine($index)" tooltip=""
+        data-original-title="Xóa">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+  </tr>
+</table>

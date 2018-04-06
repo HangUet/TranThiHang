@@ -1,0 +1,43 @@
+<div class="mt-title">
+  <h2 class="mt-content-title">{{"history_change_agency"| translator: 'main'}}</h2>
+</div>
+<div class="mt-content border-grey-steel">
+  <div ng-show="history_change_agency.length == 0">
+      <p>{{"no_info"| translator: 'patient'}}</p>
+  </div>
+  <div ng-show="history_change_agency.length > 0">
+    <div class="max-width-100-pc scrollable">
+      <table class="table table-bordered table-custom">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{{"sender" | translator: "main"}}</th>
+            <th>{{"sender_agency" | translator: "main"}}</th>
+            <th>{{"receiver_agency" | translator: "main"}}</th>
+            <th>{{"confirmer" | translator: "main"}}</th>
+            <th>{{"date_accepted" | translator: "patient"}}</th>
+            <th>{{"end_date_change" | translator: "patient"}}</th>
+            <th>{{"history_treatments" | translator: "prescription"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="history_change in history_change_agency">
+            <td>{{$index + 1}}</td>
+            <td>{{history_change.sender_name}}</td>
+            <td>{{history_change.sender_agency_name}}</td>
+            <td>{{history_change.receiver_agency_name}}</td>
+            <td>{{history_change.confirmer_name}}</td>
+            <td>{{history_change.date_accepted}}</td>
+            <td>{{history_change.end_date || ''}}</td>
+            <td>
+              <a ng-click='showHistoryMedicineAllocationModal()'
+                title="{{'history_treatments'| translator: 'prescription'}}" tooltip>
+                <i class="fa fa-history" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

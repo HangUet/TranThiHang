@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 padding-right-3">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <i class="font-green"></i>
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"stock_received_docket"| translator: 'medicine'}}
+          </span>
+        </div>
+        <div class="actions">
+        <a href="#" class="btn blue-custom btn-sm" ng-click="showCreateMedicineModal()">
+            <i class="fa fa-plus"></i> Thêm </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> In </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> Gửi </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-custom table-striped" fixed-header>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{"name"| translator: 'medicine'}}</th>
+                <th>{{"composition"| translator: 'medicine'}}</th>
+                <th>{{"concentration"| translator: 'medicine'}}</th>
+                <th>{{"packing"| translator: 'medicine'}}</th>
+                <th>{{"production_batch"| translator: 'medicine'}}</th>
+                <th>{{"expiration_date"| translator: 'medicine'}}</th>
+                <th>{{"manufacturer"| translator: 'medicine'}}</th>
+                <th>{{"provider"| translator: 'medicine'}}</th>
+                <th>{{"source"| translator: 'medicine'}}</th>
+                <th>{{"remaining_number"| translator: 'medicine'}}</th>
+                <th>{{"sender"| translator: 'medicine'}}</th>
+                <th>{{"receiver"| translator: 'medicine'}}</th>
+                <th>#</th>
+                <th>#</th>
+              </tr>
+            </thead>
+            <tbody class="max-height-table">
+              <tr ng-repeat="medicine in importMedicine track by $index">
+                <td>{{$index + 1}}</td>
+                <td>{{medicine.name}}</td>
+                <td>{{medicine.composition}}</td>
+                <td>{{medicine.concentration}}</td>
+                <td>{{medicine.packing}}</td>
+                <td>{{medicine.production_batch}}</td>
+                <td>{{medicine.expiration_date}}</td>
+                <td>{{medicine.manufacturer}}</td>
+                <td>{{medicine.provider}}</td>
+                <td>{{medicine.source}}</td>
+                <td>{{medicine.remaining_number}}</td>
+                <td>{{medicine.sender}}</td>
+                <td>{{medicine.receiver}}</td>
+                <td>
+                  <a href="#" ng-click='showEditMedicineModal(medicine.id)' title='{{"edit" | translator: "main"}}' tooltip>
+                     <i class="fa fa-edit"></i>
+                   </a>
+                </td>
+                <td>
+                  <a href="#" ng-click='showDeleteMedicineModal(medicine)' title='{{"delete"| translator: "main"}}' tooltip>
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

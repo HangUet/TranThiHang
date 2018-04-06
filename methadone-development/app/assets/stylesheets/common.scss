@@ -1,0 +1,110 @@
+.mouse-hand {
+  cursor: pointer;
+}
+.box-shadow {
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 10px 60px 10px 60px;
+  box-shadow: 1px 1px 1px grey;
+}
+.logo-form {
+  margin: 20px;
+  padding: 2px;
+  height: 75px;
+  width: 75px;
+  border-radius: 3px;
+}
+label.error {
+  color: red;
+}
+.logo img{
+  height: 150px;
+  width: 150px;
+}
+.no-padding {
+  padding: 0!important;
+}
+.border-side-right {
+  border-right: 1px solid #ddd;
+}
+
+.box-item-header {
+  /*border-bottom: 1px solid #ddd;*/
+  font-size: 18px;
+  p {
+    font-size: 18px;
+    padding: 10px 0;
+    margin: 0;
+    font-weight: bold;
+  }
+}
+.box-item {
+  /*border-bottom: 1px solid #ddd;*/
+  display: block;
+  text-decoration: none;
+  p {
+    font-size: 14px;
+    padding: 10px 0;
+    margin: 0;
+    color: #4078c0;
+  }
+}
+.box-item:hover {
+  background: #e7e7e7;
+  cursor: pointer;
+  text-decoration: none;
+}
+a:-webkit-any-link{
+  text-decoration: none;
+}
+.box-item.selected {
+  border-left: 3px solid #e34234;
+  cursor: default;
+  background-color: #fff;
+  p {
+    color: #333333;
+  }
+}
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+.padding-top-15px {
+  padding-top: 15px;
+}
+.avatar_header_layout {
+  height: 30px;
+  width: 30px;
+}
+.pading-10px-importaint {
+  padding: 10px!important
+}
+
+#close_popup {
+  color:#cac7c7;
+}
+#close_popup:hover {
+  cursor: pointer;
+}
+.margin-top-15px {
+  margin-top: 15px;
+}
+.margin-bottom-15px {
+  margin-bottom: 15px;
+}
+.padding-sides-15px {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.padding-sides-5px {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.patient-avatar {
+  width: 150px;
+  height: 200px;
+}
+.margin-left-5 {
+  margin-left: 5px;
+}

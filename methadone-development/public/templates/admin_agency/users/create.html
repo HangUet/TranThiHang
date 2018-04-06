@@ -1,0 +1,85 @@
+<form ng-submit="createUserForm.$valid && createUser()" name="createUserForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header">{{'create_staff_account' | translator: 'main'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <!-- <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'username' | translator: 'main'}}:</label>
+        <input ng-model="user.username" name="username" class="form-control input-sm" autofocus required>
+        <div ng-messages="createUserForm.username.$error" ng-show="createUserForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div> -->
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">Email:</label>
+        <input ng-model="user.email" name="email" type="email"
+          ng-pattern="/^\s*[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,63}\s*$/"
+          class="form-control input-sm" autofocus
+          ng-maxlength="50" required>
+        <div ng-messages="createUserForm.email.$error" ng-show="createUserForm.$submitted" class="text-error">
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          <div ng-message="pattern">{{"email" | translator: 'validate'}}</div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'password' | translator: 'main'}}:</label>
+        <input ng-model="user.password" name="password" type="password"
+          ng-pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-z0-9!@#$%^&*]{8,}/"
+          class="form-control input-sm" minlength="8"
+          ng-maxlength="50" required>
+        <div ng-messages="createUserForm.password.$error" ng-show="createUserForm.$submitted" class="text-error">
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          <div ng-message="minlength">{{"password" | translator: 'validate'}}</div>
+          <div ng-message="pattern">{{"pattern" | translator: "validate"}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'first_name' | translator: 'patient'}}:</label>
+        <input ng-model="user.first_name" class="form-control input-sm"
+        ng-maxlength="50" no-special-char required>
+        <div ng-messages="createUserForm.first_name.$error" ng-show="createUserForm.$submitted" class="text-error">
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'last_name' | translator: 'patient'}}:</label>
+        <input ng-model="user.last_name" class="form-control input-sm"
+        ng-maxlength="50" no-special-char required>
+        <div ng-messages="createUserForm.last_name.$error" ng-show="createUserForm.$submitted" class="text-error">
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'access' | translator: 'patient'}}:</label>
+        <ui-select ng-model="user.role" name="role" theme="select2"
+                   append-to-body="true" search-enabled="false" ng-required="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+            {{$select.selected | translator: 'role'}}
+          </ui-select-match>
+          <ui-select-choices repeat="role as role in role_list">
+            <span ng-bind-html="role | translator: 'role' | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        <div ng-messages="createUserForm.role.$error" ng-show="createUserForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

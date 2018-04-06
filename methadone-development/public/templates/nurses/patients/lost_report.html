@@ -1,0 +1,101 @@
+<form ng-submit="form.$valid && showPrintModal(councils)" name="form" novalidate>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="portlet light bordered" style="margin-bottom: 5px;">
+        <div class="portlet-title">
+          <div class="caption caption-md">
+            <i class="font-green"></i>
+            <span class="caption-subject font-blue-madison bold uppercase font-custom">
+              Biên bản hao hụt trong ngày
+            </span>
+          </div>
+          <div class="actions">
+            <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-print"></i> {{"print" | translator: "main"}} </button>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <div class="row row-flex">
+            <div class="col-xs-3">
+              <label class="required">Ngày</label>
+              <label class="input-group">
+                <input ng-model="date" class="form-control input-sm" required datepicker name="from_date">
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.date.$error"
+                ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <label></label>
+              <label class="input-group" style="margin-top: 4px;">
+                <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-print"></i> {{"print" | translator: "main"}} </button>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="portlet light bordered">
+        <div class="portlet-title">
+          <div class="caption caption-md">
+            <i class="font-green"></i>
+            <span class="caption-subject font-blue-madison bold uppercase font-custom">
+              Hội đồng lập biên bản gồm
+            </span>
+          </div>
+          <div class="actions">
+            <a href="#" class="btn blue-custom btn-sm" ng-click="addCouncil()">
+            <i class="fa fa-plus"></i> Thêm </a>
+          </div>
+        </div>
+
+        <div class="portlet-body">
+          <div class="row row-flex">
+            <div class="col-xs-12" ng-repeat="council in councils.data track by $index">
+              <div class="col-xs-1">
+                <p>{{$index + 1}}.</p>
+              </div>
+              <div class="col-xs-1">
+                <label class="required">Ông/Bà:</label>
+              </div>
+              <div class="col-xs-3">
+                <div class="form-group">
+                  <input ng-model="council.name" name="name{{$index}}" class="form-control input-sm" required>
+                </div>
+                <div ng-messages="form['name' + $index].$error"
+                   class="text-error">
+                  <div ng-message="required" ng-show="form.$submitted">{{"require" | translator: 'validate'}}</div>
+                </div>
+              </div>
+              <div class="col-xs-1">
+                <label class="required">Chức danh:</label>
+              </div>
+              <div class="col-xs-3">
+                <div class="form-group">
+                  <input ng-model="council.title" name="name{{$index}}" class="form-control input-sm" required>
+                </div>
+                <div ng-messages="form['title' + $index].$error"
+                   class="text-error">
+                  <div ng-message="required" ng-show="form.$submitted">{{"require" | translator: 'validate'}}</div>
+                </div>
+              </div>
+              <div class="col-xs-1">
+                <a href="#" class="btn btn-sm" ng-click="deleteCouncil($index)">
+                <i class="fa fa-trash-o"></i> Xóa </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

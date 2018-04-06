@@ -1,0 +1,714 @@
+HUYEN_ID|TEN_HUYEN|TINH_ID|CAP
+10901|Thành phố Hưng Yên|109|Thành phố
+10902|Văn Lâm|109|Huyện
+10903|Mỹ Hào|109|Huyện
+10904|Yên Mỹ|109|Huyện
+10906|Khoái Châu|109|Huyện
+10907|Ân Thi|109|Huyện
+10911|Phù Cừ|109|Huyện
+10913|Tiên Lữ|109|Huyện
+11103|Duy Tiên|111|Huyện
+11105|Kim Bảng|111|Huyện
+11107|Lý Nhân|111|Huyện
+11111|Bình Lục|111|Huyện
+11301|Thành phố Nam Định|113|Thành phố
+11305|Mỹ Lộc|113|Huyện
+11307|Ý Yên|113|Huyện
+11311|Trực Ninh|113|Huyện
+11315|Giao Thủy|113|Huyện
+11317|Nghĩa Hưng|113|Huyện
+11319|Hải Hậu|113|Huyện
+11503|Quỳnh Phụ|115|Huyện
+11505|Hưng Hà|115|Huyện
+11507|Thái Thụy|115|Huyện
+11511|Vũ Thư|115|Huyện
+11515|Tiền Hải|115|Huyện
+11707|Gia Viễn|117|Huyện
+11711|Yên Mô|117|Huyện
+11713|Yên Khánh|117|Huyện
+20101|Thành phố Hà Giang|201|Thành phố
+20103|Đồng Văn|201|Huyện
+20107|Yên Minh|201|Huyện
+20111|Bắc Mê|201|Huyện
+20113|Hoàng Su Phì|201|Huyện
+20117|Xín Mần|201|Huyện
+20119|Bắc Quang|201|Huyện
+20301|Thành phố Cao Bằng|203|Thành phố
+20303|Bảo Lạc|203|Huyện
+20305|Hà Quảng|203|Huyện
+20307|Thông Nông|203|Huyện
+20311|Trùng Khánh|203|Huyện
+20313|Nguyên Bình|203|Huyện
+20317|Quảng Uyên|203|Huyện
+20319|Hạ Lang|203|Huyện
+20321|Thạch An|203|Huyện
+20505|Mường Khương|205|Huyện
+20507|Bát Xát|205|Huyện
+20508|Si Ma Cai|205|Huyện
+20511|Bảo Thắng|205|Huyện
+20513|Sa Pa|205|Huyện
+20519|Văn Bàn|205|Huyện
+20703|Ba Bể|207|Huyện
+20704|Pác Nặm|207|Huyện
+20705|Ngân Sơn|207|Huyện
+50521|Mộ Đức|505|Huyện
+60701|Thành phố Đà Lạt|607|Thành phố
+71307|Vĩnh Cửu|713|Huyện
+70111|Quận 6|701|Quận
+70137|Hóc Môn|701|Huyện
+81713|Trà Cú|817|Huyện
+60629|Krông Nô|606|Huyện
+70131|Phú Nhuận|701|Quận
+11703|Thành Phố Tam Điệp|117|Thành phố
+50901|Thành phố Tuy Hòa|509|Thành phố
+22113|Sơn Động|221|Huyện
+21720|Tân Sơn|217|Huyện
+50501|Thành phố Quảng Ngãi|505|Thành phố
+70703|Thị xã Phước Long|707|Thị xã
+60115|Ia H'Drai|601|Huyện
+50910|Phú Hòa|509|Huyện
+70123|Quận 12|701|Quận
+40335|Nam Đàn|403|Huyện
+40337|Hưng Nguyên|403|Huyện
+40501|Thành phố Hà Tĩnh|405|Thành phố
+40503|Thị xã Hồng Lĩnh|405|Thị xã
+40507|Đức Thọ|405|Huyện
+40509|Hương Sơn|405|Huyện
+40511|Can Lộc|405|Huyện
+40512|Lộc Hà|405|Huyện
+40515|Cẩm Xuyên|405|Huyện
+40517|Hương Khê|405|Huyện
+40519|Kỳ Anh|405|Huyện
+40705|Minh Hóa|407|Huyện
+40707|Quảng Trạch|407|Thị xã
+40711|Quảng Ninh|407|Huyện
+40713|Lệ Thủy|407|Huyện
+40905|Vĩnh Linh|409|Huyện
+10101|Ba Đình|101|Quận
+10103|Tây Hồ|101|Quận
+10105|Hoàn Kiếm|101|Quận
+10107|Hai Bà Trưng|101|Quận
+10108|Hoàng Mai|101|Quận
+10109|Đống Đa|101|Quận
+10111|Thanh Xuân|101|Quận
+10113|Cầu Giấy|101|Quận
+10114|Long Biên|101|Quận
+10115|Sóc Sơn|101|Huyện
+10117|Đông Anh|101|Huyện
+10119|Gia Lâm|101|Huyện
+10123|Thanh Trì|101|Huyện
+10125|Hà Đông|101|Quận
+10129|Ba Vì|101|Huyện
+10131|Phúc Thọ|101|Huyện
+10133|Đan Phượng|101|Huyện
+10137|Hoài Đức|101|Huyện
+10139|Quốc Oai|101|Huyện
+10143|Thanh Oai|101|Huyện
+10145|Thường Tín|101|Huyện
+10149|Ứng Hòa|101|Huyện
+80322|Thị xã Hồng Ngự|803|Thị xã
+20709|Na Rì|207|Huyện
+20711|Bạch Thông|207|Huyện
+20901|Thành phố Lạng Sơn|209|Thành phố
+20905|Văn Lãng|209|Huyện
+20907|Bình Gia|209|Huyện
+20911|Văn Quan|209|Huyện
+20913|Cao Lộc|209|Huyện
+20917|Chi Lăng|209|Huyện
+20919|Đình Lập|209|Huyện
+21101|Thành phố Tuyên Quang|211|Thành phố
+21102|Lâm Bình|211|Huyện
+21105|Chiêm Hóa|211|Huyện
+21109|Yên Sơn|211|Huyện
+21111|Sơn Dương|211|Huyện
+21303|Thị xã Nghĩa Lộ|213|Thị xã
+21305|Lục Yên|213|Huyện
+21307|Văn Yên|213|Huyện
+21311|Trấn Yên|213|Huyện
+21313|Yên Bình|213|Huyện
+21317|Trạm Tấu|213|Huyện
+21501|Thành phố Thái Nguyên|215|Thành phố
+21505|Định Hóa|215|Huyện
+21507|Võ Nhai|215|Huyện
+21509|Phú Lương|215|Huyện
+21515|Phú Bình|215|Huyện
+21517|Phổ Yên|215|Thị xã
+21701|Thành phố Việt Trì|217|Thành phố
+21709|Thanh Ba|217|Huyện
+21712|Lâm Thao|217|Huyện
+21713|Cẩm Khê|217|Huyện
+21717|Tam Nông|217|Huyện
+21718|Thanh Thủy|217|Huyện
+22105|Tân Yên|221|Huyện
+22107|Lục Ngạn|221|Huyện
+22111|Lạng Giang|221|Huyện
+22117|Việt Yên|221|Huyện
+22119|Yên Dũng|221|Huyện
+22503|Thành phố Cẩm Phả|225|Thành phố
+22506|Thành phố Móng Cái|225|Thành phố
+22511|Hải Hà|225|Huyện
+22512|Đầm Hà|225|Huyện
+22515|Ba Chẽ|225|Huyện
+22517|Vân Đồn|225|Huyện
+22521|Đông Triều|225|Thị xã
+22525|Thị Xã Quảng Yên|225|Thị xã
+30103|Thành phố Lai Châu|301|Thành phố
+30107|Phong Thổ|301|Huyện
+30109|Sìn Hồ|301|Huyện
+30117|Than Uyên|301|Huyện
+30120|Nậm Nhùn|301|Huyện
+30204|Mường Nhé|302|Huyện
+30211|Mường Chà|302|Huyện
+30213|Tủa Chùa|302|Huyện
+30216|Mường Ảng|302|Huyện
+30217|Điện Biên|302|Huyện
+30219|Điện Biên Đông|302|Huyện
+30301|Thành phố Sơn La|303|Thành phố
+30305|Mường La|303|Huyện
+30307|Thuận Châu|303|Huyện
+30311|Phù Yên|303|Huyện
+30313|Mai Sơn|303|Huyện
+30316|Sốp Cộp|303|Huyện
+30319|Mộc Châu|303|Huyện
+30501|Thành phố Hòa Bình|305|Thành phố
+30505|Mai Châu|305|Huyện
+30507|Kỳ Sơn|305|Huyện
+30510|Cao Phong|305|Huyện
+30511|Kim Bôi|305|Huyện
+30515|Lạc Sơn|305|Huyện
+30517|Lạc Thủy|305|Huyện
+40101|Thành phố Thanh Hóa|401|Thành phố
+40105|Thành phố Sầm Sơn|401|Thành phố
+40107|Mường Lát|401|Huyện
+40113|Bá Thước|401|Huyện
+40115|Cẩm Thủy|401|Huyện
+40121|Ngọc Lặc|401|Huyện
+40125|Như Xuân|401|Huyện
+40127|Như Thanh|401|Huyện
+40131|Hà Trung|401|Huyện
+40137|Thọ Xuân|401|Huyện
+40139|Hậu Lộc|401|Huyện
+40143|Hoằng Hóa|401|Huyện
+40145|Đông Sơn|401|Huyện
+40151|Nông Cống|401|Huyện
+40301|Thành phố Vinh|403|Thành phố
+40305|Quế Phong|403|Huyện
+40307|Quỳ Châu|403|Huyện
+40313|Nghĩa Đàn|403|Huyện
+40317|Quỳnh Lưu|403|Huyện
+40319|Tân Kỳ|403|Huyện
+40325|Diễn Châu|403|Huyện
+40329|Đô Lương|403|Huyện
+40333|Nghi Lộc|403|Huyện
+81323|Kiên Hải|813|Huyện
+81501|Ninh Kiều|815|Quận
+81503|Ô Môn|815|Quận
+81507|Cái Răng|815|Quận
+81509|Thốt Nốt|815|Quận
+81515|Phong Điền|815|Huyện
+81601|Thành Phố Vị Thanh|816|Thành phố
+81602|Thị xã Ngã Bảy|816|Thị xã
+81603|Châu Thành A|816|Huyện
+81609|Vị Thủy|816|Huyện
+81703|Càng Long|817|Huyện
+81709|Tiểu Cần|817|Huyện
+81711|Cầu Ngang|817|Huyện
+81715|Duyên Hải|817|Huyện
+81901|Thành phố Sóc Trăng|819|Thành phố
+81903|Kế Sách|819|Huyện
+50711|Vĩnh Thạnh|507|Huyện
+50715|Tây Sơn|507|Huyện
+50717|Thị xã An Nhơn|507|Thị xã
+50721|Vân Canh|507|Huyện
+50905|Thị xã Sông Cầu|509|Thị xã
+50907|Tuy An|509|Huyện
+81907|Mỹ Tú|819|Huyện
+81909|Mỹ Xuyên|819|Huyện
+81911|Thạnh Trị|819|Huyện
+81913|Thị xã Vĩnh Châu|819|Thị xã
+81915|Trần Đề|819|Huyện
+82103|Phước Long|821|Huyện
+82105|Vĩnh Lợi|821|Huyện
+82107|Thị xã Giá Rai|821|Thị xã
+82303|Thới Bình|823|Huyện
+82305|U Minh|823|Huyện
+82307|Trần Văn Thời|823|Huyện
+82313|Ngọc Hiển|823|Huyện
+82314|Năm Căn|823|Huyện
+50911|Tây Hòa|509|Huyện
+50913|Sông Hinh|509|Huyện
+51102|Thành phố Cam Ranh|511|Thành phố
+51103|Vạn Ninh|511|Huyện
+51105|Thị xã Ninh Hòa|511|Thị xã
+51108|Cam Lâm|511|Huyện
+51111|Khánh Vĩnh|511|Huyện
+51115|Trường Sa|511|Huyện
+60101|Thành phố Kon Tum|601|Thành phố
+60105|Ngọc Hồi|601|Huyện
+60107|Đắk Tô|601|Huyện
+60108|Kon Rẫy|601|Huyện
+60109|Kon Plông|601|Huyện
+60111|Đắk Hà|601|Huyện
+60113|Sa Thầy|601|Huyện
+60114|Tu Mơ Rông|601|Huyện
+60301|Thành phố Pleiku|603|Thành phố
+60303|KBang|603|Huyện
+60305|Đắk Đoa|603|Huyện
+60306|Mang Yang|603|Huyện
+60307|Chư Păh|603|Huyện
+60309|Ia Grai|603|Huyện
+60311|Thị xã An Khê|603|Thị xã
+60312|Đăk Pơ|603|Huyện
+60313|Kông Chro|603|Huyện
+60315|Đức Cơ|603|Huyện
+60317|Chư Prông|603|Huyện
+60319|Chư Sê|603|Huyện
+60321|Thị xã Ayun Pa|603|Thị xã
+60322|Ia Pa|603|Huyện
+60323|Krông Pa|603|Huyện
+60324|Phú Thiện|603|Huyện
+60325|Chư Pưh|603|Huyện
+60501|Thành phố Buôn Ma Thuột|605|Thành phố
+60503|Ea H'leo|605|Huyện
+60505|Ea Súp|605|Huyện
+60507|Krông Năng|605|Huyện
+60509|Krông Búk|605|Huyện
+60511|Buôn Đôn|605|Huyện
+60513|Cư M'Gar|605|Huyện
+60515|Ea Kar|605|Huyện
+60517|M'Đrắk|605|Huyện
+60519|Krông Pắc|605|Huyện
+60523|Krông A Na|605|Huyện
+60524|Cư Kuin|605|Huyện
+60525|Krông Bông|605|Huyện
+60531|Lắk|605|Huyện
+60532|Thị xã Buôn Hồ|605|Thị xã
+60611|Thị xã Gia Nghĩa|606|Thị xã
+60621|Cư Jút|606|Huyện
+60627|Đắk Mil|606|Huyện
+60632|Đắk Song|606|Huyện
+60633|Đắk R'Lấp|606|Huyện
+60634|Tuy Đức|606|Huyện
+60635|Đắk Glong|606|Huyện
+60703|Thành phố Bảo Lộc|607|Thành phố
+60705|Lạc Dương|607|Huyện
+60707|Đơn Dương|607|Huyện
+60709|Đức Trọng|607|Huyện
+60711|Lâm Hà|607|Huyện
+60713|Bảo Lâm|607|Huyện
+60715|Di Linh|607|Huyện
+60717|Đạ Huoai|607|Huyện
+60719|Đạ Tẻh|607|Huyện
+60721|Cát Tiên|607|Huyện
+71312|Cẩm Mỹ|713|Huyện
+71317|Nhơn Trạch|713|Huyện
+71503|Tuy Phong|715|Huyện
+71509|Hàm Thuận Nam|715|Huyện
+71515|Đức Linh|715|Huyện
+71703|Thành phố Bà Rịa|717|Thành phố
+71711|Đất Đỏ|717|Huyện
+71714|Côn Đảo|717|Huyện
+80105|Vĩnh Hưng|801|Huyện
+80117|Bến Lức|801|Huyện
+80123|Tân Trụ|801|Huyện
+80127|Cần Giuộc|801|Huyện
+80305|Tân Hồng|803|Huyện
+80313|Tháp Mười|803|Huyện
+80321|Châu Thành|803|Huyện
+80505|An Phú|805|Huyện
+80511|Châu Phú|805|Huyện
+80521|Thoại Sơn|805|Huyện
+80705|Tân Phước|807|Huyện
+80713|Cái Bè|807|Huyện
+80903|Long Hồ|809|Huyện
+80908|Bình Tân|809|Huyện
+80913|Vũng Liêm|809|Huyện
+81103|Châu Thành|811|Huyện
+81115|Thạnh Phú|811|Huyện
+81303|Thị xã Hà Tiên|813|Thị xã
+81309|Châu Thành|813|Huyện
+81319|Vĩnh Thuận|813|Huyện
+81325|U Minh Thượng|813|Huyện
+81505|Bình Thủy|815|Quận
+81511|Vĩnh Thạnh|815|Huyện
+81565|Thới Lai|815|Huyện
+81607|Phụng Hiệp|816|Huyện
+81701|Thành phố Trà Vinh|817|Thành phố
+81707|Cầu Kè|817|Huyện
+81908|Châu Thành|819|Huyện
+81912|Thị xã Ngã Năm|819|Thị xã
+82101|Thành Phố Bạc Liêu|821|Thành phố
+82106|Hòa Bình|821|Huyện
+82301|Thành phố Cà Mau|823|Thành phố
+82309|Cái Nước|823|Huyện
+10154|Nam Từ Liêm|101|Quận
+71109|Bắc Tân Uyên|711|Huyện
+71110|Bàu Bàng|711|Huyện
+81612|Thị xã Long Mỹ|816|Thị xã
+30320|Vân Hồ|303|Huyện
+30220|Nậm Pồ|302|Huyện
+50114|Hoàng Sa|501|Huyện
+70712|Phú Riềng|707|Huyện
+80717|Gò Công Đông|807|Huyện
+40520|Thị xã Kỳ Anh|405|Thị xã
+40714|TX Ba Đồn|407|Thị xã
+81716|TX Duyên Hải|817|Thị xã
+10121|Bắc Từ Liêm|101|Quận
+10127|Thị Xã Sơn Tây|101|Thị xã
+10135|Thạch Thất|101|Huyện
+10141|Chương Mỹ|101|Huyện
+10147|Mỹ Đức|101|Huyện
+10151|Phú Xuyên|101|Huyện
+10303|Ngô Quyền|103|Quận
+10309|Đồ Sơn|103|Quận
+10313|An Dương|103|Huyện
+10317|Kiến Thụy|103|Huyện
+10323|Cát Hải|103|Huyện
+10401|Thành phố Vĩnh Yên|104|Thành phố
+10405|Tam Dương|104|Huyện
+10409|Yên Lạc|104|Huyện
+10705|Nam Sách|107|Huyện
+10711|Kim Thành|107|Huyện
+10905|Văn Giang|109|Huyện
+10909|Kim Động|109|Huyện
+11101|Thành phố Phủ Lý|111|Thành phố
+11109|Thanh Liêm|111|Huyện
+11303|Vụ Bản|113|Huyện
+11309|Nam Trực|113|Huyện
+11313|Xuân Trường|113|Huyện
+11501|Thành phố Thái Bình|115|Thành phố
+11509|Đông Hưng|115|Huyện
+11513|Kiến Xương|115|Huyện
+11705|Nho Quan|117|Huyện
+11709|Hoa Lư|117|Huyện
+11715|Kim Sơn|117|Huyện
+20105|Mèo Vạc|201|Huyện
+20109|Quản Bạ|201|Huyện
+20115|Vị Xuyên|201|Huyện
+20120|Quang Bình|201|Huyện
+20304|Bảo Lâm|203|Huyện
+20309|Trà Lĩnh|203|Huyện
+20315|Hòa An|203|Huyện
+20318|Phục Hòa|203|Huyện
+20501|Thành phố Lào Cai|205|Thành phố
+20509|Bắc Hà|205|Huyện
+20515|Bảo Yên|205|Huyện
+20701|Thành phố Bắc Kạn|207|Thành phố
+20707|Chợ Đồn|207|Huyện
+20712|Chợ Mới|207|Huyện
+20903|Tràng Định|209|Huyện
+20909|Bắc Sơn|209|Huyện
+20915|Lộc Bình|209|Huyện
+20921|Hữu Lũng|209|Huyện
+21103|Nà Hang|211|Huyện
+21107|Hàm Yên|211|Huyện
+21301|Thành phố Yên Bái|213|Thành phố
+21315|Văn Chấn|213|Huyện
+21503|Thành phố Sông Công|215|Thành phố
+21511|Đồng Hỷ|215|Huyện
+21518|Đại Từ|215|Huyện
+21703|Thị xã Phú Thọ|217|Thị xã
+21711|Phù Ninh|217|Huyện
+21715|Yên Lập|217|Huyện
+21719|Thanh Sơn|217|Huyện
+22101|Thành phố Bắc Giang|221|Thành phố
+22109|Hiệp Hòa|221|Huyện
+22115|Lục Nam|221|Huyện
+22501|Thành phố Hạ Long|225|Thành phố
+22507|Bình Liêu|225|Huyện
+22513|Tiên Yên|225|Huyện
+22519|Hoành Bồ|225|Huyện
+22523|Cô Tô|225|Huyện
+30105|Mường Tè|301|Huyện
+30108|Tam Đường|301|Huyện
+30118|Tân Uyên|301|Huyện
+30215|Tuần Giáo|302|Huyện
+30303|Quỳnh Nhai|303|Huyện
+30309|Bắc Yên|303|Huyện
+30315|Sông Mã|303|Huyện
+30317|Yên Châu|303|Huyện
+30503|Đà Bắc|305|Huyện
+30509|Lương Sơn|305|Huyện
+30513|Tân Lạc|305|Huyện
+30519|Yên Thủy|305|Huyện
+40103|Thị xã Bỉm Sơn|401|Thị xã
+40111|Quan Sơn|401|Huyện
+60723|Đam Rông|607|Huyện
+70101|Quận 1|701|Quận
+70103|Quận 2|701|Quận
+70105|Quận 3|701|Quận
+70107|Quận 4|701|Quận
+70109|Quận 5|701|Quận
+70113|Quận 7|701|Quận
+70115|Quận 8|701|Quận
+70117|Quận 9|701|Quận
+70119|Quận 10|701|Quận
+70121|Quận 11|701|Quận
+70125|Gò vấp|701|Quận
+70127|Tân Bình|701|Quận
+70129|Bình Thạnh|701|Quận
+70135|Củ Chi|701|Huyện
+70140|Bình Tân|701|Quận
+70141|Nhà Bè|701|Huyện
+70501|Thành Phố Phan Rang Tháp Chàm|705|Thành phố
+70504|Ninh Hải|705|Huyện
+70506|Thuận Bắc|705|Huyện
+70508|Thuận Nam|705|Huyện
+70509|Bác Ái|705|Huyện
+70702|Đồng Phú|707|Huyện
+70705|Lộc Ninh|707|Huyện
+70708|Chơn Thành|707|Huyện
+70710|Bù Gia Mập|707|Huyện
+70711|Hớn Quản|707|Huyện
+70903|Tân Biên|709|Huyện
+70905|Tân Châu|709|Huyện
+70907|Dương Minh Châu|709|Huyện
+70913|Bến Cầu|709|Huyện
+70917|Trảng Bàng|709|Huyện
+71101|Thành Phố Thủ Dầu Một|711|Thành phố
+71103|Thị xã Bến Cát|711|Thị xã
+71107|Thị xã Thuận An|711|Thị xã
+71108|Thị xã Dĩ An|711|Thị xã
+71303|Tân Phú|713|Huyện
+71305|Định Quán|713|Huyện
+71310|Trảng Bom|713|Huyện
+71311|Thị xã Long Khánh|713|Thị xã
+71315|Long Thành|713|Huyện
+71501|Thành phố Phan Thiết|715|Thành phố
+71502|Thị xã La Gi|715|Thị xã
+71505|Bắc Bình|715|Huyện
+71507|Hàm Thuận Bắc|715|Huyện
+71511|Tánh Linh|715|Huyện
+71513|Hàm Tân|715|Huyện
+71517|Phú Quý|715|Huyện
+71701|Thành phố Vũng Tàu|717|Thành phố
+71705|Châu Đức|717|Huyện
+71707|Xuyên Mộc|717|Huyện
+71712|Long Điền|717|Huyện
+80101|Thành phố Tân An|801|Thành phố
+80103|Tân Hưng|801|Huyện
+80107|Mộc Hóa|801|Huyện
+80109|Tân Thạnh|801|Huyện
+80113|Đức Huệ|801|Huyện
+80115|Đức Hòa|801|Huyện
+80121|Châu Thành|801|Huyện
+80125|Cần Đước|801|Huyện
+80307|Hồng Ngự|803|Huyện
+80309|Tam Nông|803|Huyện
+80311|Thanh Bình|803|Huyện
+80315|Cao Lãnh|803|Huyện
+80319|Lai Vung|803|Huyện
+80501|Thành phố Long Xuyên|805|Thành phố
+80503|Thành phố Châu Đốc|805|Thành phố
+80509|Phú Tân|805|Huyện
+80513|Tịnh Biên|805|Huyện
+80515|Tri Tôn|805|Huyện
+80519|Châu Thành|805|Huyện
+80701|Thành phố Mỹ Tho|807|Thành phố
+80707|Châu Thành|807|Huyện
+80709|Cai Lậy|807|Thị xã
+80711|Chợ Gạo|807|Huyện
+80718|Tân Phú Đông|807|Huyện
+80901|Thành phố Vĩnh Long|809|Thành phố
+80907|Thị xã Bình Minh|809|Thị xã
+80909|Tam Bình|809|Huyện
+80911|Trà Ôn|809|Huyện
+81101|Thành phố Bến Tre|811|Thành phố
+81105|Chợ Lách|811|Huyện
+81107|Mỏ Cày Nam|811|Huyện
+81113|Ba Tri|811|Huyện
+81116|Mỏ Cày Bắc|811|Huyện
+81304|Kiên Lương|813|Huyện
+81305|Hòn Đất|813|Huyện
+81307|Tân Hiệp|813|Huyện
+81311|Giồng Riềng|813|Huyện
+10717|Cẩm Giàng|107|Huyện
+10719|Bình Giang|107|Huyện
+10721|Thanh Miện|107|Huyện
+10723|Ninh Giang|107|Huyện
+10153|Mê Linh|101|Huyện
+10301|Hồng Bàng|103|Quận
+10305|Lê Chân|103|Quận
+10307|Kiến An|103|Quận
+10310|Dương Kinh|103|Quận
+10311|Thủy Nguyên|103|Huyện
+10314|Hải An|103|Quận
+10315|An Lão|103|Huyện
+10319|Tiên Lãng|103|Huyện
+10321|Vĩnh Bảo|103|Huyện
+10325|Bạch Long Vĩ|103|Huyện
+10402|Thị xã Phúc Yên|104|Thị xã
+10403|Lập Thạch|104|Huyện
+10404|Tam Đảo|104|Huyện
+10406|Bình Xuyên|104|Huyện
+10407|Vĩnh Tường|104|Huyện
+10410|Sông Lô|104|Huyện
+10601|Thành phố Bắc Ninh|106|Thành phố
+10603|Yên Phong|106|Huyện
+10605|Quế Võ|106|Huyện
+10607|Tiên Du|106|Huyện
+10608|Thị Xã Từ Sơn|106|Thị xã
+10609|Thuận Thành|106|Huyện
+10611|Lương Tài|106|Huyện
+10612|Gia Bình|106|Huyện
+10701|Thành phố Hải Dương|107|Thành phố
+10703|Thị Xã Chí Linh|107|Thị xã
+10707|Thanh Hà|107|Huyện
+10709|Kinh Môn|107|Huyện
+10713|Gia Lộc|107|Huyện
+10715|Tứ Kỳ|107|Huyện
+40907|Gio Linh|409|Huyện
+40909|Cam Lộ|409|Huyện
+40913|Hải Lăng|409|Huyện
+40915|Hướng Hóa|409|Huyện
+41103|Phong Điền|411|Huyện
+41107|Thị xã Hương Trà|411|Thị xã
+41109|Phú Vang|411|Huyện
+41115|A Lưới|411|Huyện
+41117|Nam Đông|411|Huyện
+50103|Thanh Khê|501|Quận
+50107|Ngũ Hành Sơn|501|Quận
+50109|Liên Chiểu|501|Quận
+50301|Thành phố Tam Kỳ|503|Thành phố
+50304|Tây Giang|503|Huyện
+50305|Đông Giang|503|Huyện
+50311|Duy Xuyên|503|Huyện
+50315|Thăng Bình|503|Huyện
+50317|Quế Sơn|503|Huyện
+50319|Hiệp Đức|503|Huyện
+50325|Núi Thành|503|Huyện
+50327|Bắc Trà My|503|Huyện
+50329|Phú Ninh|503|Huyện
+50505|Bình Sơn|505|Huyện
+50507|Trà Bồng|505|Huyện
+50509|Sơn Tịnh|505|Huyện
+50511|Sơn Tây|505|Huyện
+50515|Tư Nghĩa|505|Huyện
+50519|Minh Long|505|Huyện
+50525|Ba Tơ|505|Huyện
+50701|Thành phố Quy Nhơn|507|Thành phố
+50705|Hoài Nhơn|507|Huyện
+50707|Hoài Ân|507|Huyện
+81315|An Biên|813|Huyện
+81317|An Minh|813|Huyện
+81321|Phú Quốc|813|Huyện
+40117|Lang Chánh|401|Huyện
+40123|Thường Xuân|401|Huyện
+40129|Vĩnh Lộc|401|Huyện
+40135|Yên Định|401|Huyện
+40141|Thiệu Hóa|401|Huyện
+40147|Triệu Sơn|401|Huyện
+40153|Tĩnh Gia|401|Huyện
+40303|Thị xã Cửa Lò|403|Thị xã
+40311|Quỳ Hợp|403|Huyện
+40315|Tương Dương|403|Huyện
+40321|Con Cuông|403|Huyện
+40327|Anh Sơn|403|Huyện
+40331|Thanh Chương|403|Huyện
+40338|Thị xã Hoàng Mai|403|Thị xã
+40505|Nghi Xuân|405|Huyện
+40510|Vũ Quang|405|Huyện
+40513|Thạch Hà|405|Huyện
+40701|Thành phố Đồng Hới|407|Thành phố
+40709|Bố Trạch|407|Huyện
+40901|Thành Phố Đông Hà|409|Thành phố
+40906|Cồn Cỏ|409|Huyện
+40911|Triệu Phong|409|Huyện
+40917|Đa Krông|409|Huyện
+41105|Quảng Điền|411|Huyện
+41111|Thị xã Hương Thủy|411|Thị xã
+50101|Hải Châu|501|Quận
+50105|Sơn Trà|501|Quận
+50112|Cẩm Lệ|501|Quận
+50303|Thành phố Hội An|503|Thành phố
+50309|Điện Bàn|503|Thị xã
+50313|Nam Giang|503|Huyện
+50318|Nông Sơn|503|Huyện
+50323|Phước Sơn|503|Huyện
+50328|Nam Trà My|503|Huyện
+50503|Lý sơn|505|Huyện
+50508|Tây Trà|505|Huyện
+50513|Sơn Hà|505|Huyện
+50517|Nghĩa Hành|505|Huyện
+50523|Đức Phổ|505|Huyện
+50703|An Lão|507|Huyện
+50709|Phù Mỹ|507|Huyện
+50713|Phù Cát|507|Huyện
+50719|Tuy Phước|507|Huyện
+50903|Đồng Xuân|509|Huyện
+50909|Sơn Hòa|509|Huyện
+50912|Đông Hòa|509|Huyện
+51101|Thành phố Nha Trang|511|Thành phố
+51107|Diên Khánh|511|Huyện
+51113|Khánh Sơn|511|Huyện
+60103|Đắk Glei|601|Huyện
+70128|Tân Phú|701|Quận
+70133|Thủ Đức|701|Quận
+70139|Bình Chánh|701|Huyện
+70143|Cần Giờ|701|Huyện
+70503|Ninh Sơn|705|Huyện
+70507|Ninh Phước|705|Huyện
+70701|Thị xã Đồng Xoài|707|Thị xã
+70706|Bù Đốp|707|Huyện
+70709|Thị xã Bình Long|707|Thị xã
+70901|Thành phố Tây Ninh|709|Thành phố
+70909|Châu Thành|709|Huyện
+70915|Gò Dầu|709|Huyện
+71102|Dầu Tiếng|711|Huyện
+71105|Thị xã Tân Uyên|711|Thị xã
+71301|Thành phố Biên Hòa|713|Thành phố
+71309|Thống Nhất|713|Huyện
+22505|Thành phố Uông Bí|225|Thành phố
+22103|Yên Thế|221|Huyện
+21705|Đoan Hùng|217|Huyện
+11701|Thành phố Ninh Bình|117|Thành phố
+40109|Quan Hóa|401|Huyện
+40119|Thạch Thành|401|Huyện
+40133|Nga Sơn|401|Huyện
+40149|Quảng Xương|401|Huyện
+40309|Kỳ Sơn|403|Huyện
+40323|Yên Thành|403|Huyện
+40903|Thị xã Quảng Trị|409|Thị xã
+41101|Thành phố Huế|411|Thành phố
+41113|Phú Lộc|411|Huyện
+50113|Hòa Vang|501|Huyện
+50307|Đại Lộc|503|Huyện
+40703|Tuyên Hóa|407|Huyện
+50321|Tiên Phước|503|Huyện
+70707|Bù Đăng|707|Huyện
+70911|Hòa Thành|709|Huyện
+71104|Phú Giáo|711|Huyện
+71313|Xuân Lộc|713|Huyện
+71709|Tân Thành|717|Huyện
+80128|Thị xã Kiến Tường|801|Thị xã
+80111|Thạnh Hóa|801|Huyện
+80119|Thủ Thừa|801|Huyện
+80703|Thị xã Gò Công|807|Thị xã
+80719|Thị xã Cai Lậy|807|Huyện
+80715|Gò Công Tây|807|Huyện
+81109|Giồng Trôm|811|Huyện
+81111|Bình Đại|811|Huyện
+81705|Châu Thành|817|Huyện
+80905|Mang Thít|809|Huyện
+80301|Thành phố Cao Lãnh|803|Thành phố
+80303|Thành phố Sa Đéc|803|Thành phố
+80317|Lấp Vò|803|Huyện
+80507|Thị xã Tân Châu|805|Thị xã
+80517|Chợ Mới|805|Huyện
+81301|Thành phố Rạch Giá|813|Thành phố
+81313|Gò Quao|813|Huyện
+81330|Giang Thành|813|Huyện
+81513|Cờ Đỏ|815|Huyện
+81605|Châu Thành|816|Huyện
+81611|Long Mỹ|816|Huyện
+81906|Cù Lao Dung|819|Huyện
+81905|Long Phú|819|Huyện
+82104|Hồng Dân|821|Huyện
+82109|Đông Hải|821|Huyện
+82311|Đầm Dơi|823|Huyện
+82310|Phú Tân|823|Huyện
+21707|Hạ Hòa|217|Huyện
+21309|Mù Cang Chải|213|Huyện
+30201|Thành phố Điện Biên Phủ|302|Thành phố
+30203|Thị xã Mường Lay|302|Thị xã
+40314|Thị xã Thái Hòa|403|Thị xã

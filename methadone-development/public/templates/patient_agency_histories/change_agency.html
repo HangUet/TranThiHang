@@ -1,0 +1,35 @@
+<table class="table table-custom table-bordered table-hover">
+  <thead>
+    <th>{{"sender"| translator: "main"}}</th>
+    <th>{{"sender_agency"| translator: "main"}}</th>
+    <th>{{"receiver_agency"| translator: "main"}}</th>
+    <th>{{"status"| translator: "main"}}</th>
+    <th>{{"confirmer"| translator: "main"}}</th>
+    <th>{{"history_treatments" | translator: "prescription"}}</th>
+    <th ng-if="patient_agency_history.end_date">{{"end_date_change"| translator: "patient"}}</th>
+  </thead>
+  <tbody>
+    <td>{{patient_agency_history.sender_name}}</td>
+    <td>{{patient_agency_history.sender_agency_name}}</td>
+    <td>{{patient_agency_history.receiver_agency_name}}</td>
+    <td>
+      <span ng-if="patient_agency_history.status=='pending'">{{"pending"| translator: "main"}}</span>
+      <span ng-if="patient_agency_history.status=='accepted'" class="text-green">{{"accepted"| translator: "main"}}</span>
+      <span ng-if="patient_agency_history.status=='refused'" class="text-red">{{"refused"| translator: "main"}}</span>
+      <span ng-if="patient_agency_history.status=='cancelled'" class="text-info">{{"cancelled"| translator: "main"}}</span>
+    </td>
+    <td>{{patient_agency_history.confirmer_name}}</td>
+    <td>
+      <a ng-click='showHistoryMedicineAllocationModal()'
+        title="{{'history_treatments'| translator: 'prescription'}}" tooltip>
+        <i class="fa fa-history" aria-hidden="true"></i>
+      </a>
+    </td>
+    <td ng-if="patient_agency_history.end_date">{{patient_agency_history.end_date}}</td>
+  </tbody>
+</table>
+<div ng-if="patient_agency_history.receiver_agency_id==currentUser.issuing_agency_id && patient_agency_history.status=='pending'"
+  class="margin-top-15px clearfix text-right">
+  <button class="btn btn-default btn-sm" ng-click="feedback('refused')">{{"refuse"| translator: "main"}}</button>
+  <button class="btn blue-custom btn-sm" ng-click="feedback('accepted')">{{"accept"| translator: "main"}}</button>
+</div>

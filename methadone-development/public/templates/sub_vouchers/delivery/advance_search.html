@@ -1,0 +1,84 @@
+<form ng-submit="search()" name="createUserForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <h3 class="modal-title text-bold-header"> {{'search_voucher' |
+      translator: 'main'}}
+    </h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>{{"type_export"| translator: 'medicine'}}:</label>
+        <ui-select ng-model="keyword.typee" name="typee" search-enabled="false"
+          theme="select2" append-to-body="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+            data-allow-clear="true">
+            {{$select.selected | translator: 'medicine'}}
+          </ui-select-match>
+          <ui-select-choices repeat="item in ['export_to_allocation', 'export_to_give_back']">
+            <span ng-bind-html="item | translator: 'medicine' | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>Trạng thái:</label>
+        <ui-select ng-model="keyword.status" name="status" search-enabled="false"
+          theme="select2" append-to-body="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+            data-allow-clear="true">
+            {{$select.selected | translator: 'medicine'}}
+          </ui-select-match>
+          <ui-select-choices repeat="item in ['pending', 'accepted', 'inprocess', 'rejected']">
+            <span ng-bind-html="item | translator: 'medicine' | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>Ngày xuất phiếu từ ngày:</label>
+        <label class="input-group margin-0">
+          <input ng-model="keyword.date_start"
+            class="form-control input-sm" datepicker>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>Đến ngày:</label>
+        <label class="input-group margin-0">
+          <input ng-model="keyword.date_end"
+            class="form-control input-sm" datepicker>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>Người giao:</label>
+        <input ng-model="keyword.sender" type="text"
+          name="sender" class="form-control input-sm">
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>Người nhận:</label>
+        <input ng-model="keyword.receiver" type="text"
+          name="receiver" class="form-control input-sm">
+      </div>
+      <div class="col-xs-12 col-md-6 form-group">
+        <label>Số phiếu:</label>
+        <input ng-model="keyword.code" type="text"
+          name="code" class="form-control input-sm">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button"
+      data-dismiss="modal" value='{{"close" | translator: "main"}}'>
+    <a ng-click="reset()" class="btn blue-custom btn-sm">Nhập lại</a>
+    <button class="btn blue-custom btn-sm" type="submit">
+    <i class="fa fa-search"></i> {{"search" | translator: "main"}}
+    </button>
+  </div>
+</form>

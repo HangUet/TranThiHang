@@ -1,0 +1,142 @@
+<div class="row">
+  <a ui-sref="main.patients({type: 'expirate_prescription'})" ui-sref-opts="{reload: true, inherit: fasle}">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-5">
+      <div class="dashboard-stat2" style="margin-bottom: 10px;">
+        <div class="display">
+          <div class="number">
+            <h3 class="font-red-haze">
+              <span data-counter="counterup" data-value="90">{{ dashboard.total_expirate_prescription }}/{{ dashboard.total_patients }}</span>
+            </h3>
+            <small style="font-size: 12px; text-transform: uppercase;">Bệnh nhân đến hạn kê đơn/Tổng Số bệnh nhân</small>
+          </div>
+          <div class="icon">
+            <i class="icon-pie-chart"></i>
+          </div>
+        </div>
+        <div class="progress-info">
+          <div class="progress">
+            <span ng-style="{'width' : expirate_prescription_ratio}" class="progress-bar progress-bar-success red-haze">
+              <span class="sr-only">{{ expirate_prescription_ratio }}%</span>
+            </span>
+          </div>
+          <div class="status">
+            <div class="status-title"></div>
+            <div class="status-number">{{ expirate_prescription_ratio }}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <a ui-sref="main.patients({type: 'total_give_up_medicine'})" ui-sref-opts="{reload: true, inherit: fasle}">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12n padding-right-5 padding-left-5">
+      <div class="dashboard-stat2" style="margin-bottom: 10px;">
+        <div class="display">
+          <div class="number">
+            <h3 class="font-green-sharp">
+              <span data-counter="counterup" data-value="95">{{ dashboard.total_give_up_medicine }}/{{ dashboard.total_patients }}</span>
+            </h3>
+            <small style="font-size: 12px; text-transform: uppercase;">Số bệnh nhân bỏ liều/Tổng số bệnh nhân điều trị</small>
+          </div>
+          <div class="icon">
+            <i class="icon-user"></i>
+          </div>
+        </div>
+        <div class="progress-info">
+          <div class="progress">
+            <span ng-style="{'width' : give_up_medicine_ratio}" class="progress-bar progress-bar-success green-sharp">
+            </span>
+          </div>
+          <div class="status">
+            <div class="status-number">{{ give_up_medicine_ratio }}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-5 padding-left-5">
+    <div class="dashboard-stat2" style="margin-bottom: 10px;">
+      <div class="display">
+        <div class="number">
+          <h3 class="font-blue-sharp">
+            <span data-counter="counterup" data-value="89">320/360</span>
+          </h3>
+          <a ui-sref="main.patients" ui-sref-opts="{reload: true, inherit: fasle}">
+            <small style="font-size: 12px">SỐ BỆNH NHÂN THAM GIA TƯ VẤN/TỔNG CẦN TƯ VẤN</small>
+          </a>
+        </div>
+        <div class="icon">
+          <i class="icon-user-female"></i>
+        </div>
+      </div>
+      <div class="progress-info">
+        <div class="progress">
+          <span style="width: 89%;" class="progress-bar progress-bar-success blue-sharp">
+            <span class="sr-only">89%</span>
+          </span>
+        </div>
+        <div class="status">
+          <div class="status-title"></div>
+          <div class="status-number"> 89% </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-left-5">
+    <div class="dashboard-stat2" style="margin-bottom: 10px;">
+      <div class="display">
+        <div class="number">
+          <h3 class="font-purple-soft">
+            <span data-counter="counterup" data-value="97">4200/4486</span>
+          </h3>
+          <a ui-sref="main.patients" ui-sref-opts="{reload: true, inherit: fasle}">
+            <small style="font-size: 12px;">SỐ THUỐC 1 NGÀY XUẤT/SỐ THUỐC THEO KẾ HOẠCH</small>
+          </a>
+        </div>
+        <div class="icon">
+          <i class="icon-chemistry"></i>
+        </div>
+      </div>
+      <div class="progress-info">
+        <div class="progress">
+          <span style="width: 94%;" class="progress-bar progress-bar-success purple-soft">
+            <span class="sr-only">94%</span>
+          </span>
+        </div>
+        <div class="status">
+          <div class="status-title"></div>
+          <div class="status-number"> 94% </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" armchart id="chart">
+  <div class="col-md-6 col-xs-12 padding-right-5">
+    <div class="portlet light">
+      <div class="portlet-title" id="title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            Biểu đồ bệnh nhân bỏ điều trị
+          </span>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div id="chartdiv1"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12 padding-left-5">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            Biểu đồ tình hình sử dụng thuốc
+          </span>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div id="chartdiv"></div>
+      </div>
+    </div>
+  </div>
+</div>

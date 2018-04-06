@@ -1,0 +1,111 @@
+<form ng-submit="form.$valid && searchCardStore()" name="form" novalidate>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="portlet light bordered" style="margin-bottom: 5px;">
+        <div class="portlet-body">
+          <div class="row row-flex">
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label class="required">{{"name"| translator: 'medicine'}}</label>
+                <ui-select ng-model="card_store.medicine_list_id" name="medicine_list_id" theme="select2"
+                           append-to-body="true" search-enabled="false" ng-required="true">
+                  <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                    {{$select.selected.name}} ({{$select.selected.composition}})
+                  </ui-select-match>
+                  <ui-select-choices repeat="medicine in medicines">
+                    <table class="table-select" style="width: 500px;">
+                      <tbody>
+                        <tr>
+                          <td style="width: 20%" ng-bind-html="medicine.name"></td>
+                          <td style="width: 40%" ng-bind-html="medicine.composition"></td>
+                          <td style="width: 10%" ng-bind-html="medicine.concentration"></td>
+                          <td style="width: 30%" ng-bind-html="medicine.manufacturer"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ui-select-choices>
+                </ui-select>
+                <div ng-messages="form.medicine_list_id.$error" ng-show="form.$submitted" class="text-error">
+                  <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <label class="required">{{"from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="from_date" class="form-control input-sm" required datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="col-xs-2">
+              <label class="required">{{"to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="to_date" class="form-control input-sm" required datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="col-xs-2" style="margin-top: 24px;">
+              <button type="submit" class="btn blue-custom btn-sm"><i class="fa fa-search"></i> {{"search"| translator: 'main'}}</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase">Thẻ kho</span>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm" ng-click="">
+            <i class="fa fa-print"></i> In </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-bordered table-custom">
+             <thead>
+              <tr>
+                <th>{{"day" | translator: "main"}}</th>
+                <th>Số lô</th>
+                <th>Hạn sử dụng</th>
+                <th>Tồn đầu</th>
+                <th>Nhập trong ngày</th>
+                <th>Xuất trong ngày</th>
+                <th>Hư hao</th>
+                <th>Dư thừa</th>
+                <th>Tồn cuối ngày</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="inventory_medicine in inventory_medicines">
+                <td>{{inventory_medicine.datee}}</td>
+                <td>{{inventory_medicine.batch}}</td>
+                <td>{{inventory_medicine.expiration_date}}</td>
+                <td>{{inventory_medicine.beginn}}</td>
+                <td>{{inventory_medicine.import}}</td>
+                <td>{{inventory_medicine.export}}</td>
+                <td>{{inventory_medicine.loss}}</td>
+                <td>{{inventory_medicine.redundancy}}</td>
+                <td>{{inventory_medicine.endd}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

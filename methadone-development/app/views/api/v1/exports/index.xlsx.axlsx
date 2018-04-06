@@ -1,0 +1,96 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  text_center = style.add_style(alignment: {horizontal: :center, vertical: :center}, border: Axlsx::STYLE_THIN_BORDER, sz: 9, font_name: 'Times New Roman')
+  font_weight = style.add_style(b: true, border: Axlsx::STYLE_THIN_BORDER, alignment: {horizontal: :center, vertical: :center}, sz: 9, font_name: 'Times New Roman')
+  cell_border = style.add_style(alignment: {vertical: :center}, border: Axlsx::STYLE_THIN_BORDER, sz: 9, font_name: 'Times New Roman')
+
+  wb.add_worksheet(name: "Product") do |sheet|
+    sheet.merge_cells "A1:B4"
+
+    sheet.merge_cells "C1:H1"
+
+    sheet.merge_cells "C2:E2"
+    sheet.merge_cells "C3:E3"
+    sheet.merge_cells "C4:E4"
+
+    sheet.merge_cells "F2:H2"
+    sheet.merge_cells "F3:H3"
+    sheet.merge_cells "F4:H4"
+
+    sheet.merge_cells "I1:L1"
+    sheet.merge_cells "I2:L2"
+    sheet.merge_cells "I3:L3"
+    sheet.merge_cells "I4:L4"
+
+    sheet.merge_cells "A5:C5"
+    sheet.merge_cells "D5:F5"
+    sheet.merge_cells "G5:I5"
+    sheet.merge_cells "J5:L5"
+
+    sheet.merge_cells "A23:L23"
+
+    img = File.expand_path(@url_image)
+    sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+      image.width = 115
+      image.height = 95
+      image.start_at 0, 0
+    end
+
+    sheet.add_row([nil, nil, "PHIẾU THEO DÕI ĐIỀU TRỊ BẰNG THUỐC METHADONE", nil, nil, nil, nil, nil, "CƠ SỞ ĐIỀU TRỊ: #{@patient.issuing_agency.name}", nil, nil, nil], style: [cell_border, cell_border, font_weight, nil, nil, nil, nil, nil, cell_border, nil, nil, cell_border])
+
+    sheet.add_row([nil, nil, "HỌ VÀ TÊN: #{@patient.name}", nil, nil, "NGÀY SINH: #{@patient.birthdate.strftime("%d/%m/%Y") rescue nil}", nil, nil, "BÁC SỸ KÊ ĐƠN: #{@prescription.user.first_name} #{@prescription.user.last_name}", nil, nil, nil], style: cell_border)
+    sheet.add_row([nil, nil, "ĐỊA CHỈ: #{@address}", nil, nil, "GIỚI: #{ @patient.gender == 'male' ? 'Nam' : 'Nữ'}", nil, nil, "NGÀY BẮT ĐẦU ĐIỀU TRỊ: #{@patient.admission_date.strftime("%d/%m/%Y") rescue nil}", nil, nil, nil], style: cell_border)
+    sheet.add_row([nil, nil, "ĐIỆN THOẠI: #{@patient.mobile_phone}", nil, nil, "MÃ SỐ BỆNH NHÂN: #{@patient.card_number}", nil, nil, "DẠNG THUỐC METHADONE SỬ DỤNG: #{@prescription.medicine_list.name}", nil, nil, nil], style: cell_border)
+    sheet.add_row(["THÁNG: #{params[:month]}   NĂM: #{params[:year]}", nil, nil, "KÝ NHẬN", nil, nil, "THÁNG: #{params[:month]}    NĂM: #{params[:year]}", nil, nil, "KÝ NHẬN", nil, nil], style: [cell_border, nil, nil, text_center, nil, nil, cell_border, nil, nil, text_center, nil, cell_border])
+
+
+    sheet.add_row(["Ngày", "mg", "ml", "Bệnh nhân", "Người phát 1", "Người phát 2", "Ngày", "mg", "ml", "Bệnh nhân", "Người phát 1", "Người phát 2"], style: text_center)
+
+    1.upto(15) do |item|
+      medicine_allocation = @medicine_allocations.select {|e| e.allocation_date.strftime("%d").to_i == item || e.allocation_date.strftime("%d").to_i == item + 15}
+      if (medicine_allocation.present?)
+        dosage = 0
+        medicine_allocation.each do |allocation|
+          dosage += allocation.dosage
+        end
+        if (medicine_allocation[0].allocation_date.strftime("%d").to_i <= 15)
+          sheet.add_row([item, dosage,
+          dosage / 10, nil, nil, nil, item + 15, "-", "-", nil, nil, nil], style: text_center)
+        else
+          sheet.add_row([item, "-", "-", nil, nil, nil, item + 15, dosage,
+            dosage / 10, nil, nil, nil], style: text_center)
+
+        end
+      else
+        sheet.add_row([item, "-", "-", nil, nil, nil, item + 15, "-", "-", nil, nil, nil], style: text_center)
+      end
+    end
+    if (medicine_allocation = @medicine_allocations.select {|e| e.allocation_date.strftime("%d").to_i == 31})
+      dosage = 0
+      medicine_allocation.each do |allocation|
+        dosage += allocation.dosage
+      end
+      sheet.add_row([nil, nil, nil, nil, nil, nil, 31, dosage, dosage / 10, nil, nil, nil], style: text_center)
+    else
+      sheet.add_row([nil, nil, nil, nil, nil, nil, 31, "-", "-", nil, nil, nil], style: text_center)
+    end
+    sheet.add_row ["Ghi chú:"]
+
+    sheet.column_info.first.width = 7
+    sheet.column_info[1].width = 7
+    sheet.column_info[2].width = 7
+    sheet.column_info[3].width = 16
+    sheet.column_info[4].width = 16
+    sheet.column_info[5].width = 16
+    sheet.column_info[6].width = 7
+    sheet.column_info[7].width = 7
+    sheet.column_info[8].width = 7
+    sheet.column_info[9].width = 16
+    sheet.column_info[10].width = 16
+    sheet.column_info[11].width = 16
+
+    sheet.rows.each {|row| row.height = 25}
+
+  end
+end

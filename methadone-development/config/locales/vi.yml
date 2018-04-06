@@ -1,0 +1,585 @@
+dictionary:
+  access_code_not_found: &access_code_not_found Không thể xác thực mã truy cập
+  age: &age Tuổi
+  app_not_found: &app_not_found Could not find application
+  avatar: &avatar Ảnh đại diện
+  birthday: &birthday Ngày sinh
+  confirmation: &confirmation Xác nhận
+  create: &create Tạo
+  district_id: &district_id Quận/ Huyện/ Thị xã
+  email: &email Địa chỉ email
+  first_name: &first_name Tên
+  forgot_password: &forgot_password Quên mật khẩu?
+  gender: &gender Giới tính
+  grade: &grade Khối lớp
+  last_name: &last_name Họ
+  log_in: &log_in Đăng nhập
+  log_out: &log_out Đăng xuất
+  no_confirmation_instructions: &no_confirmation_instructions "Gửi lại xác nhận tài khoản"
+  no_unlock_instructions: &no_unlock_instructions "Mở khóa tài khoản"
+  password: &password Mật khẩu
+  password_confirmation: &password_confirmation Xác nhận mật khẩu
+  phone: &phone Số điện thoại
+  province_id: &province_id Tỉnh/ Thành phố
+  remember_me: &remember_me Nhớ tài khoản
+  school_id: &school_id Trường
+  sign_in_with: &sign_in_with Đăng ký với
+  sign_up: &sign_up Đăng ký
+  sign_up_with: &sign_up_with Đăng ký với
+  update: &update Sửa
+  username: &username Tên tài khoản
+  ward_id: &ward_id Xã/ Phường/ Thị trấn
+
+vi:
+  activerecord:
+    attributes:
+      prescription:
+        dosage: "Liều lượng"
+  admin:
+    user_index:
+      block: "Khóa"
+      block_confirm: "Bạn có chắc chắn khóa tài khoản này?"
+      block_success: "Khóa tài khoản thành công"
+      delete: "Xóa"
+      delete_confirm: "Bạn có chắc chắn xóa tài khoản này?"
+      delete_fail: "Xóa tài khoản thất bại"
+      delete_success: "Xóa tài khoản thành công"
+      not_issuing_agency: "Bạn chưa chọn đơn vị"
+      email: *email
+      name: "Họ và tên"
+      search: "Tìm kiếm"
+      setting: " Tùy chọn"
+      sign_in_count: "Số lần truy cập"
+      stt: "STT"
+      total: "Tổng số"
+      unlock: "Mở khóa"
+      unlock_confirm: "Bạn có chắc chắn mở khóa tài khoản này?"
+      unlock_success: "Mở khóa tài khoản thành công"
+      username: *username
+      users: "người dùng"
+    user_show:
+      block: "Khóa"
+      block_confirm: "Bạn có chắc chắn khóa tài khoản này?"
+      block_history: "Lịch sử khóa tài khoản"
+      block_reason: "Lý do"
+      block_time: "Thời gian"
+      confirmed_at: "Thời gian xác nhận"
+      created_at: "Thời gian tạo tài khoản"
+      delete: "Xóa"
+      delete_confirm: "Bạn có chắc chắn xóa tài khoản này?"
+      email: *email
+      information: "Thông tin người dùng"
+      locked_at: "Thời gian khóa tài khoản do đăng nhập sai nhiều lần"
+      name: "Họ và tên"
+      role_sachmem: "Quyền trang Sách Mềm"
+      role_sm_quizz: "Quyền trang SM Quizz"
+      sign_in_count: "Số lần truy cập"
+      sign_up_with: "Đăng ký qua"
+      stt: "STT"
+      unlock: "Mở khóa"
+      unlock_confirm: "Bạn có chắc chắn mở khóa tài khoản này?"
+      username: *username
+      change_button: "Thay đổi"
+      edit_button: "Sửa"
+      update_success: "Bạn vừa sửa quyền của người dùng này thành công"
+      update_fail: "Bạn vừa sửa quyền của người dùng này thất bại"
+    school_index:
+      add_school: "Tạo trường"
+      edit_school: "Chỉnh sửa"
+      sentence1: "Nhập đầy đủ thông tin bên dưới!"
+      title: "Thông tin trường"
+      create_success: "Bạn vừa tạo trường thành công"
+      create_error: "Bạn vừa tạo trường thất bại"
+      update_success: "Bạn vừa sửa thông tin trường thành công"
+      update_error: "Bạn vừa sửa thông tin trường thất bại"
+    client_index:
+      app_id: "App id"
+      app_name: "Tên app"
+      app_secret: "App secret"
+      delete_button: "Xóa"
+      edit_button: "Sửa"
+      new_button: "Tạo client"
+      setting: "Tùy chọn"
+      stt: "STT"
+      create_success: "Bạn vừa tạo client thành công"
+      create_error: "Bạn vừa tạo client thất bại"
+      update_success: "Bạn vừa sửa thông tin client thành công"
+      update_error: "Bạn vừa sửa thông tin client thất bại"
+      delete_success: "Bạn vừa xóa client thành công"
+      delete_error: "Bạn vừa xóa client thất bại"
+      delete_confirm: "Bạn có chắc chắn xóa client này?"
+    category:
+      create_success: "Bạn vừa tạo mới thành công"
+      create_fail: "Bạn vừa tạo mới thất bại"
+      update_success: "Bạn vừa sửa thông tin trường thành công"
+      update_fail: "Bạn vừa cập nhật thất bại"
+      delete_success: "Bạn vừa xóa thành công"
+      delete_fail: "Bạn vừa xóa thất bại"
+      not_found: "Không tìm thấy bản ghi"
+      cancel_success: "Bạn vừa hủy  thành công"
+      cancel_fail: "Bạn vừa hủy  thất bại"
+      employment_create_exist: "Tên nghề nghiệp đã có!"
+      financial_create_exist: "Tình hình tài chính đã có!"
+      education_create_exist: "Trình độ học vấn đã có!"
+      marital_create_exist: "Tình trạng hôn nhân đã có!"
+      reason_create_exist: "Lý do ngừng điều trị đã có!"
+      provider_create_exist: "Nhà phân phối đã có!"
+      manufacturer_create_exist: "Nhà sản xuất đã có!"
+      source_create_exist: "Nguồn thuốc đã có!"
+  after_register:
+    add_info_location:
+      submit: "Hoàn tất"
+      title: "Thông tin trường lớp"
+      update_fail: "Cập nhật thông tin trường lớp thất bại"
+      update_fail_other: "Bạn cần nhập đầy đủ thông tin huyện, xã nếu chọn trường là Khác"
+      update_success: "Cập nhật thông tin trường lớp thành công"
+    add_info_private:
+      female: "Nữ"
+      male: "Nam"
+      other: "Khác"
+      submit: "Tiếp tục"
+      title: "Thông tin cá nhân"
+      update_fail: "Cập nhật thông tin cá nhân thất bại"
+      update_success: "Cập nhật thông tin cá nhân thành công"
+
+  block:
+    content: "Tài khoản của bạn đã bị chặn vì bạn đã vi phạm chính sách và điều khoản của trang web."
+
+  common:
+    add_info: "Bạn cần nhập đầy đủ thông tin trước khi sử dụng dịch vụ."
+    click_to_school: "Bạn cần click vào một trường học."
+    confirmation_instruction1: "Tài khoản của bạn chưa được xác nhận!"
+    confirmation_instruction2: "Hệ thống đã gửi bạn thư hướng dẫn xác nhận. Bạn vui lòng kiểm thư và xác nhận tài khoản."
+    confirmation_instruction2_2: "Vui lòng kiểm tra mục thư rác (Spam) nếu không tìm thấy email hướng dẫn."
+    confirmation_instruction3: "Trong trường hợp không nhận được thư hoặc thư đã hết hạn, hãy nhập địa chỉ email của bạn vào ô bên dưới để nhận lại thư hướng dẫn xác nhận tài khoản."
+    fail: "Thao tác thất bại"
+    has_an_account: "Bạn đã có tài khoản?"
+    invite_create_account: "Bạn chưa có tài khoản?"
+    no_email: "Email này không tồn tại trong hệ thống."
+    no_email_facebook: "Tài khoản Facebook của bạn chưa có email. Vui lòng điền thêm địa chỉ email để hoàn tất đăng ký. Chúng tôi sẽ liên lạc và gửi thông tin mới nhất cho bạn thông qua email này."
+    regard: "Trân trọng,"
+    reset_password_instruction: "Hãy nhập địa chỉ email của bạn vào ô bên dưới để nhận thư hướng dẫn khôi phục mật khẩu."
+    sachmem_team: "Nhóm hỗ trợ Sách Mềm"
+    select_option_default: "--- Vui lòng chọn ---"
+    sign_in_with: "Hoặc đăng nhập bằng"
+    success: "Thao tác thành công"
+    unlock_account_instruction1: "Tài khoản của bạn đã bị khóa!"
+    unlock_account_instruction2: "Hãy nhập địa chỉ email của bạn vào ô bên dưới để nhận thư hướng dẫn mở khóa tài khoản."
+
+  confirmation:
+    resend_confirmation: "Gửi xác nhận lại"
+    title: "Xác nhận lại tài khoản"
+
+  controllers:
+    auth:
+      access_token:
+        access_code_not_found: *access_code_not_found
+        app_not_found: *app_not_found
+
+  devise:
+    sessions:
+      new:
+        log_in: *log_in
+        title: *log_in
+    registrations:
+      new:
+        title: *sign_up
+      new_base:
+        email: *email
+        first_name: *first_name
+        last_name: *last_name
+        password: *password
+        password_confirmation: *password_confirmation
+        username: *username
+      new_omniauth:
+        email: *email
+        first_name: *first_name
+        last_name: *last_name
+    omniauth_callbacks:
+      user:
+        signed_in: "Đăng nhập thành công."
+    confirmations:
+      signed_in: "Đăng nhập thành công."
+      confirmed: "Email của bạn đã được xác nhận."
+      send_instructions: "Bạn sẽ nhận được email hướng dẫn xác nhận tài khoản trong vài phút nữa. Vui lòng kiểm tra mục thư rác (Spam) nếu không thấy thư."
+      send_paranoid_instructions: "Nếu email của bạn tồn tại trong hệ thống, bạn sẽ nhận được email hướng dẫn xác nhận tài khoản trong vài phút nữa."
+    failure:
+      already_authenticated: "Bạn đã đăng nhập."
+      inactive: "Tài khoản của bạn chưa được kích hoạt."
+      invalid: "Email hoặc mật khẩu không chính xác."
+      locked: "Tài khoản của bạn đã bị khoá."
+      last_attempt: "Bạn còn một lần thử trước khi tài khoản của bạn bị khóa."
+      not_found_in_database: "Email hoặc mật khẩu không chính xác."
+      timeout: "Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại để tiếp tục."
+      unauthenticated: "Bạn cần đăng ký hoặc đăng nhập trước khi tiếp tục."
+      unconfirmed: "Bạn cần xác nhận email trước khi tiếp tục."
+    mailer:
+      confirmation_instructions:
+        subject: "Hướng dẫn xác nhận tài khoản"
+      reset_password_instructions:
+        subject: "Hướng dẫn khôi phục mật khẩu"
+      unlock_instructions:
+        subject: "Hướng dẫn mở khoá tài khoản"
+      password_change:
+        subject: "Thay đổi mật khẩu"
+    omniauth_callbacks:
+      failure: "Không thể đăng nhập từ tài khoản %{kind}."
+      success: "Đăng nhập thành công từ tài khoản %{kind}."
+    passwords:
+      confirmation: "Mật khẩu hiện tại chưa chính xác"
+      no_token: "Bạn không thể truy cập trang này khi chưa vào email khôi phục mật khẩu. Nếu bạn vào email khôi phục mật khẩu, hãy chắc chắn bạn dùng đúng đường dẫn được cung cấp."
+      send_instructions: "Bạn sẽ nhận được email hướng dẫn khôi phục mật khẩu trong ít phút nữa. Vui lòng kiểm tra mục thư rác (Spam) nếu không thấy thư."
+      send_paranoid_instructions: "Nếu email của bạn tồn tại trong hệ thống, bạn sẽ nhận được đường dẫn khôi phục mật khẩu qua email trong ít phút nữa."
+      updated: "Mật khẩu của bạn đã được thay đổi thành công."
+      updated_not_active: "Mật khẩu thay đổi thất bại."
+    registrations:
+      username: "Email của bạn đã tồn tại"
+      success: "Tạo mới người dùng thành công"
+      destroyed: "Tài khoản của bạn đã được khoá. Hi vọng có thể gặp lại bạn trong thời gian tới."
+      signed_up: "Bạn đã đăng ký thành công."
+      signed_up_but_inactive: "Bạn đã đăng ký thành công. Tuy nhiên, bạn chưa thể đăng nhập do tài khoản của bạn chưa được kích hoạt."
+      signed_up_but_locked: "Bạn đã đăng ký thành công. Tuy nhiên, bạn chưa thể đăng nhập do tài khoản của bạn bị khoá."
+      signed_up_but_unconfirmed: "Hướng dẫn xác nhận đã được gửi tới email của bạn. Vui lòng làm theo hướng dẫn để kích khoạt tài khoản. Kiểm tra mục thư rác (Spam) nếu không thấy thư."
+      update_needs_confirmation: "Bạn đã sửa đổi thông tin thành công, tuy nhiên chúng tôi cần xác nhận email của bạn. Vui lòng kiểm tra email và làm theo hướng dẫn để kích hoạt tài khoản."
+      updated: "Bạn đã sửa đổi mật khẩu thành công."
+    sessions:
+      signed_in: "Đăng nhập thành công."
+      signed_out: "Đăng xuất thành công."
+      already_signed_out: "Đăng xuất thành công."
+    unlocks:
+      send_instructions: "Bạn sẽ nhận được email hướng dẫn mở khoá tài khoản trong ít phút nữa."
+      send_paranoid_instructions: "Nếu tài khoản tồn tại, bạn sẽ nhận được email hướng dẫn mở khoá tài khoản trong ít phút nữa."
+      unlocked: "Tài khoản của bạn đã được mở khóa. Vui lòng đăng nhập để tiếp tục."
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      already_confirmed: "Email đã được xác nhận, vui lòng đăng nhập lại."
+      confirmation_period_expired: "đã quá hạn xác nhận. Vui lòng gửi yêu cầu xác nhận lại."
+      expired: "đã hết hạn, vui lòng đăng ký lại."
+      not_found: "không tồn tại."
+      not_locked: "không bị khoá."
+      email_not_found: "Địa chỉ email không tồn tại"
+      not_saved:
+        one: "1 lỗi khi tạo người dùng:"
+        other: "%{count} lỗi khi tạo người dùng:"
+      accepted: "phải được đồng ý."
+      blank: "không thể để trống."
+      carrierwave_download_error: "Không thể download ảnh này."
+      carrierwave_file_size_error: "Bạn không thể tải lên một ảnh lớn hơn 1MB"
+      carrierwave_integrity_error: "Đây không phải ảnh."
+      carrierwave_processing_error: "Không thể thay đổi kích thước của ảnh này."
+      confirmation: "không trùng khớp."
+      empty: "không thể rỗng."
+      equal_to: "phải bằng %{count}."
+      even: "phải là số chẵn."
+      exclusion: "đã được giành trước."
+      extension_black_list_error: "Bạn không thể tải lên tệp tin %{extension}, các loại tệp tin không đưọc chấp nhận: %{prohibited_types}"
+      extension_white_list_error: "Bạn không thể tải lên tệp tin %{extension}, các loại tệp tin được đưọc chấp nhận: %{allowed_types}"
+      greater_than: "phải lớn hơn %{count}."
+      greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}."
+      inclusion: "không có trong danh sách."
+      invalid: "không hợp lệ."
+      less_than: "phải nhỏ hơn %{count}."
+      less_than_or_equal_to: "phải nhỏ hơn hoặc bằng %{count}."
+      not_a_number: "không phải là số."
+      not_an_integer: "phải là một số nguyên."
+      odd: "phải là số lẻ."
+      other_than: "cần phải khác %{count}."
+      present: "cần phải để trống."
+      taken: "đã tồn tại."
+      too_long: "quá dài (tối đa %{count} kí tự)."
+      too_short: "quá ngắn (tối thiểu %{count} kí tự)."
+      wrong_length: "độ dài không đúng (phải là %{count} kí tự)."
+
+  footer:
+    instruction: "Hướng dẫn"
+    introduce: "Giới thiệu"
+    policy: "Chính sách"
+    term: "Điều khoản"
+
+  header:
+    account: "Tài khoản"
+    change_password: "Đổi mật khẩu"
+    common_question: "Câu hỏi thường gặp"
+    document: "Tài liệu"
+    instruction: "Hướng dẫn"
+    introduce: "Giới thiệu"
+    log_out: *log_out
+    manage_book: "Quản lý sách"
+    manage_book_key: "Quản lý mã"
+    manage_client: "Quản lý client"
+    manage_comment: "Góp ý"
+    manage_document: "Tài liệu tham khảo"
+    manage_guide_teacher: "Hướng dẫn giáo viên"
+    manage_report: "Báo cáo"
+    manage_school: "Quản lý trường"
+    manage_template: "Xem bài theo dạng"
+    manage_user: "Quản lý người dùng"
+    manual: "Hướng dẫn sử dụng"
+    my_books: "Sách của tôi"
+    policy: "Chính sách"
+    question_bank: "Ngân hàng câu hỏi"
+    teacher_materials: "Tài liệu tham khảo cho giáo viên"
+    term: "Điều khoản"
+    toggle: "Sách Mềm"
+
+  helpers:
+    submit:
+      user:
+        create: *sign_up
+      school:
+        create: *create
+        update: *update
+      client:
+        create: *create
+        update: *update
+
+    label:
+      user:
+        avatar: *avatar
+        birthday: *birthday
+        current_password: "Mật khẩu hiện tại"
+        district_id: *district_id
+        email: *email
+        first_name: *first_name
+        gender: *gender
+        grade: *grade
+        last_name: *last_name
+        password: *password
+        password_confirmation: *password_confirmation
+        phone: *phone
+        province_id: *province_id
+        remember_me: *remember_me
+        school_id: *school_id
+        school_level: "Cấp học"
+        username: *username
+        ward_id: *ward_id
+      school:
+        name: "Tên trường"
+        fullname: "Tên đầy đủ"
+        email: "Địa chỉ email"
+        school_type: "Loại trường"
+        principal: "Hiệu trưởng"
+        phone: "Số điện thoại"
+        website: "Trang chủ"
+        level: "Cấp học"
+        fax: "Fax"
+        province_id: *province_id
+        district_id: *district_id
+        ward_id: *ward_id
+        user_email: "Email người gửi yêu cầu"
+      client:
+        app_id: "App id"
+        app_secret: "App secret"
+        name: "Tên app"
+
+    placeholder:
+      user:
+        birthday: *birthday
+        email: *email
+        first_name: *first_name
+        last_name: *last_name
+        password: *password
+        password_confirmation: *password_confirmation
+        phone: *phone
+        username: *username
+
+  link_devise:
+    accept:
+      policy: "Chính sách riêng tư"
+      sentence1_1: "Khi bạn ấn vào nút Đăng ký hoặc Đăng nhập bằng Facebook hoặc Google, bạn đã đồng ý với các"
+      sentence1_2: "Khi bạn ấn vào nút đăng nhập bằng Facebook hoặc Google, bạn đã đồng ý với các"
+      sentence2: "và đã đọc các"
+      sentence3: "của chúng tôi."
+      term: "Điều khoản dịch vụ"
+    forgot_password: *forgot_password
+    log_in: *log_in
+    no_confirmation_instructions: *no_confirmation_instructions
+    no_unlock_instructions: *no_unlock_instructions
+    sign_up: *sign_up
+    recaptcha_error: "Bạn cần nhập captcha"
+
+  mailer:
+    hello: "Xin chào"
+    welcome: "Xin chào"
+
+    confirmation:
+      confirm_account: "Xác nhận tài khoản"
+      sentence1: "Cảm ơn bạn đã đăng kí tài khoản trên Sách Mềm. Vui lòng xác nhận tài khoản bằng cách sao chép (copy) đường dẫn được bôi màu bên dưới đưa vào thanh địa chỉ của trình duyệt."
+
+    password_change:
+      sentence1: "Mật khẩu của bạn đã được thay đổi."
+
+    reset_password:
+      sentence1: "Một người nào đó đã yêu cầu một liên kết để thay đổi mật khẩu của bạn. Bạn có thể làm điều này bằng cách sao chép (copy) đường dẫn được bôi màu bên dưới đưa vào thanh địa chỉ của trình duyệt."
+      sentence2: "Nếu bạn không yêu cầu thay đổi mật khẩu, xin vui lòng bỏ qua email này."
+      sentence3: "Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập vào liên kết trên và tạo mật khẩu mới."
+      change_password: "Thay đổi mật khẩu"
+
+    unlock:
+      sentence1: "Tài khoản của bạn đã bị khóa do nhiều lần đăng nhập không thành công."
+      sentence2: "Để mở khóa bạn sao chép (copy) đường dẫn được bôi màu bên dưới đưa vào thanh địa chỉ của trình duyệt."
+      unlock_account: "Mở khóa tài khoản"
+
+  not_found:
+    back_home: "Quay về trang chủ"
+    content_404: "404"
+    content_text: "Trang bạn vừa truy cập hiện không tồn tại!"
+
+  password:
+    change_password: "Thay đổi mật khẩu"
+    expire_link: "Đường dẫn thay đổi mật khẩu đã quá hạn hoặc không hợp lệ"
+    forgot_password: *forgot_password
+    reset_password: "Khôi phục mật khẩu"
+    send_reset_password: "Gửi yêu cầu"
+
+  policy:
+    title: "Chính sách riêng tư"
+
+  registration:
+    add_info: "Thêm thông tin"
+    button: "Hoàn tất đăng ký"
+    change_password_fail: "Cập nhật mật khẩu thất bại"
+    edit_button: "Thay đổi"
+    edit_title: "Đổi mật khẩu"
+    length_password: "8 - 20 kí tự"
+    new_password: "Mật khẩu mới"
+    not_email: "Tài khoản cá nhân của bạn chưa có email. Vui lòng nhập thêm thông tin."
+    title: *sign_up
+
+  session:
+    log_in: *log_in
+    title: *log_in
+
+  term:
+    title: "Điều khoản dịch vụ"
+
+  unlock:
+    button: "Mở khóa"
+    resend_unlock: "Mở khóa tài khoản"
+
+  users:
+    show:
+      basic_info:
+        age: *age
+        birthday: *birthday
+        female: "Nữ"
+        first_name: *first_name
+        gender: *gender
+        last_name: *last_name
+        male: "Nam"
+        title: "Thông tin cơ bản"
+      contact_info:
+        email: *email
+        phone: *phone
+        title: "Thông tin liên lạc"
+      edit_link:
+        alert_avatar: "Dung lượng file tối đa 1MB. Chọn lại file nhỏ hơn!"
+        button: "Thay đổi"
+        button_hide_edit: "Ẩn chỉnh sửa"
+        button_show_edit: "Chỉnh sửa"
+        choose_school: "Chọn trường"
+        current_location: "Vị trí hiện tại"
+        filter: "Lọc theo"
+        link_avatar: "Chọn ảnh"
+        title: "Sửa"
+        update_fail: "Cập nhật thông tin thất bại"
+        update_fail_other: "Bạn cần nhập thông tin huyện, xã nếu chọn trường là Khác"
+        update_success: "Cập nhật thông tin thành công"
+      education_info:
+        grade: *grade
+        title: "Trình độ giáo dục"
+      friend_info:
+        title: "Bạn bè"
+      setting_info:
+        change: "Thay đổi"
+        mail_activation: "Nhận mail từ sachmem?"
+        title: "Cài đặt"
+        update_fail: "Cập nhật cài đặt thất bại"
+        update_success: "Cập nhật cài đặt thành công"
+      skill_info:
+        title: "Kĩ năng"
+      work_info:
+        district: *district_id
+        province: *province_id
+        school: *school_id
+        title: "Trường học"
+        ward: *ward_id
+
+  validate_custom:
+    district_id:
+      not_match: " không khớp với Tỉnh / Thành phố."
+    birthday:
+      too_soon: "phải trước ngày hôm nay."
+    school_id:
+      not_match: " không khớp với Tỉnh / Thành phố."
+    ward_id:
+      not_match: " không khớp với Tỉnh / Thành phố."
+
+  views:
+    pagination:
+      first: "Đầu"
+      last: "Cuối"
+      previous: "Trước"
+      next: "Tiếp"
+      truncate: "&hellip;"
+
+  patients:
+    update:
+      success: "Cập nhật thông tin thành công"
+      fails: "Cập nhật thông tin không thành công"
+    create:
+      success: "Tạo mới thành công"
+    identity_card: "Chứng minh nhân dân"
+    household_registration_book: "Sổ hộ khẩu"
+    driving_license: "Giấy phép lái xe"
+    passport: "Hộ chiếu"
+    single: "Chưa lập gia đình"
+    married: "Kết hôn"
+    divorced: "Ly hôn"
+    separated: "Ly thân"
+    widowed: "Chồng/Vợ đã mất"
+    difference: "Khác"
+    Children: "Còn nhỏ"
+    Illiteracy: "Mù chữ"
+    Primary: "Cấp 1/Tiều học"
+    Middle: "Cấp 2/ Trung học cơ sở"
+    High: "Cấp 3/Trung học phổ thông"
+    Difference: "Khác"
+    Tertiary: "Học nghề/Trung học/Cao đẳng/Đại học/…"
+    Monthly Income: "Thu nhập hàng tháng"
+    Daily Income: "Thu nhập hàng ngày"
+    spouse : "Vợ/Chồng"
+    father: "Bố"
+    mother: "Mẹ"
+    brother: "Anh/chị/em"
+    sibling: "Anh/chị/em"
+    children: "Con trai/gái"
+    other_contact: "Liên hệ khác"
+    deactived: "Ngừng điều trị"
+    deleted: ""
+    actived: ""
+    reiceved: "Chuyển đến cơ sở"
+    sent: "Chuyển đi khỏi cơ sở"
+    maintain: "Duy trì"
+    detect_the_dose: "Dò liều"
+    reduce_the_dose: "Giảm liều"
+  issuing_agency:
+    create:
+      success: "Tạo mới thành công"
+      fails: "Tạo mới thất bại"
+  medicine:
+    create:
+      success: "Tạo mới thành công"
+      fails: "Tạo mới thất bại"
+
+  account_permission:
+    denied: "Bạn không có quyền truy cập"
+
+  notification:
+    create:
+      success: "Gửi thông báo thành công"
+      fails: "Gửi thông báo không thành công"
+    update:
+      success: "Cập nhật thành công"
+      fails: "Cập nhật không thành công"

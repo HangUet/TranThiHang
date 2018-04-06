@@ -1,0 +1,29 @@
+<div class="portlet-body">
+  <div class="max-width-100-pc scrollable">
+    <table class="table table-hover table-bordered table-custom">
+      <thead>
+        <tr>
+          <th rowspan="2">{{ "no." | translator: "main" }}</th>
+          <th rowspan="2">Tên cơ sở</th>
+          <th colspan="4">Số BN mới vào điều trị</th>
+        </tr>
+        <tr>
+          <th>Lần đầu điều trị</th>
+          <th>Bỏ điều trị sau đó quay lại điều trị</th>
+          <th>Chuyển từ nơi khác đến</th>
+          <th>Tổng số</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="i in data track by $index">
+          <td>{{$index + 1}}</td>
+          <td class="text-left">{{i.name}}</td>
+          <td>{{i.first_treatment}}</td>
+          <td>{{i.stop_treatment}}</td>
+          <td>{{i.change_agency}}</td>
+          <td>{{i.total}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

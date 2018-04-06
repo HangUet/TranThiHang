@@ -1,0 +1,65 @@
+<div class="portlet light">
+  <div class="portlet-title">
+    <div class="caption caption-md">
+        <i class="icon-globe theme-font hide"></i>
+        <span class="caption-subject font-blue-madison bold uppercase">{{"notify_fall"| translator: 'patient'}}</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row row-flex">
+      <div class="col-xs-12 col-md-6">
+        <div class="row fow-flex">
+          <div class="col-xs-3">
+            <img class="img-thumbnail patient-avatar"
+              ng-src="{{patient.avatar || '/images/avatar.jpg'}}">
+            <div class="profile-usertitle">
+              <a ui-sref="main.patients.action.detail.executive_info({id: patient.id})">
+                <div class="profile-usertitle-name"> {{patient.card_number}}</div>
+              </a>
+            </div>
+            <!-- <h2 class="profile-usertitle-name">{{patient.card_number}}</h2> -->
+          </div>
+          <div class="col-xs-9">
+              <a ui-sref="main.patients.action.detail.executive_info({id: patient.id})">
+                <p class="text-bold">{{patient.name}}</p>
+              </a>
+              <p>{{"admitted"| translator: 'patient'}}: {{patient.admission_date}}</p>
+
+              <p>{{"household"| translator: 'main'}}: {{patient.household}}</p>
+
+              <p>{{"date_of_birth"| translator: 'patient'}}: {{patient.birthdate}}</p>
+
+              <p>{{"gender" | translator: 'patient'}}: {{patient.gender|translator: 'patient'}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 row row-flex">
+        <table class="table table-hover col-xs-12">
+          <tbody>
+            <tr>
+              <td class="align-left col-md-4">{{"reason" | translator: 'main'}}:</td>
+              <td class="align-left col-md-8">{{ notify_status | translator: 'main' }}</td>
+            </tr>
+            <tr>
+              <td class="align-left col-md-4">{{"current_dosage"| translator: 'prescription'}}:</td>
+              <td class="align-left col-md-8">{{ current_dosage }} mg</td>
+            </tr>
+            <tr>
+              <td class="align-left col-md-2">{{"medical_instruction" | translator: 'main'}}:</td>
+              <td class="align-left col-md-2">{{prescription_description}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div ng-show="medicine_allocation.vomited_allocation != 'confirmed'">
+          <div class="form-group col-xs-12" style="padding-left: 8px;">
+            <label>{{"reallocate_dosage"| translator: 'main'}}:</label>
+            <input type="text" ng-model="dosage" class="form-control input-sm">
+          </div>
+          <div class="form-group col-xs-12 col-md-4 col-md-offset-8">
+            <button class="btn blue-custom btn-sm pull-right" ng-click="agree_prescription()" style="margin-right: 10px;">{{"accept_provide_medicine"| translator: "main"}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

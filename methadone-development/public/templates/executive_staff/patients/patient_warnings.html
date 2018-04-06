@@ -1,0 +1,49 @@
+<div class="portlet light">
+  <div class="portlet-title tabbable-line">
+    <div class="caption caption-md">
+        <i class="icon-globe theme-font hide"></i>
+        <span class="caption-subject font-blue-madison bold uppercase">{{"warning_status"| translator: 'patient'}}</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row fow-flex">
+      <div class="col-xs-3">
+        <img class="img-thumbnail" ng-src="{{patient.avatar || '/images/avatar.jpg'}}" preview="$file">
+      </div>
+      <div class="col-xs-9">
+          <p class="text-bold">{{patient.name}}</p>
+          <p>{{"admitted"| translator: 'patient'}}: {{patient.admission_date}}</p>
+
+          <p>{{patient.address}}</p>
+
+          <p>{{"date_of_birth"| translator: 'patient'}}: {{patient.birthdate}}</p>
+
+          <p>{{patient.gender|translator: 'patient'}}</p>
+      </div>
+    </div>
+    <div class="row row-flex">
+      <form ng-submit="patientWarnings.$valid && updatePatientWarnings()"
+        class="width-100-pc"
+        name="patientWarnings" novalidate>
+        <table class="table table-hover" fixed-header>
+          <thead>
+            <tr>
+              <th>{{"content"| translator: 'patient'}}</th>
+              <th>{{"level"| translator: 'patient'}}</th>
+              <th>{{"status" | translator: 'patient'}}</th>
+              <th ng-show="patient_warnings.status == 'open'">#</th>
+            </tr>
+            <tr>
+              <td>{{patient_warnings.content | translator: 'patient'}}</td>
+              <td>{{patient_warnings.level | translator: 'patient'}}</td>
+              <td>{{patient_warnings.status | translator: 'patient'}}</td>
+              <td ng-show="patient_warnings.status == 'open'"><input class="btn blue-custom btn-sm have-space"
+                  type="submit"
+                  value='{{"close_warning" | translator: "patient"}}'></td>
+            </tr>
+          </thead>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

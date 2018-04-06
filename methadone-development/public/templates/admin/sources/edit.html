@@ -1,0 +1,42 @@
+<form ng-submit="editSourceForm.$valid && editSource()" name="editSourceForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"edit_source" | translator: 'category'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="form-group col-xs-12">
+        <div class="form-group col-xs-4">
+          <label class="required">{{"name_source" | translator: 'category'}}:</label>
+        </div>
+        <div class="form-group col-xs-8">
+          <input ng-model="source.name" name="name" class="form-control input-sm" autofocus required ng-maxlength="255">
+          <div ng-messages="editSourceForm.name.$error" ng-show="editSourceForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="maxlength">{{"maxlength255" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="form-group col-xs-4">
+          <label class="required">{{"status" | translator: 'category'}}:</label>
+        </div>
+        <div class="form-group col-xs-8">
+          <ui-select ng-model="source.status" name="status" theme="select2"
+          append-to-body="true" search-enabled="false" >
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected | translator: 'status'}}
+            </ui-select-match>
+            <ui-select-choices repeat="status in ['actived', 'deactived']">
+              <span ng-bind-html="status | translator: 'status' | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

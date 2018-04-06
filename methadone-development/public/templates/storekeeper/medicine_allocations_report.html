@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 padding-right-3">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md" style="margin-left: 26%">
+          <p class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"medicine_allocations_report_title" | translator: "main"}}
+          </p>
+          <p class="caption-subject bold" style="margin-left: 8%">{{"medicine_type" | translator: "main"}}</p>
+          <p class="caption-subject" style="margin-left: 6%">(x là bệnh nhân không có đơn thuốc, - là bệnh nhân bỏ thuốc)</p>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> {{"print" | translator: "main"}} </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> {{"send_" | translator: "main"}} </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-bordered table-custom">
+            <thead>
+              <tr>
+                <th colspan="3">{{'total' | translator: 'main'}}</th>
+                <th ng-repeat="total in patients_allocations.totals track by $index">{{total.total}}
+                </th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th>{{'no.' | translator: 'main'}}</th>
+                <th class="text-left" style="white-space: nowrap;">{{'id_patient' | translator: 'main'}}</th>
+                <th class="text-left" style="white-space: nowrap;">{{'name' | translator: 'patient'}}</th>
+                <th ng-repeat="dosage in patients_allocations.data[0].medicine_allocations"> {{"day"| translator: "main"}} {{$index+1}}
+                </th>
+                <th class="text-left" style="white-space: pre;"><p>Số ngày bệnh nhân
+bỏ liều trong tháng</p></th>
+                <th class="text-left" style="white-space: pre;"><p>Lượng thuốc được phát cho
+từng bệnh nhân trong tháng</p></th>
+                <th class="text-left" style="white-space: pre;"><p>Liều điều trị của bệnh
+nhân tính đến cuối tháng</p></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="patients_allocation in patients_allocations.data">
+                <td>{{page.per_page * page.page + $index - page.per_page + 1}}</td>
+                <td class="text-left">{{patients_allocation.card_number}}</td>
+                <td class="text-left" style="white-space: nowrap;">{{patients_allocation.name}}</td>
+                <td ng-repeat="dosage in patients_allocation.medicine_allocations">{{dosage.dosage}}
+                </td>
+                <td class="col-md-1">{{patients_allocation.count_loss_day}}</td>
+                <td class="col-md-1">{{patients_allocation.count_dosage_day}}</td>
+                <td class="col-md-1">{{patients_allocation.medicine_allocations[patients_allocation.medicine_allocations.length - 1].dosage}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="page.total"
+              ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="page.per_page"
+              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+            <div class="pull-right">{{"total"| translator: "main"}}: {{page.total}} bệnh nhân </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

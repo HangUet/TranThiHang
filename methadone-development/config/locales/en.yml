@@ -1,0 +1,546 @@
+dictionary:
+  access_code_not_found: &access_code_not_found Could not authenticate access code
+  age: &age Age
+  app_not_found: &app_not_found Could not find application
+  avatar: &avatar Avatar
+  birthday: &birthday Date of birth
+  confirmation: &confirmation Confirmation
+  create: &create Create
+  district_id: &district_id District
+  email: &email Email
+  first_name: &first_name First name
+  forgot_password: &forgot_password Forgot your password?
+  gender: &gender Gender
+  grade: &grade Grade
+  last_name: &last_name Last name
+  log_in: &log_in Log in
+  log_out: &log_out Log out
+  no_confirmation_instructions: &no_confirmation_instructions Confirmation account
+  no_unlock_instructions: &no_unlock_instructions Unlock account
+  password: &password Password
+  password_confirmation: &password_confirmation Password confirmation
+  phone: &phone Phone
+  province_id: &province_id Province
+  remember_me: &remember_me Remember me
+  school_id: &school_id School
+  sign_in_with: &sign_in_with Sign in with
+  sign_up: &sign_up Sign up
+  sign_up_with: &sign_up_with Sign up with
+  update: &update Update
+  username: &username Username
+  ward_id: &ward_id Ward
+
+en:
+  admin:
+    user_index:
+      block: "Block"
+      block_confirm: "Do you want to block this account?"
+      block_success: "You have blocked this account successfully"
+      delete: "Delete"
+      delete_confirm: "Do you want to delete this account?"
+      delete_fail: "You have deleted this account failed"
+      delete_success: "You have deleted this account successfully"
+      not_issuing_agency: "You don't select issuing agency"
+      email: *email
+      name: "Name"
+      search: "Search"
+      setting: "Setting"
+      sign_in_count: "Sign in count"
+      stt: "ID"
+      total: "Total"
+      unlock: "Unlock"
+      unlock_confirm: "Do you want to unlock this account?"
+      unlock_success: "You have unlocked this account successfully"
+      username: *username
+      users: "users"
+    user_show:
+      block: "Block"
+      block_confirm: "Do you want to block this account?"
+      block_history: "Block account history"
+      block_reason: "Reason"
+      block_time: "Time"
+      confirmed_at: "Confirmed at"
+      created_at: "Created at"
+      delete: "Delete"
+      delete_confirm: "Do you want to delete this account?"
+      email: *email
+      information: "User information"
+      locked_at: "Locked at"
+      name: "Name"
+      role_sachmem: "Role in Sách Mềm"
+      role_sm_quizz: "Role in SM Quizz"
+      sign_in_count: "Sign in count"
+      sign_up_with: "Sign up with"
+      stt: "ID"
+      unlock: "Unlock"
+      unlock_confirm: "Do you want to unlock this account?"
+      username: *username
+      change_button: "Change"
+      edit_button: "Edit"
+      update_success: "You have updated this user's role successfully"
+      update_fail: "You have updated this user's role failed"
+    school_index:
+      add_school: "Add school"
+      edit_school: "Edit"
+      sentence1: "Enter the information below!"
+      title: "School Information"
+      create_success: "You have created a school successfully"
+      create_error: "You have created a school failed"
+      update_success: "You have updated a school successfully"
+      update_error: "You have updated a school failed"
+    client_index:
+      app_id: "App id"
+      app_name: "App name"
+      app_secret: "App secret"
+      delete_button: "Delete"
+      edit_button: "Edit"
+      new_button: "New client"
+      setting: "Setting"
+      stt: "ID"
+      create_success: "You have created a client successfully"
+      create_error: "You have created a client failed"
+      update_success: "You have updated a client successfully"
+      update_error: "You have updated a client failed"
+      delete_success: "You have deleted a client successfully"
+      delete_error: "You have deleted a client failed"
+      delete_confirm: "Do you want to delete this client?"
+    category:
+      create_success: "You have created successfully"
+      create_fail: "You have created failed"
+      update_success: "You have updated successfully"
+      update_fail: "You have updated failed"
+      delete_success: "You have deleted success"
+      delete_fail: "You have deleted failed"
+      not_found: "Not found record"
+      cancel_success: "You have cancel success"
+      cancel_fail: "You have cancel failed"
+      employment_create_exist: "The employment already exists"
+      financial_create_exist: "The financial already exists"
+      education_create_exist: "The education already exists"
+      marital_create_exist: "The marital already exists"
+      reason_create_exist: "Stop reason already exists"
+      provider_create_exist: "The provider already exists"
+      manufacturer_create_exist: "The manufacturer already exists"
+      source_create_exist: "The source already exists"
+  after_register:
+    add_info_location:
+      submit: "Complete"
+      title: "School information"
+      update_fail: "You have updated your school information failed"
+      update_fail_other: "You need to enter your district and your ward if your school is Other"
+      update_success: "You have updated your school information successfully"
+    add_info_private:
+      female: "Female"
+      male: "Male"
+      other: "Other"
+      submit: "Continue"
+      title: "Personal information"
+      update_fail: "You have updated your personal information failed"
+      update_success: "You have updated your personal information successfully"
+
+  block:
+    content: "Your account has been blocked because you have breached the policy and terms of website."
+
+  common:
+    add_info: "You need to enter your information before using this service."
+    click_to_school: "You must click on a school."
+    confirmation_instruction1: "Your account hasn't been confirmed!"
+    confirmation_instruction2: "Comfirmation email has been sent! Please check your email and confirm your account."
+    confirmation_instruction2_2: "Please check your Spam folder if not found."
+    confirmation_instruction3: "In case you don't receive the email. Please fill your email address below to receive the email again."
+    fail: "Manipulation failed"
+    has_an_account: "You have an account"
+    invite_create_account: "New to Sach Mem"
+    no_email: "This email does not exist in the system."
+    no_email_facebook: "Your Facebook account does not have email. Please enter your email address to complete the registration. We will contact you and send you the latest information via this email."
+    regard: "Sincerely,"
+    reset_password_instruction: "Enter your email address and we will send you a link to reset your password."
+    sachmem_team: "The Sach Mem Team"
+    select_option_default: "--- Please select ---"
+    sign_in_with: "Sign in with"
+    success: "Manipulation successfully"
+    unlock_account_instruction1: "Your account has been blocked!"
+    unlock_account_instruction2: "Enter your email address and we will send you a link to unlock your account."
+
+  confirmation:
+    resend_confirmation: "Resend confirmation"
+    title: "Reconfirm account"
+
+  controllers:
+    auth:
+      access_token:
+        access_code_not_found: *access_code_not_found
+        app_not_found: *app_not_found
+
+  devise:
+    sessions:
+      new:
+        log_in: *log_in
+        title: *log_in
+    registrations:
+      new:
+        title: *sign_up
+      new_base:
+        email: *email
+        first_name: *first_name
+        last_name: *last_name
+        password: *password
+        password_confirmation: *password_confirmation
+        username: *username
+      new_omniauth:
+        email: *email
+        first_name: *first_name
+        last_name: *last_name
+    omniauth_callbacks:
+      user:
+        signed_in: "Signed in successfully."
+    confirmations:
+      signed_in: "Signed in successfully."
+      confirmed: "Your email address has been successfully confirmed."
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+    failure:
+      already_authenticated: "You are already signed in."
+      inactive: "Your account is not activated yet."
+      invalid: "Invalid %{authentication_keys} or password."
+      locked: "Your account is locked."
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: "Invalid %{authentication_keys} or password."
+      timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "You need to sign in or sign up before continuing."
+      unconfirmed: "You have to confirm your email address before continuing."
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock instructions"
+      password_change:
+        subject: "Password Changed"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      confirmation: "Your current password is not correct"
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      updated_not_active: "Your password has been changed successfully."
+    registrations:
+      username: "Email or username exists"
+      success: "Create user success"
+      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
+      updated: "Your password has been updated successfully."
+    sessions:
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+      already_signed_out: "Signed out successfully."
+    unlocks:
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      already_confirmed: "Email was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      email_not_found: "Email not found"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+      accepted: "must be accepted."
+      blank: "can't be blank."
+      carrierwave_download_error: "Couldn't download image."
+      carrierwave_file_size_error: "You cannot upload an image file greater than 1MB"
+      carrierwave_integrity_error: "Not an image."
+      carrierwave_processing_error: "Cannot resize image."
+      confirmation: "doesn't match."
+      empty: "can't be empty."
+      equal_to: "must be equal to %{count}."
+      even: "must be even."
+      exclusion: "was exclusion."
+      extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+      extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+      greater_than: "must be greater than %{count}."
+      greater_than_or_equal_to: "must be greater than or equal to %{count}."
+      inclusion: "is not in the list."
+      invalid: "is invalid."
+      less_than: "must be less than %{count}."
+      less_than_or_equal_to: "must be less than or equal to %{count}."
+      not_a_number: "is not a number."
+      not_an_integer: "is not an integer."
+      odd: "must be odd."
+      other_than: "must be other than %{count}."
+      present: "can be present."
+      taken: "has taken."
+      too_long: "is too long (maximum %{count} characters)."
+      too_short: "is too short (minimum %{count} characters)."
+      wrong_length: "is wrong length (must be %{count} characters)."
+
+  footer:
+    instruction: "Instruction"
+    introduce: "Introduce"
+    policy: "Policy"
+    term: "Term"
+
+  header:
+    account: "Account"
+    change_password: "Change password"
+    common_question: "Common question"
+    document: "Document"
+    instruction: "Instruction"
+    introduce: "Introduce"
+    log_out: *log_out
+    manage_book: "Manage book"
+    manage_book_key: "Manage key"
+    manage_client: "Manage client"
+    manage_comment: "Comment"
+    manage_document: "Manage document"
+    manage_guide_teacher: "Guide teacher"
+    manage_report: "Report"
+    manage_school: "Manage school"
+    manage_template: "Manage template"
+    manage_user: "Manage user"
+    manual: "Manual"
+    my_books: "My books"
+    policy: "Policy"
+    question_bank: "Question bank"
+    teacher_materials: "Teacher materials"
+    term: "Term"
+    toggle: "Sách Mềm"
+
+  helpers:
+    submit:
+      user:
+        create: *sign_up
+      school:
+        create: *create
+        update: *update
+      client:
+        create: *create
+        update: *update
+
+    label:
+      user:
+        avatar: *avatar
+        birthday: *birthday
+        current_password: "Current password"
+        district_id: *district_id
+        email: *email
+        first_name: *first_name
+        gender: *gender
+        grade: *grade
+        last_name: *last_name
+        password: *password
+        password_confirmation: *password_confirmation
+        phone: *phone
+        province_id: *province_id
+        remember_me: *remember_me
+        school_id: *school_id
+        school_level: "School level"
+        username: *username
+        ward_id: *ward_id
+      school:
+        name: "Name"
+        fullname: "Full name"
+        email: "Email"
+        school_type: "School type"
+        principal: "Principal"
+        phone: "Phone"
+        website: "Website"
+        level: "Level"
+        fax: "Fax"
+        province_id: *province_id
+        district_id: *district_id
+        ward_id: *ward_id
+        user_email: "Sender request email"
+      client:
+        app_id: "App id"
+        app_secret: "App secret"
+        name: "App name"
+
+    placeholder:
+      user:
+        birthday: *birthday
+        email: *email
+        first_name: *first_name
+        last_name: *last_name
+        password: *password
+        password_confirmation: *password_confirmation
+        phone: *phone
+        username: *username
+
+  link_devise:
+    accept:
+      policy: "Private Policies"
+      sentence1_1: "By clicking Sign Up or Sign in with Facebook, Google you agree to our"
+      sentence1_2: "By clicking Sign in with Facebook, Google you agree to our"
+      sentence2: "and that you have read our"
+      sentence3: "."
+      term: "Terms"
+    forgot_password: *forgot_password
+    log_in: *log_in
+    no_confirmation_instructions: *no_confirmation_instructions
+    no_unlock_instructions: *no_unlock_instructions
+    sign_up: *sign_up
+    recaptcha_error: "You need to enter captcha"
+
+  mailer:
+    hello: "Hello"
+    welcome: "Welcome"
+
+    confirmation:
+      confirm_account: "Confirm my account"
+      sentence1: "You can confirm your account email through the link below:"
+
+    password_change:
+      sentence1: "We're contacting you to notify you that your password has been changed."
+
+    reset_password:
+      change_password: "Change my password"
+      sentence1: "Someone has requested a link to change your password. You can do this through the link below."
+      sentence2: "If you didn't request this, please ignore this email."
+      sentence3: "Your password won't change until you access the link above and create a new one."
+
+    unlock:
+      sentence1: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+      sentence2: "Click the link below to unlock your account:"
+      unlock_account: "Unlock my account"
+
+  not_found:
+    back_home: "Back to home page"
+    content_404: "404"
+    content_text: "This is not web page you are looking for."
+
+  password:
+    change_password: "Change password"
+    expire_link: "The link to change your password has expired or invalid"
+    forgot_password: *forgot_password
+    reset_password: "Reset password"
+    send_reset_password: "Send request"
+
+  policy:
+    title: "Private Policy"
+
+  registration:
+    add_info: "More information"
+    button: "Complete"
+    change_password_fail: "You have updated your password failed"
+    edit_button: "Change"
+    edit_title: "Change password"
+    length_password: "8 - 20 characters"
+    new_password: "New password"
+    not_email: "Your personal account does not have email. Please enter more information."
+    title: *sign_up
+
+  session:
+    log_in: *log_in
+    title: *log_in
+
+  term:
+    title: "Term of Service"
+
+  unlock:
+    button: "Send request"
+    resend_unlock: "Unlock account"
+
+  users:
+    show:
+      basic_info:
+        age: *age
+        birthday: *birthday
+        female: "Female"
+        first_name: *first_name
+        gender: *gender
+        last_name: *last_name
+        male: "Male"
+        title: "Basic Information"
+      contact_info:
+        email: *email
+        phone: *phone
+        title: "Contact Information"
+      education_info:
+        grade: *grade
+        title: "Education"
+      edit_link:
+        alert_avatar: "Maximum file size is 1MB. Choose the smaller files!"
+        button: "Change"
+        button_hide_edit: "Hide"
+        button_show_edit: "Edit"
+        choose_school: "Choose school"
+        current_location: "Current location"
+        filter: "Filter"
+        link_avatar: "Choose image"
+        title: "Edit"
+        update_fail: "You have updated your information failed"
+        update_fail_other: "You need to enter your district and your ward if your school is Other"
+        update_success: "You have updated your information successfully"
+      friend_info:
+        title: "Friend"
+      setting_info:
+        change: "Change"
+        mail_activation: "Receive mail from sachmem?"
+        title: "Settings"
+        update_fail: "You have updated your setting failed"
+        update_success: "You have update your setting successfully"
+      skill_info:
+        title: "Skill"
+      work_info:
+        district: *district_id
+        province: *province_id
+        school: *school_id
+        title: "Location"
+        ward: *ward_id
+
+  validate_custom:
+    district_id:
+      not_match: "does not match Province."
+    birthday:
+      too_soon: "must be before today."
+    school_id:
+      not_match: "does not match Province."
+    ward_id:
+      not_match: "does not match Province."
+
+  views:
+    pagination:
+      first: "First"
+      last: "Last"
+      previous: "Previous"
+      next: "Next"
+      truncate: "&hellip;"
+  patients:
+    update:
+      success: "Update information success"
+      fails: "Update information fails"
+    create:
+      success: "Create success"
+  issuing_agency:
+    create:
+      success: "Create success"
+      fails: "Create fails"
+  medicine:
+    create:
+      success: "Create success"
+      fails: "Create fails"
+
+  account_permission:
+    denied: "Permission denied"
+
+  notification:
+    create:
+      success: "Send notification success"
+      fails: "Send notification failed"
+    update:
+      success: "Update success"
+      fails: "Update failed"

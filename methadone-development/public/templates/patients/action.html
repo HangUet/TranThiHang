@@ -1,0 +1,59 @@
+<div class="portlet light portlet-fixed-height">
+  <div class="portlet-title tabbable-line">
+    <div class="caption caption-md">
+        <i class="icon-globe theme-font hide"></i>
+        <span class="caption-subject font-blue-madison bold uppercase font-custom">{{"patient_info"| translator: 'patient'}}</span>
+    </div>
+   <!--  <ul class="nav nav-tabs">
+      <li ng-class="{'active': state.current.name == 'main.patients.detail.info'}">
+        <a href="#" ui-sref="main.patients.detail.info" class="btn btn-default">
+          {{"info"| translator: 'patient'}}
+        </a>
+      </li>
+      <li ng-class="{'active': state.current.name == 'main.patients.detail.prescription'}">
+        <a href="#" ui-sref="main.patients.detail.prescription" class="btn btn-default">
+          {{"prescription"| translator: 'patient'}}
+        </a>
+      </li> -->
+
+      <!-- <li ng-class="{'active': state.current.name == 'main.patients.detail.treatment'}">
+        <a href="#" ui-sref="main.patients.detail.treatment" class="btn btn-default">
+          {{"treatment"| translator: 'patient'}}
+        </a>
+      </li> -->
+    <!-- </ul> -->
+    <div class="actions" ng-if="currentUser.role != 'admin' && patient.check_agency == 1">
+      <a class="btn blue-custom btn-sm" style="margin-right: 10px;"
+        ng-click='showCreatePrescriptionModal()' ng-show="patient.actived == 'actived'">
+        <i class="fa fa-plus"></i> {{"add_prescription" | translator: "main"}}
+      </a>
+
+      <a style="margin-right: 10px;" ng-show="!patient.pending_change_agency"
+        class="btn blue-custom btn-sm"
+        ng-click='showChangeAgencyModal(patient)'>
+        <i class="fa fa-exchange"></i> {{"change_agency" | translator: "main"}}
+      </a>
+
+      <a style="margin-right: 10px;" ng-show="patient.pending_change_agency"
+        class="btn blue-custom btn-sm"
+        ng-click='showCancelChangeModal(patient)'>
+        <i class="fa fa-trash"></i> {{"cancel_change_agency" | translator: "main"}}
+      </a>
+
+      <a class="btn blue-custom btn-sm pull-right"
+        ng-show="patient.actived == 'actived'"
+        ng-click='showStopTreatmentModal()'>
+        <i class="fa fa-stop"></i> {{"stop_treatment" | translator: "main"}}
+      </a>
+
+      <a class="btn blue-custom btn-sm pull-right"
+        ng-show="patient.actived == 'deactived'"
+        ng-click='continueTreatment()'>
+        <i class="fa fa-plus"></i> {{"continue_treatment" | translator: "main"}}
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div ui-view></div>
+  </div>
+</div>

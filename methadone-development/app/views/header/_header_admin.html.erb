@@ -1,0 +1,63 @@
+<header class="header headroom">
+  <nav class="navbar-default navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <li class="sr-only"><%= t "header.toggle" %></li>
+          <li class="icon-bar"></li>
+          <li class="icon-bar"></li>
+          <li class="icon-bar"></li>
+        </button>
+
+        <div>
+          <%= link_to image_tag("https://s.sachmem.com/public/images/common/logo-small.png"),
+            admin_root_path, class: "logo" %>
+        </div>
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to t("header.manage_user"), admin_users_url %></li>
+          <li><%= link_to t("header.manage_comment"), Settings.sachmem_manage_comment_url %></li>
+          <li><%= link_to t("header.manage_book_key"), Settings.sachmem_manage_book_key_url %></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <% if active?(current_user) %>
+
+              <%= link_to users_info_path do %>
+                <%= image_tag(current_user.avatar.thumb.url, class: "img-rounded", height: "22px", width: "22px") %>
+              <% end %>
+
+            <% else %>
+
+              <a disabled="disabled">
+                <%= image_tag(current_user.avatar, class: "img-rounded", height: "22px", width: "22px") %>
+              </a>
+
+            <% end %>
+          </li>
+
+          <li class="dropdown">
+            <a href="" class="text-header dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-caret-down"></i>
+            </a>
+
+            <ul class="dropdown-menu">
+              <% if active?(current_user) %>
+                <li><%= link_to t("header.account"), users_info_path %></li>
+                <li role="separator" class="divider"></li>
+              <% end %>
+
+              <li><%= link_to t("header.log_out"), destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,33 @@
+<div class="login">
+  <div ng-include="'/templates/users/layouts/language_dropdown.html'"></div>
+  <div class="logo" ng-include="'/templates/users/layouts/logo.html'">
+  </div>
+  <div ng-include="'/templates/users/layouts/appname.html'"></div>
+  <div class="content">
+    <form ng-submit="resetPasswordForm.$valid && resetPassword()"
+      name="resetPasswordForm" class="forget-form" novalidate>
+      <h3>{{"password_reset" | translator: 'main'}}</h3>
+      <p>{{"password_reset_introduction" | translator: 'main'}}</p>
+      <div class="form-group">
+        <div class="input-icon">
+          <i class="fa fa-envelope"></i>
+          <input class="form-control placeholder-no-fix"
+            ng-model="email" name="email" type="email"
+            ng-pattern="/^\s*[A-z0-9._%+-]+@[A-z0-9.-]+\.[a-z]{2,63}\s*$/"
+            placeholder="Email"
+            required autofocus/>
+          <div ng-messages="resetPasswordForm.email.$error"
+            ng-show="resetPasswordForm.$submitted">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="pattern">{{"email" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button ui-sref="signin" type="button" id="back-btn" class="btn grey-salsa btn">{{"back" | translator: 'main'}}</button>
+        <button type="submit" class="btn blue-custom pull-right">{{"send" | translator: 'main'}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div ng-include="'/templates/users/layouts/backstretch.html'"></div>

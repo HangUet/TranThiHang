@@ -1,0 +1,36 @@
+<form ng-submit="editMedicineForm.$valid && editMedicine()" name="editMedicineForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header">{{"edit"| translator: 'main'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <div class="form-group col-xs-12 col-md-6">
+         <div class="col-xs-12 form-group">
+            <label class="required">{{"name"| translator: 'medicine'}}:</label>
+            <ui-select ng-model="edit_medicine.medicine_id" theme="select2" append-to-body="true" ng-required="true">
+              <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="medicine.id as medicine in allMedicine | filter: $select.search">
+                <span ng-bind-html="medicine.name | highlight: $select.search">
+                </span>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"remaining_number"| translator: 'medicine'}}:</label>
+          <input ng-model="edit_medicine.number" type="number" name="number" class="form-control input-sm" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

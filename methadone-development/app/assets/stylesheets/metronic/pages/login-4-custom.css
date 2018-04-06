@@ -1,0 +1,41 @@
+.login {
+  background-color: #666!important;
+  height: 100vh;
+}
+.login .logo {
+  margin: 0 auto 20px auto;
+  padding: 15px;
+  text-align: center;
+}
+
+.login .content {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 360px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  padding: 30px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+}
+
+.login .content h3 {
+  color: #333;
+}
+
+.login .content h4 {
+  color: #333;
+}
+
+.login .content p,
+.login .content label {
+  color: #333;
+}
+
+.login .content .forget-form {
+  display: block;
+}

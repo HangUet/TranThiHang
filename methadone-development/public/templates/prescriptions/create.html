@@ -1,0 +1,175 @@
+<style type="text/css">
+  /*css cho header của ui-select*/
+  .select2-results .select2-disabled.select2-highlighted{
+    color: #ffffff !important;
+    background-color: #3c66a0 !important;
+  }
+  .modal-lg {
+    width: 90%;
+  }
+</style>
+<form ng-submit="newPrescriptionForm.$valid && createPrescription()" name="newPrescriptionForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"add_prescription" | translator: 'main'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{"type_prescription" | translator: 'prescription'}}:
+        </label>
+        <ui-select ng-model="new_prescription.prescription_type"
+          name="prescription_type" search-enabled="false"
+          theme="select2" append-to-body="true" ng-required="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+            {{$select.selected | translator: 'medicine'}}
+          </ui-select-match>
+          <ui-select-choices repeat="item in ['H', 'N']">
+            <span ng-bind-html="item | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        <div ng-messages="newPrescriptionForm.prescription_type.$error" ng-show="newPrescriptionForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label>&nbsp;</label>
+        <div class="mt-checkbox-list">
+          <div class="col-md-6 col-xs-6">
+            <label class="mt-checkbox mt-checkbox-outline">{{"divide_dose" | translator: 'main'}}
+              <input ng-model="new_prescription.type" name="type" type="checkbox" value="two_time"
+               ng-change="changed(new_prescription.type)">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="col-md-6 col-xs-6">
+            <label class="mt-checkbox mt-checkbox-outline">{{"reduce_the_dose" | translator: 'prescription'}}
+              <input ng-model="new_prescription.type_treatment" name="type" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{"name"| translator: 'medicine'}}:</label>
+        <ui-select ng-model="new_prescription.medicine_list_id" name="medicine_list_id" search-enabled="false" theme="select2" append-to-body="true" ng-required="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+            {{$select.selected.name}} ({{$select.selected.composition}})
+          </ui-select-match>
+          <ui-select-choices ui-disable-choice="medicine.name == 'Tên thuốc' &&
+            medicine.composition == 'Thành phần'"
+            repeat="medicine in medicines" style="width: 100%;">
+            <table class="table-select" style="width: 100%;">
+              <tbody>
+                <tr>
+                  <td style="width: 20%;" ng-bind-html="medicine.name"></td>
+                  <td style="width: 20%;" ng-bind-html="medicine.composition"></td>
+                  <td style="width: 20%;" ng-bind-html="medicine.concentration"></td>
+                  <!-- <td style="width: 20%;" ng-bind-html="medicine.remaining"></td> -->
+                  <td style="width: 20%;" ng-bind-html="medicine.manufacturer"></td>
+                </tr>
+              </tbody>
+            </table>
+          </ui-select-choices>
+        </ui-select>
+        <div ng-messages="newPrescriptionForm.medicine_list_id.$error" ng-show="newPrescriptionForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label>{{"current_dosage"| translator: 'prescription'}}:</label>
+        <input type="text" ng-model="lastPrescription.dosage" disabled="true" class="form-control input-sm">
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{"new_dosage"| translator: 'prescription'}}:</label>
+        <input type="number" ng-model="new_prescription.dosage" name="dosage" class="form-control input-sm" min=0 max=1000 required ng-change="change_total_or_morning()">
+        <div ng-messages="newPrescriptionForm.dosage.$error" ng-show="newPrescriptionForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          <div ng-message="max">{{"max" | translator: 'validate' | stringFormat:1000}}</div>
+          <div ng-message="min">{{"min" | translator: 'validate' | stringFormat:0}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6"
+        ng-if="new_prescription.type">
+        <label>{{"dosage_morning"| translator: 'prescription'}}:</label>
+        <input type="number" ng-model="new_prescription.dosage_morning"
+          class="form-control input-sm"
+          name="dosage_morning"
+          ng-change="change_total_or_morning()"
+          bigger-than="new_prescription.dosage">
+        <div ng-messages="newPrescriptionForm.dosage_morning.$error"
+          class="text-error">
+          <div ng-message="biggerThan">{{"biggerThan" | translator: 'validate' | stringFormat: new_prescription.dosage}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6"
+        ng-if="new_prescription.type">
+        <label>{{"dosage_afternoon"| translator: 'prescription'}}:</label>
+        <input type="number" ng-model="dosage_afternoon" class="form-control input-sm"
+        ng-disabled=true>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{"begin_date"| translator: 'prescription'}}:</label>
+        <label class="input-group">
+          <input ng-model="new_prescription.begin_date" ng-change="change_begin_date_or_duration()"
+                 name="begin_date" class="form-control input-sm" date-bigger="today" datepicker required>
+          <span class="input-group-btn no-print">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+        <div ng-messages="newPrescriptionForm.begin_date.$error" ng-show="newPrescriptionForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          <div ng-message="dateBigger">{{"date_bigger_now" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{"duration"| translator: 'prescription'}}:</label>
+        <input type="number" ng-model="new_prescription.duration" ng-change="change_begin_date_or_duration()"
+              name="duration" class="form-control input-sm" min="1" required>
+        <div ng-messages="newPrescriptionForm.duration.$error" ng-show="newPrescriptionForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          <div ng-message="min">{{"min" | translator: 'validate' | stringFormat:1}}</div>
+          <!-- <div ng-message="max">{{"max" | translator: 'validate' | stringFormat:5}}</div> -->
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{"end_date"| translator: 'prescription'}}:</label>
+        <label class="input-group">
+          <input ng-model="new_prescription.end_date_expected" ng-change="change_end_date()" disabled
+                 name="end_date_expected" class="form-control input-sm">
+          <span class="input-group-btn no-print">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label>{{"description"| translator: 'prescription'}}:</label>
+        <textarea ng-model="new_prescription.description"
+          class="form-control input-sm" name="description" ng-maxlength="65536">
+        </textarea>
+        <div ng-messages="newPrescriptionForm.description.$error" ng-show="newPrescriptionForm.$submitted" class="text-error">
+          <div ng-message="maxlength">Trường này không vượt quá 65536 ký tự</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit" id="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

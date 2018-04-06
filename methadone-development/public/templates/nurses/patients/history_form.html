@@ -1,0 +1,63 @@
+<form ng-submit="historyForm.$valid && getHistoryMedicationAllocation()" name="historyForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"history_medicine_allocation"| translator: 'patient'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="col-xs-2" style="margin-top: 24px;">
+        <label>{{"date_allocation"| translator: 'patient'}}</label>
+      </div>
+      <div class="col-xs-3">
+        <label class="required">{{"from"| translator: 'patient'}}</label>
+        <label class="input-group">
+          <input ng-model="from_date" class="form-control input-sm" required datepicker>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="col-xs-3">
+        <label class="required">{{"to"| translator: 'patient'}}</label>
+        <label class="input-group">
+          <input ng-model="to_date" class="form-control input-sm" required datepicker>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="col-xs-2" style="margin-top: 24px;">
+        <button type="submit" class="btn blue-custom btn-sm"><i class="fa fa-search"></i> {{"search"| translator: 'main'}}</button>
+      </div>
+
+    </div>
+    <div ng-if="history_medicine_allocation.length == 0" class="row row-flex">
+      <div class="col-xs-12">{{"no_data"| translator: 'prescription'}}</div>
+    </div>
+    <div class="max-width-100-pc scrollable" ng-if="history_medicine_allocation.length > 0">
+      <table class="table table-hover" fixed-header>
+        <thead>
+          <tr>
+            <th>{{"day_hour"| translator: 'main'}}</th>
+            <th>{{"methadone_dosage" | translator: 'prescription'}}</th>
+            <th>{{"medical_instruction"| translator: 'main'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="history in history_medicine_allocation">
+            <td>{{ history.day_hour }}</td>
+            <td>{{ history.dosage }}</td>
+            <td>{{ history.medical_instruction }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+  </div>
+</form>

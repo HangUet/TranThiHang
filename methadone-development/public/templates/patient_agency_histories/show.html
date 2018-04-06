@@ -1,0 +1,54 @@
+<div ng-if="patient_agency_history">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="portlet light portlet-fixed-height">
+        <div class="portlet-title tabbable-line">
+          <div class="caption caption-md">
+            <i class="icon-globe theme-font hide"></i>
+            <span class="caption-subject font-blue-madison bold uppercase font-custom">Yêu cầu chuyển cơ sở bệnh nhân {{patient_agency_history.patient.name}}</span>
+          </div>
+          <div class="actions" ng-if="patient_agency_history.status == 'accepted'">
+            <a href="#" ui-sref="main.patients.action.detail.executive_info({id: patient_agency_history.patient_id})"
+              class="btn blue-custom">
+                <i class="fa fa-user"></i> Xem chi tiết thông tin bệnh nhân</a>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <div class="tabbable-custom">
+            <ul class="nav nav-tabs">
+              <li ng-class="{'active': state.current.name ==
+                'main.patient_agency_history.change_agency'}">
+                <a href="#" ui-sref="main.patient_agency_history.change_agency"
+                  class="text-dark">
+                  {{"patient_agency_history_info" | translator: "main"}}
+                </a>
+              </li>
+              <li ng-class="{'active': state.current.name ==
+                'main.patient_agency_history.executive_info'}">
+                <a href="#" ui-sref="main.patient_agency_history.executive_info({patient_id: patient_agency_history.patient_id})"
+                  class="text-dark">
+                  {{"executive_info" | translator: "patient"}}
+                </a>
+              </li>
+
+              <li ng-class="{'active': state.current.name ==
+                'main.patient_agency_history.info'}">
+                <a href="#" ui-sref="main.patient_agency_history.info({patient_id: patient_agency_history.patient_id})"
+                  class="text-dark">
+                  {{"info_patient" | translator: "patient"}}
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content" style="margin-top: -1px;">
+              <div ui-view></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="!patient_agency_history" class="note note-danger">
+  <h4 class="block">{{"patient_cancel_agency" | translator: "main"}}</h4>
+  <p>Vui lòng quay về trang chủ.</p>
+</div>

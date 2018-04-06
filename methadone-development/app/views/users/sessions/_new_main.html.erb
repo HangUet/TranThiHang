@@ -1,0 +1,52 @@
+<div class="text-center">
+  <h1 class="title">
+    Đăng nhập
+  </h1>
+</div>
+
+<div class="panel panel-default box-xs-100">
+  <div class="panel-body panel-body-custom">
+    <div>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+        <div class="form-group margin-bottom-15px">
+          <%= f.label :email %>:
+          <%= f.email_field :email, class: "form-control",
+            placeholder: true, autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group margin-bottom-15px">
+          <%= f.label :password %>:
+          <%= f.password_field :password, class: "form-control",
+            placeholder: true, required: true %>
+        </div>
+
+        <div class="margin-bottom-15px">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Đăng nhập", class: "btn btn-success btn-block" %>
+        </div>
+
+        <%= render "users/shared/providers" %>
+
+        <p class="accept-term">
+        </p>
+      <% end %>
+
+      <%= render "new_main_links" %>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default box-xs-100">
+  <div class="panel-body">
+    <div class="text-center">
+      <span> <%= t "common.invite_create_account" %></span>
+      <%= link_to t("link_devise.sign_up"), new_registration_path(resource_name), class: "sign-up-link" %>
+    </div>
+  </div>
+</div>

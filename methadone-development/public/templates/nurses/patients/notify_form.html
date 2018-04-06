@@ -1,0 +1,81 @@
+<form ng-submit="createForm.$valid && sendMedicineNotify()" name="createForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"notify_fall"| translator: 'patient'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex" ng-if="empty_prescription || taked || obligatory || optional">
+      <div class="form-group col-xs-12">
+        <div class="col-xs-3 form-group" ng-if="type_allocation == 2">
+          <label>{{"allocate_time" | translator: 'main'}}</label>
+        </div>
+        <div class="col-xs-9 col-md-9 form-group" ng-if="type_allocation == 2">
+          <ui-select ng-model="notification.type" name="type" theme="select2"
+            append-to-body="true" ng-required="true" search-enabled="false">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected.name | translator: 'main'}}
+            </ui-select-match>
+            <ui-select-choices repeat="time.value as time in allocate_times">
+              <span ng-bind-html="time.name | translator: 'main'"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.type.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+        <div class="col-xs-3 form-group">
+          <label>{{"notify_type" | translator: 'main'}}</label>
+        </div>
+        <div class="col-xs-9 col-md-9 form-group" ng-if="taked">
+          <ui-select ng-model="notification.notify_status" name="notify_status" theme="select2"
+            append-to-body="true" ng-required="true" search-enabled="false">
+            <ui-select-match placeholder="{{'please_select_status'| translator: 'main'}}">
+              {{$select.selected | translator: 'main'}}
+            </ui-select-match>
+            <ui-select-choices repeat="status in ['vomited_10_minute', 'vomited_30_minute']">
+              <span ng-bind-html="status | translator: 'main'"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.notify_status.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+        <div class="col-xs-9 col-md-9 form-group" ng-if="empty_prescription">
+          <ui-select ng-model="notification.notify_status" name="notify_status" theme="select2"
+            append-to-body="true" ng-required="true" search-enabled="false">
+            <ui-select-match placeholder="{{'please_select_status'| translator: 'main'}}">
+              {{$select.selected | translator: 'main'}}
+            </ui-select-match>
+            <ui-select-choices repeat="status in [ 'empty_prescription']">
+              <span ng-bind-html="status | translator: 'main'"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.notify_status.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+        <div class="col-xs-9 col-md-9 form-group" ng-if="obligatory">
+          <ui-select ng-model="notification.notify_status" name="notify_status" theme="select2"
+            append-to-body="true" ng-required="true" search-enabled="false">
+            <ui-select-match placeholder="{{'please_select_status'| translator: 'main'}}">
+              {{$select.selected | translator: 'main'}}
+            </ui-select-match>
+            <ui-select-choices repeat="status in [ 'expirate_prescription']">
+              <span ng-bind-html="status | translator: 'main'"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.notify_status.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-flex" ng-if="!empty_prescription && !taked && !obligatory && !optional">
+      {{"notify_empty" | translator: "patient"}}
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button type="submit" class="btn blue-custom btn-sm">{{"notify_fall"| translator: 'patient'}}</button>
+  </div>
+</form>

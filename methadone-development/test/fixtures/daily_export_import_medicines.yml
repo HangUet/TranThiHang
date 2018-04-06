@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  composition: MyString
+  concentration: 1
+  packing: 1
+  manufacturer: MyString
+  provider: MyString
+  source: MyString
+  expiration_date: 2017-07-05 20:06:37
+  production_batch: MyString
+  remaining_number: 1
+  status: 1
+  type_ticket: 1
+  number_export: 1
+  date_export: 2017-07-05 20:06:37
+
+two:
+  name: MyString
+  composition: MyString
+  concentration: 1
+  packing: 1
+  manufacturer: MyString
+  provider: MyString
+  source: MyString
+  expiration_date: 2017-07-05 20:06:37
+  production_batch: MyString
+  remaining_number: 1
+  status: 1
+  type_ticket: 1
+  number_export: 1
+  date_export: 2017-07-05 20:06:37

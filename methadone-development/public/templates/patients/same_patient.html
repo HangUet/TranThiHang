@@ -1,0 +1,217 @@
+<form ng-submit="form.$valid && createPatient()" name="form" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"same_patient" | translator: 'patient'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div ng-show="!same_identification_type" class="note note-warning">
+      <h5>Cảnh báo: Trên hệ thống đã tồn tại bệnh nhân có thông tin tương tự. Xin vui lòng kiểm tra danh sách bên dưới.</h5>
+      <p>Nhấn nút “Lưu” để tiếp tục lưu thông tin bệnh nhân mới hoặc nhấn nút “Gửi” để đề nghị chuyển cơ sở nếu bệnh nhân đang ngừng điều trị.</p>
+      </div>
+    <div>
+    <div ng-show="same_identification_type" class="note note-warning">
+      <p>Đã tồn tại bệnh nhân sử dụng trùng số giấy tờ tùy thân. Thông tin chi tiết như bảng dưới. Vui lòng kiểm tra lại!</p>
+    </div>
+      <table class="table table-custom">
+        <thead>
+          <tr>
+            <th></th>
+            <th>{{"name"| translator: 'patient'}}</th>
+            <th>{{"current_agency"| translator: 'patient'}}</th>
+            <th>{{"status"| translator: 'patient'}}</th>
+            <th>{{"notify_fall"| translator: 'patient'}}</th>
+            <th>{{"send_"| translator: 'main'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="patient in same_patient">
+            <td>
+              <div class="col-xs-12">
+                <img class="img-thumbnail" style="height: 120px;" ng-src="{{patient.avatar || '/images/avatar.jpg'}}" preview="$file">
+              </div>
+            </td>
+            <td class="middle_talbe"><div uib-popover-template="dynamicPopover.templateUrl" popover-placement="right" popover-title="{{'patient_detail'| translator: 'prescription'}}" class="primary-link" popover-is-open="isOpen[$index]" ng-click="func($index)" style="cursor: pointer;">{{patient.name}}</div></td>
+            <td class="middle_talbe">{{agency[$index]}}</td>
+            <td class="middle_talbe" ng-if="patient.actived == 'deactived'">Ngừng điều trị (Bệnh nhân {{status[$index] | translator: 'main'}})</td>
+            <td class="middle_talbe" ng-if="patient.actived == 'actived'">{{status[$index]}}</td>
+            <td class="middle_talbe">
+              <textarea rows="4" ng-show="patient.actived == 'deactived' && !check_same_agency[$index]" disabled="true">Đề nghị chuyển bệnh nhân về cơ sở {{current_agency}} để được tiếp tục điều trị!
+              </textarea>
+            </td>
+            <td class="middle_talbe" ng-show="patient.actived == 'deactived' && !check_same_agency[$index]">
+              <a href="#" ng-click="sendSamePatient(current_agency_id, agency_id[$index], patient.id)">
+                <i class="fa fa-send"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close" | translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"
+    ng-show="!same_identification_type">
+      <i class="fa fa-save"></i>
+      {{"save"| translator: "main"}}
+    </button>
+  </div>
+</form>
+<script type="text/ng-template" id="InforPopoverTemplate.html">
+  <div class="popover-content">
+    <div class="tabbable-custom">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tab_1_1_1" data-toggle="tab">{{"executive_info" | translator: "patient"}}</a>
+        </li>
+        <li class="">
+          <a href="#tab_1_1_2" data-toggle="tab">{{"info_patient" | translator: "patient"}}</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_1_1_1">
+          <div class="row fow-flex">
+            <div class="col-xs-3">
+              <img class="img-thumbnail" ng-src="{{patient.avatar || '/images/avatar.jpg'}}" preview="$file">
+              <div class="profile-usertitle">
+                <div class="profile-usertitle-name"> {{patient.card_number}}</div>
+              </div>
+            </div>
+            <div class="col-xs-9">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td class="align-left">{{"f_name" | translator: 'main'}}:</td>
+                    <td class="align-left">{{patient.name}}</td>
+                  </tr>
+                  <tr>
+                    <td class="align-left">{{"admission_date" | translator: 'patient'}}:</td>
+                    <td class="align-left">{{patient.admission_date}}</td>
+                  </tr>
+                  <tr>
+                    <td class="align-left">{{"current_residence" | translator: 'patient'}}:</td>
+                    <td class="align-left">{{ resident(patient) }}</td>
+                  </tr>
+                  <tr>
+                    <td class="align-left">{{"date_of_birth" | translator: 'patient'}}:</td>
+                    <td class="align-left">{{patient.birthdate}}</td>
+                  </tr>
+                  <tr>
+                    <td class="align-left">{{"gender" | translator: 'patient'}}:</td>
+                    <td class="align-left">{{patient.gender | translator: 'patient'}}</td>
+                  </tr>
+                  <tr>
+                    <td class="align-left">{{"status" | translator: 'patient'}}:</td>
+                    <td class="align-left" ng-if="patient.pending_change_agency">{{"pending_change_agency" | translator: "main"}} {{patient.receiver_agency}}</td>
+                    <td class="align-left" ng-if="patient.reason">{{"deactived" | translator: "patient"}} do {{patient.reason | translator: "main"}}</td>
+                    <td class="align-left" ng-if="!patient.pending_change_agency && !patient.reason">Đang điều trị</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab_1_1_2">
+          <div class="row row-flex">
+            <div class="col-xs-12 col-md-6">
+              <div class="tabbable-line">
+                <div>
+                  <div>
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr>
+                          <td class="align-left">{{'employment' | translator: 'patient'}}:</td>
+                          <td class="align-left">{{patient.jobs | translator: 'patient'}}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{'ethnicity' | translator: 'prescription'}}:</td>
+                          <td class="align-left">{{patient.ethnicity_name}}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{"telephone"| translator: 'patient'}}:</td>
+                          <td class="align-left">{{patient.mobile_phone}}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{"marital_status"| translator: 'patient'}}:</td>
+                          <td class="align-left">{{patient.marital_status| translator: 'patient'}}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{"education_level"| translator: 'patient'}}:</td>
+                          <td class="align-left">{{patient.education_level| translator: 'patient' }}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{"financial_status"| translator: 'patient'}}:</td>
+                          <td class="align-left">{{patient.financial_status| translator: 'patient'}}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{"referral_agency"| translator: 'patient'}}:</td>
+                          <td class="align-left">{{patient.referral_agency}}</td>
+                        </tr>
+                        <tr>
+                          <td class="align-left">{{"household"| translator: 'main'}}:</td>
+                          <td class="align-left">{{ household(patient) }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <div class="max-width-100-pc scrollable">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td class="text-left" colspan="2"><b>{{patient.identification_type |
+                        translator: 'patient'}}:</b></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">{{"number"| translator: 'patient'}}:</td>
+                      <td class="text-left">{{patient.identification_number}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">{{"issued_date"| translator: 'patient'}}:</td>
+                      <td class="text-left">{{patient.identification_issued_date}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">{{"issuing_agency"| translator: 'patient'}}:</td>
+                      <td class="text-left">{{patient.identification_issued_by}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tabbable-line">
+                <p class="bold"> {{ 'family_contact' | translator: 'prescription'}}: </p>
+                <div>
+                  <div>
+                    <div class="max-width-100-pc scrollable">
+                      <table class="table table-hover">
+                        <tbody>
+                          <tr>
+                            <td class="align-left">{{ 'name' | translator: 'patient' }}</td>
+                            <td class="align-left">{{ 'phone_number' | translator: 'patient' }}</td>
+                            <td class="align-left">{{ 'address' | translator: 'main' }}</td>
+                          </tr>
+                          <tr ng-repeat="contact in patient.contacts">
+                            <td class="align-left">
+                              <div>{{contact.name}} ({{ contact.contact_type | translator: 'contact' }})</div>
+                            </td>
+                            <td class="align-left">
+                              <div>{{ contact.telephone }}</div>
+                            </td>
+                            <td class="align-left"> {{ contact.address }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input ng-click="closePopover($index)" class="btn btn-default btn-sm pull-right" type="button" data-dismiss="modal" value='{{"close" | translator: "main"}}'>
+  </div>
+</script>

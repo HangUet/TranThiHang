@@ -1,0 +1,74 @@
+<!-- <div class="row row-flex"> -->
+  <!-- <div class="col-xs-12 col-md-12"> -->
+    <div class="row fow-flex">
+      <div class="col-xs-12 col-md-170px">
+        <img class="img-thumbnail patient-avatar" ng-src="{{patient.avatar || '/images/avatar.jpg'}}" preview="$file">
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name"> {{patient.card_number}}</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-x170px">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <td class="align-left">{{"f_name" | translator: 'main'}}:</td>
+              <td class="align-left">{{patient.name}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"admission_date" | translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.admission_date}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"current_residence" | translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.resident}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"date_of_birth" | translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.birthdate}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"gender" | translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.gender | translator: 'patient'}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"status" | translator: 'patient'}}:</td>
+              <td class="align-left" ng-if="patient.pending_change_agency">{{"pending_change_agency" | translator: "main"}} {{patient.receiver_agency}}</td>
+              <td class="align-left" ng-if="patient.reason">{{"deactived" | translator: "patient"}} do {{patient.reason | translator: "main"}}</td>
+              <td class="align-left" ng-if="!patient.pending_change_agency && !patient.reason">Đang điều trị</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <!-- </div> -->
+  </div>
+  <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" style="margin-left: 10px;" data-spacing="60">
+    <div class="events-content">
+      <ol>
+        <li class="selected" data-date="16/01/2014">
+          <div class="mt-content border-grey-steel" style="color: black!important;padding-top: 7px;">
+            <div class="portlet-title">
+              <div class="caption caption-md">
+                <i class="icon-globe theme-font hide"></i>
+                <span class="caption-subject font-blue-madison bold uppercase">{{"treatment_info"| translator: 'patient'}}</span>
+              </div>
+            </div>
+            <div style="padding-top: 8px;">
+              <p style="margin: 0">
+                {{"description_old" | translator: 'patient'}} {{
+                  patient.description ? patient.description : "no_info" | translator: 'patient'}}
+              </p>
+              <p style="margin: 0">
+                {{"dosage" | translator: 'prescription'}}: {{patient.dosage ?
+               patient.dosage + " mg": "no_info" | translator: 'patient'}}
+              </p>
+              <p style="margin: 0">
+                {{"notify" | translator: 'patient'}} {{patient.notifi ?
+               patient.notifi : "no_info" | translator: 'patient'}}
+              </p>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+<!-- </div> -->

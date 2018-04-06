@@ -1,0 +1,48 @@
+<div class="login">
+  <div class="logo" ng-include="'/templates/users/layouts/logo.html'">
+  </div>
+  <div class="content">
+    <form ng-submit="editPasswordForm.$valid && editPassword()"
+      name="editPasswordForm" novalidate class="forget-form" novalidate>
+      <h3 style="text-align: center;">Khôi phục mật khẩu</h3>
+      <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Mật khẩu mới</label>
+        <div class="input-icon">
+          <i class="fa fa-lock"></i>
+          <input class="form-control placeholder-no-fix"
+            ng-model="password" name="password" type="password" placeholder="Mật khẩu mới" required autofocus minlength="8" ng-pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-z0-9!@#$%^&*]{8,}/"/>
+          <div ng-messages="editPasswordForm.password.$error"
+            ng-show="editPasswordForm.$submitted">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="minlength">{{"password" | translator: 'validate'}}</div>
+            <div ng-message="pattern">{{"pattern" | translator: "validate"}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Xác nhận mật khẩu mới</label>
+        <div class="input-icon">
+          <i class="fa fa-lock"></i>
+          <input class="form-control placeholder-no-fix"
+            ng-model="newPasswordConfirm" name="newPasswordConfirm"
+            type="password" placeholder="Xác nhận mật khẩu mới"
+            equal-to="password"
+            required minlength="8" ng-pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-z0-9!@#$%^&*]{8,}/"/>
+           <div ng-messages="editPasswordForm.newPasswordConfirm.$error"
+              ng-show="editPasswordForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="minlength">{{"password" | translator: 'validate'}}</div>
+            <div ng-message="equalTo">{{"password_confirm" | translator: 'validate'}}</div>
+            <div ng-message="pattern">{{"pattern" | translator: "validate"}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button ui-sref="signin" type="button" id="back-btn" class="btn red btn-outline">Quay lại</button>
+        <button type="submit" class="btn blue-custom pull-right"> Gửi yêu cầu </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div ng-include="'/templates/users/layouts/backstretch.html'"></div>

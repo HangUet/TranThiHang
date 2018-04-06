@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 padding-right-3">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md" style="margin-left: 28%">
+          <p class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"import_export_medicine_title" | translator: "main"}}
+          </p>
+          <p class="caption-subject bold" style="margin-left: 3%">{{"medicine_type" | translator: "main"}}</p>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> {{"print" | translator: "main"}} </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> {{"send_" | translator: "main"}} </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="max-width-100-pc scrollable">
+          <form ng-submit="createForm.$valid && applyDay()" name="createForm" novalidate>
+            <div class="col-xs-2 no-padding-left">
+              <label class="input-group">
+                <input ng-model="day" name="day" class="form-control input-sm" required monthpicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="col-xs-2">
+              <button class="btn blue-custom btn-sm ng-binding" type="submit">
+                {{"apply"| translator: 'main'}}
+              </button>
+            </div>
+          </form>
+          <table class="table table-hover table-bordered table-custom">
+            <thead>
+              <tr>
+                <th>{{"day" | translator: "main"}}</th>
+                <th class="text-left">{{"allocator_name" | translator: "medicine"}}</th>
+                <th class="text-left">{{"receiver_name" | translator: "medicine"}}</th>
+                <th>{{"quantity_export_early_day" | translator: "medicine"}}</th>
+                <th>{{"quantity_allocation_in_day" | translator: "medicine"}}</th>
+                <th>{{"quantity_loss_in_day" | translator: "medicine"}}</th>
+                <th>{{"quantity_redundancy_in_day" | translator: "medicine"}}</th>
+                <th>{{"reasons_loss_redundancy" | translator: "medicine"}}</th>
+                <th>{{"quantity_import_end_day" | translator: "medicine"}}</th>
+                <th>{{"total_used_in_day" | translator: "medicine"}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="i in data track by $index">
+                <td>{{i.day}}</td>
+                <td class="text-left">{{i.sender}}</td>
+                <td class="text-left">{{i.receiver}}</td>
+                <td>{{i.export_medicine}}</td>
+                <td>{{i.medicine_allocations_success}}</td>
+                <td>{{i.loss}}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{i.import_medicine}}</td>
+                <td>{{i.total}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

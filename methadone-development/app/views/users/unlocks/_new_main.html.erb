@@ -1,0 +1,31 @@
+<div class="text-center">
+  <h1 class="title">
+    <%= t("unlock.resend_unlock") %>
+</div>
+
+<div class="panel panel-default box-xs-100">
+  <div class="panel-body panel-body-custom">
+    <div>
+      <h4><%= t "common.unlock_account_instruction1" %></h4>
+      <h4><%= t "common.unlock_account_instruction2" %></h4>
+      <%= form_for(resource, as: resource_name, url: unlock_path(resource_name),
+        html: {method: :post}) do |f| %>
+
+        <div class="form-group margin-bottom-15px">
+          <%= f.email_field :email, class: "form-control input-sm",
+            placeholder: true, autofocus: true, required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= recaptcha_tags hl: "vi" %>
+        </div>
+
+        <div class="margin-bottom-15px">
+          <%= f.submit t("unlock.button"), class: "btn btn-success btn-block" %>
+        </div>
+
+        <%= render "links" %>
+      <% end %>
+    </div>
+  </div>
+</div>

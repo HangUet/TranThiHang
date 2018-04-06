@@ -1,0 +1,86 @@
+<form ng-submit="createAdminForm.$valid && createAdmin()" name="createAdminForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{'create_agency_admin_account' | translator: 'main'}} </h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <!-- <div class="form-group col-xs-12 col-md-6">
+        <label class="required"> {{'username' | translator: 'main'}}:</label>
+        <input ng-model="user.username" name="username" class="form-control input-sm" autofocus required>
+        <div ng-messages="createAdminForm.username.$error" ng-show="createAdminForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div> -->
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">Email:</label>
+        <input ng-model="user.email" name="email" type="email"
+          ng-pattern="/^\s*[A-z0-9._%+-]+@[A-z0-9.-]+\.[a-z]{2,63}\s*$/"
+          class="form-control input-sm" autofocus
+          ng-maxlength="50" required>
+        <div ng-messages="createAdminForm.email.$error" ng-show="createAdminForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+           <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="pattern">{{"email" | translator: 'validate'}}</div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'password' | translator: 'main'}}:</label>
+        <input ng-model="user.password" name="password" type="password" class="form-control input-sm"
+          ng-pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-z0-9!@#$%^&*]{8,}/"
+          minlength="8" ng-maxlength="50" required>
+        <div ng-messages="createAdminForm.password.$error" ng-show="createAdminForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="minlength">{{"password" | translator: 'validate'}}</div>
+          <div ng-message="pattern">{{"pattern" | translator: "validate"}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'first_name' | translator: 'patient'}}</label>
+        <input ng-model="user.first_name" name="first_name"
+               class="form-control input-sm"
+               ng-maxlength="50" no-special-char required>
+        <div ng-messages="createAdminForm.first_name.$error" ng-show="createAdminForm.$submitted" class="text-error">
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'last_name' | translator: 'patient'}}</label>
+        <input ng-model="user.last_name" name="last_name"
+               class="form-control input-sm"
+               ng-maxlength="50" no-special-char required>
+        <div ng-messages="createAdminForm.last_name.$error" ng-show="createAdminForm.$submitted" class="text-error">
+          <div ng-message="maxlength">{{"maxlength_user" | translator: 'validate'}}</div>
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <label class="required">{{'issuing_agency'| translator: 'main'}}:</label>
+        <ui-select ng-model="user.issuing_agency_id" name="issuing_agency_id" theme="select2"
+                   append-to-body="true" ng-required="true">
+          <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+            {{$select.selected.name}}
+          </ui-select-match>
+          <ui-select-choices repeat="item.id as item in agencies | filter: $select.search">
+            <span ng-bind-html="item.name | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        <div ng-messages="createAdminForm.issuing_agency_id.$error"
+             ng-show="createAdminForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

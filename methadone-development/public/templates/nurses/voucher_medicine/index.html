@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <i class="font-green"></i>
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"storage"| translator: 'main'}}
+          </span>
+          <span class="caption-subject font-blue-madison bold uppercase
+            font-custom" ng-show="vouchers.status=='1'">
+            ({{"accepted" | translator: 'medicine'}})
+          </span>
+        </div>
+        <div class="actions" ng-show="voucher_medicines.length > 0">
+          <a ng-click="showAcceptVoucherModal()" class="btn blue-custom btn-sm"
+            ng-show="vouchers.status=='0'">
+            <i class="fa fa-plus"></i> {{"accept" | translator: 'medicine'}}
+          </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> In </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> Gửi </a>
+        </div>
+      </div>
+      <div class="portlet-body" ng-show="voucher_medicines.length == 0">
+        <div style="text-align: center;">
+          <h4>Chưa có đơn thuốc nào của bệnh nhân hoặc không có thuốc trong kho</h4>
+        </div>
+      </div>
+      <div class="portlet-body" ng-show="voucher_medicines.length > 0">
+        <div style="text-align: center;">
+          <h4>{{"date"| translator: 'medicine'}}: {{vouchers.datee}}</h4>
+          <h4>Tổng lượng thuốc: {{vouchers.number}} ml</h4>
+          <h4>Dự phòng: {{vouchers.number_preventive}} ml</h4>
+        </div>
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-custom" ng-show="voucher_medicines.length > 0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="text-left">{{"name"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"composition"| translator: 'medicine'}}</th>
+                <th>{{"concentration"| translator: 'medicine'}}</th>
+                <th>{{"packing"| translator: 'medicine'}}</th>
+                <th>{{"production_batch"| translator: 'medicine'}}</th>
+                <th>{{"expiration_date"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"manufacturer"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"provider"| translator: 'medicine'}}</th>
+                <th class="text-left">{{"source"| translator: 'medicine'}}</th>
+                <th>{{"remaining_number"| translator: 'medicine'}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="medicine in voucher_medicines track by $index">
+                <td>{{$index + 1}}</td>
+                <td class="text-left">{{medicine.name}}</td>
+                <td class="text-left">{{medicine.composition}}</td>
+                <td>{{medicine.concentration}}</td>
+                <td>{{medicine.packing}}</td>
+                <td>{{medicine.production_batch}}</td>
+                <td>{{medicine.expiration_date}}</td>
+                <td class="text-left">{{medicine.manufacturer}}</td>
+                <td class="text-left">{{medicine.provider}}</td>
+                <td class="text-left">{{medicine.source}}</td>
+                <td>{{medicine.remaining_number}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

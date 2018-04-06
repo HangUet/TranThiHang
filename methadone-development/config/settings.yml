@@ -1,0 +1,24 @@
+api:
+  time_reset_token: 7
+  company: saokhuee
+  client_name: client
+per_page: 15
+randoms_ward: 7
+role:
+  admin: "admin"
+  admin_agency: "admin_agency"
+  doctor: "doctor"
+  nurse: "nurse"
+patient_warning:
+  status:
+    open: 1
+    close: 0
+  level:
+    obligatory: 1
+    optional: 0
+  content:
+    obligatory: "obligatory_content"
+    optional: "optional_content"
+max_failed_attempts: 5
+notify_vomited: "Có một bệnh nhân bị nôn"
+number_day_maintain: 30

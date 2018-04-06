@@ -1,0 +1,25 @@
+<form ng-submit="createForm.$valid && createMarital()" name="createForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <h3 class="modal-title text-bold-header"> {{"add_marital" | translator: 'category'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="form-group col-xs-12">
+        <div class="form-group col-xs-5">
+          <label class="required">{{"name_marital" | translator: 'category'}}:</label>
+        </div>
+        <div class="form-group col-xs-7">
+          <input ng-model="marital.name" name="name" class="form-control input-sm" autofocus required ng-maxlength="255">
+          <div ng-messages="createForm.name.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="maxlength">{{"maxlength255" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close" | translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save" | translator: "main"}}</button>
+  </div>
+</form>

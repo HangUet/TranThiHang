@@ -1,0 +1,142 @@
+<style type="text/css">
+  .select2-results .select2-disabled.select2-highlighted{
+    color: #ffffff !important;
+    background-color: #3c66a0 !important;
+  }
+</style>
+<form ng-submit="createVoucherForm.$valid && createReceivedSubVoucher()"
+      name="createVoucherForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"add"| translator: 'medicine'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="col-md-6 col-xs-12 form-group">
+        <label class="required">{{"sender"| translator: 'medicine'}}:</label>
+        <input ng-model="new_sub_voucher.sender" type="text"
+               name="sender" class="form-control input-sm" required>
+        <div ng-messages="createVoucherForm.sender.$error"
+             ng-show="createVoucherForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xs-12 form-group">
+        <label class="required">{{"receiver"| translator: 'medicine'}}:</label>
+        <input ng-model="new_sub_voucher.receiver" type="text"
+               name="receiver" class="form-control input-sm" required>
+        <div ng-messages="createVoucherForm.receiver.$error"
+             ng-show="createVoucherForm.$submitted" class="text-error">
+          <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-6 form-group">
+        <label class="required">{{"date"| translator: 'medicine'}}:</label>
+        <label class="input-group margin-0">
+          <input ng-model="new_sub_voucher.datee"
+                 class="form-control input-sm" datepicker required>
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-sm">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <table class="table table-hover table-striped table-custom table-voucher">
+        <tr>
+          <th>{{"name"| translator: 'medicine'}}</th>
+          <th>{{"composition"| translator: 'medicine'}}</th>
+          <th>{{"concentration"| translator: 'medicine'}}</th>
+          <th>{{"unit"| translator: 'category'}}</th>
+          <th>{{"packing"| translator: 'medicine'}}</th>
+          <th>{{"production_batch"| translator: 'medicine'}}</th>
+          <th>{{"manufacturer"| translator: 'medicine'}}</th>
+          <th>{{"provider"| translator: 'medicine'}}</th>
+          <th>{{"source"| translator: 'medicine'}}</th>
+          <th>{{"expiration_date"| translator: 'medicine'}}</th>
+          <th>Số lượng khả dụng</th>
+          <th>{{"remaining_number"| translator: 'medicine'}}</th>
+          <th>Xóa</th>
+        </tr>
+        <tr ng-repeat="sub_medicine in new_sub_voucher.sub_medicines track by $index">
+          <td>
+            <ui-select ng-model="sub_medicine"
+                       theme="select2"
+                       append-to-body="true"
+                       ng-change="reloadInfoMedicine(sub_medicine, $index)"
+                       ng-required="true" class="ui-select-width-full">
+              <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="medicine in available_sub_medicines | filter: $select.search" ui-disable-choice="medicine.name == 'Tên thuốc' &&
+            medicine.composition == 'Thành phần'">
+                <table class="table-select" style="width: 800px;">
+                  <tr>
+                    <td style="width: 10%;" ng-bind-html="medicine.name"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.composition"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.concentration"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.unit"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.packing"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.production_batch"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.manufacturer"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.provider"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.source"></td>
+                    <td style="width: 10%;" ng-bind-html="medicine.expiration_date"></td>
+                    <td ng-if="medicine.name == 'Tên thuốc'" style="width: 10%">
+                      Số lượng khả dụng
+                    </td>
+                    <td ng-if="medicine.name != 'Tên thuốc'" style="width: 10%;"
+                      ng-bind-html="medicine.remaining - medicine.booking"></td>
+                  </tr>
+                </table>
+              </ui-select-choices>
+            </ui-select>
+          </td>
+
+          <td ng-bind-html="sub_medicine.composition"></td>
+          <td ng-bind-html="sub_medicine.concentration"></td>
+          <td ng-bind-html="sub_medicine.unit"></td>
+          <td ng-bind-html="sub_medicine.packing"></td>
+          <td ng-bind-html="sub_medicine.production_batch"></td>
+          <td ng-bind-html="sub_medicine.manufacturer"></td>
+          <td ng-bind-html="sub_medicine.provider"></td>
+          <td ng-bind-html="sub_medicine.source"></td>
+          <td ng-bind-html="sub_medicine.expiration_date"></td>
+          <td ng-bind-html="sub_medicine.remaining - sub_medicine.booking"></td>
+
+          <td style="min-width: 10px;">
+            <input ng-model="sub_medicine.number" max="{{sub_medicine.remaining - sub_medicine.booking + 1}}" min="1"
+                 type="number" name="{{$index}}" class="form-control input-sm" required>
+            <div ng-messages="createVoucherForm[$index].$error" class="text-error">
+              <div ng-message="max">Số lượng không được quá {{sub_medicine.remaining - sub_medicine.booking}}.</div>
+            </div>
+            <div ng-messages="createVoucherForm[$index].$error" class="text-error">
+              <div ng-message="min">Số lượng không được nhỏ hơn 1.</div>
+            </div>
+          </td>
+          <td>
+            <a href="#" ng-click="removeSubMedicine($index)" tooltip=""
+              data-original-title="Xóa">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <a href="#" class="btn blue-custom btn-sm" ng-click="addMoreSubMedicine()"
+      ng-show="available_sub_medicines.length > 0">
+      <i class="fa fa-plus"></i> Thêm
+    </a>
+  </div>
+
+  <div class="modal-footer">
+    <input ng-click="close()"
+           class="btn btn-default btn-sm" type="button"
+           data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm"
+            stype="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

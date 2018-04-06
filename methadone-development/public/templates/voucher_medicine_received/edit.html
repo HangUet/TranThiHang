@@ -1,0 +1,61 @@
+<form ng-submit="editVoucherForm.$valid && editVoucher()" name="editVoucherForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header">{{"edit"| translator: 'main'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <div class="form-group col-xs-12 col-md-6">
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"type_export"| translator: 'medicine'}}:</label>
+          <ui-select ng-model="edit_voucher.typee" name="typee" search-enabled="false"
+                     ng-change="changed(edit_voucher.typee)" theme="select2" append-to-body="true" ng-required="true">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected | translator: 'medicine'}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in ['import_from_allocation_agency',
+             'import_from_distributor']">
+              <span ng-bind-html="item | translator: 'medicine' | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="editVoucherForm.typee.$error" ng-show="editVoucherForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"sender"| translator: 'medicine'}}:</label>
+          <input ng-model="edit_voucher.sender" type="text" name="sender" class="form-control input-sm" required>
+          <div ng-messages="editVoucherForm.sender.$error" ng-show="editVoucherForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"agency_sender"| translator: 'storekeeper'}}:</label>
+          <input ng-model="edit_voucher.agency_sender_receiver" type="text" name="agency_sender_receiver"
+                 class="form-control input-sm" required ng-disabled="edit_voucher.typee == 'import_in'">
+           <div ng-messages="editVoucherForm.agency_sender_receiver.$error" ng-show="editVoucherForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"receiver"| translator: 'medicine'}}:</label>
+          <input ng-model="edit_voucher.receiver" type="text" name="receiver" class="form-control input-sm" required>
+          <div ng-messages="editVoucherForm.receiver.$error" ng-show="editVoucherForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

@@ -1,0 +1,83 @@
+<div class="portlet light">
+  <div class="note note-info">
+  Đề nghị chuyển bệnh nhân về cơ sở {{patient_agency_history.sender_agency_name}} để được tiếp tục điều trị!
+  </div>
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="icon-speech"></i>
+      <span class="caption-subject bold uppercase font-blue-madison">Yêu cầu chuyển cơ sở</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row row-flex">
+      <div class="col-xs-12 col-md-5">
+        <div class="row fow-flex">
+          <div class="col-xs-4">
+            <img class="img-thumbnail" ng-src="{{patient_agency_history.patient.avatar || '/images/avatar.jpg'}}">
+            <div class="profile-usertitle">
+              <div class="profile-usertitle-name"> {{patient_agency_history.patient.card_number}}</div>
+            </div>
+          </div>
+          <div class="col-xs-8">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="align-left">{{"f_name" | translator: 'main'}}:</td>
+                  <td class="align-left">{{patient_agency_history.patient.name}}</td>
+                </tr>
+                <tr>
+                  <td class="align-left">{{"admission_date" | translator: 'patient'}}:</td>
+                  <td class="align-left">{{patient_agency_history.patient.admission_date}}</td>
+                </tr>
+                <tr>
+                  <td class="align-left">{{"household"| translator: 'main'}}:</td>
+                  <td class="align-left">{{patient_agency_history.patient.household}}</td>
+                </tr>
+                <tr>
+                  <td class="align-left">{{"date_of_birth" | translator: 'patient'}}:</td>
+                  <td class="align-left">{{patient_agency_history.patient.birthdate}}</td>
+                </tr>
+                <tr>
+                  <td class="align-left">{{"gender" | translator: 'patient'}}:</td>
+                  <td class="align-left">{{patient_agency_history.patient.gender | translator: 'patient'}}</td>
+                </tr>
+                <tr ng-if="patient_agency_history.patient.reason">
+                  <td class="align-left">{{"status" | translator: 'patient'}}:</td>
+                  <td class="align-left">{{"deactived" | translator: "patient"}} do {{patient_agency_history.patient.reason | translator: "main"}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-7">
+        <table class="table table-custom table-bordered table-hover">
+          <thead>
+            <th>{{"sender"| translator: "main"}}</th>
+            <th>{{"sender_agency"| translator: "main"}}</th>
+            <th>{{"receiver_agency"| translator: "main"}}</th>
+            <th>{{"status"| translator: "main"}}</th>
+            <th>{{"confirmer"| translator: "main"}}</th>
+          </thead>
+          <tbody>
+            <td>{{patient_agency_history.sender_name}}</td>
+            <td>{{patient_agency_history.sender_agency_name}}</td>
+            <td>{{patient_agency_history.receiver_agency_name}}</td>
+            <td>
+              <span ng-if="patient_agency_history.status=='pending'">{{"pending"| translator: "main"}}</span>
+              <span ng-if="patient_agency_history.status=='accepted'" class="text-green">{{"accepted"| translator: "main"}}</span>
+              <span ng-if="patient_agency_history.status=='refused'" class="text-red">{{"refused"| translator: "main"}}</span>
+              <span ng-if="patient_agency_history.status=='cancelled'" class="text-info">{{"cancelled"| translator: "main"}}</span>
+            </td>
+            <td>{{patient_agency_history.confirmer_name}}</td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div ng-if="patient_agency_history.receiver_agency_id==currentUser.issuing_agency_id && patient_agency_history.status=='pending'"
+       class="margin-top-15px clearfix text-right">
+    <button class="btn btn-sm" ng-click="feedback('refused')">{{"refuse"| translator: "main"}}</button>
+    <button class="btn blue-custom btn-sm" ng-click="feedback('accepted')">{{"accept"| translator: "main"}}</button>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<form ng-submit="form.$valid && searchSituationUse()" name="form" novalidate>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="portlet light bordered" style="margin-bottom: 5px;">
+        <div class="portlet-body">
+          <div class="row row-flex">
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label>Tên thuốc</label>
+                <input ng-model="medicine_name" name="medicine_name" class="form-control input-sm">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <label class="required">{{"from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="from_date" class="form-control input-sm" required datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="col-xs-2">
+              <label class="required">{{"to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="to_date" class="form-control input-sm" required datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="col-xs-2" style="margin-top: 24px;">
+              <button type="submit" class="btn blue-custom btn-sm"><i class="fa fa-search"></i> {{"search"| translator: 'main'}}</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase">Báo cáo tình hình sử dụng</span>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm" ng-click="">
+            <i class="fa fa-print"></i> In </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-bordered table-custom">
+             <thead>
+              <tr>
+                <th>Tên đơn vị</th>
+                <th>Tên thuốc, nồng độ, hàm lượng</th>
+                <th>Đơn vị tính</th>
+                <th>Nguồn</th>
+                <th>Số lượng tồn kho kỳ trước chuyển sang</th>
+                <th>Số lượng nhập trong kỳ</th>
+                <th>Tổng số</th>
+                <th>Số lượng xuất trong kỳ</th>
+                <th>Số lượng hao hụt</th>
+                <th>Số lượng dư thừa</th>
+                <th>Tồn kho cuối kỳ</th>
+                <th>Tổng số người bệnh đang tham gia điều trị</th>
+                <th>Số lượng người bệnh dự kiến tăng thêm trong kỳ tới</th>
+                <th>Số lượng dự trù cho kỳ tới</th>
+              </tr>
+            </thead>
+            <tr>
+                <td>(1)</td>
+                <td>(2)</td>
+                <td>(3)</td>
+                <td>(4)</td>
+                <td>(5)</td>
+                <td>(6)</td>
+                <td>(7)</td>
+                <td>(8)</td>
+                <td>(9)</td>
+                <td>(10)</td>
+                <td>(11)</td>
+                <td>(12)</td>
+                <td>(13)</td>
+                <td>(14)</td>
+              </tr>
+            <tbody>
+              <tr ng-repeat="inventory_medicine in inventory_medicines">
+                <td rowspan="{{inventory_medicines.length}}" ng-if="$index == 0">{{issuing_agency}}</td>
+                <td>{{inventory_medicine.medicine_name}}
+{{inventory_medicine.composition}}.
+{{inventory_medicine.concentration}} mg/ml</td>
+                <td>{{inventory_medicine.unit}}</td>
+                <td>{{inventory_medicine.source}}</td>
+                <td>{{inventory_medicine.beginn}}</td>
+                <td>{{inventory_medicine.import}}</td>
+                <td>{{inventory_medicine.total}}</td>
+                <td>{{inventory_medicine.export}}</td>
+                <td>{{inventory_medicine.loss}}</td>
+                <td>{{inventory_medicine.redundancy}}</td>
+                <td>{{inventory_medicine.endd}}</td>
+                <td>{{inventory_medicine.datee}}</td>
+                <td>{{inventory_medicine.datee}}</td>
+                <td>{{inventory_medicine.datee}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

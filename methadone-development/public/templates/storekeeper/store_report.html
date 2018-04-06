@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 padding-right-3">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <i class="font-green"></i>
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"store_report_title" | translator: "storekeeper"}}
+          </span>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="col-xs-6 form-group no-padding-left">
+          <form ng-submit="createForm.$valid && submit()" name="createForm" novalidate>
+            <div class="col-xs-3 no-padding-left">
+              <label class="input-group">
+                <input ng-model="month" name="month" class="form-control input-sm" required monthpicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="col-xs-2">
+              <button class="btn blue-custom btn-sm ng-binding" type="submit">
+                {{"apply"| translator: 'main'}}
+              </button>
+            </div>
+          </form>
+        </div>
+        <table class="table table-bordered table-custom" style="vertical-align: middle;">
+          <thead>
+            <tr>
+              <th>{{"report_a" | translator: "storekeeper"}}</th>
+              <th>{{"report_b" | translator: "storekeeper"}}</th>
+              <th>{{"report_c" | translator: "storekeeper"}}</th>
+              <th>{{"report_d" | translator: "storekeeper"}}</th>
+              <th>{{"report_e" | translator: "storekeeper"}}</th>
+              <th>{{"report_f" | translator: "storekeeper"}}</th>
+              <th>{{"report_g" | translator: "storekeeper"}}</th>
+              <th>{{"report_h" | translator: "storekeeper"}}</th>
+              <th>{{"report_i" | translator: "storekeeper"}}</th>
+              <th>{{"report_k" | translator: "storekeeper"}}</th>
+              <th colspan="{{ store_report.reports[1].length }}">{{"drug_source" | translator: "storekeeper"}}</th>
+            </tr>
+
+            <tr>
+              <th>(a)</th>
+              <th>(b)</th>
+              <th>(c)</th>
+              <th>(d)</th>
+              <th>(e)</th>
+              <th>(f)</th>
+              <th>(g)</th>
+              <th>(h)</th>
+              <th>(i)</th>
+              <th>(k)</th>
+              <th ng-repeat="import in store_report.reports[1]">
+                {{ import.source }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="store in store_report.reports[1] track by $index">
+              <td>{{ store.stock_early_month}}</td>
+              <td>{{ store.import }}</td>
+              <td rowspan="{{ store_report.reports[1].length }}"
+                ng-if="$index === 0" style="vertical-align: middle;">{{ store_report.reports[0].medicine_allocation }}</td>
+              <td rowspan="{{ store_report.reports[1].length }}"
+                ng-if="$index === 0" style="vertical-align: middle;">
+                  {{ store_report.reports[0].loss }}
+              </td>
+              <td rowspan="{{ store_report.reports[1].length }}"
+                ng-if="$index === 0" style="vertical-align: middle;">
+                  {{ store_report.reports[0].redundancy }}
+              </td>
+              <td>{{ store.stock_end_month }}</td>
+              <td rowspan="{{ store_report.reports[1].length }}"
+                ng-if="$index === 0" style="vertical-align: middle;">
+                -</td>
+              <td>{{ store.expirate_next_month }}</td>
+              <td rowspan="{{ store_report.reports[1].length }}"
+                ng-if="$index === 0" style="vertical-align: middle;">
+                {{ store_report.total_patients }}
+              </td>
+              <td rowspan="{{ store_report.reports[1].length }}"
+                ng-if="$index === 0" style="vertical-align: middle;">-</td>
+              <td ng-repeat="a in store_report.reports[1] track by $index">
+                <span ng-if="$index === $parent.$index">x</span>
+              </td>
+            </tr>
+            <tr>
+              <td>{{ total_stock_early_month }}</td>
+              <td>{{ total_import }}</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>{{ total_stock_end_month }}</td>
+              <td>-</td>
+              <td>{{ total_expirate_next_month }}</td>
+              <td>-</td>
+              <td>-</td>
+              <td colspan="{{ store_report.reports[1].length }}">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--<div>
+          <p>Số lượng duyệt:</p>
+          <p>(Bằng chữ:…………………………………………………………………………………………)</p>
+          <p>Đơn vị phân phối: Công ty Dược phẩm trung ương 1</p>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

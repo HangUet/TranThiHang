@@ -1,0 +1,131 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <h3 class="modal-title text-bold-header pull-left"> {{"redundancy_lost_report"| translator: 'patient'}}</h3>
+  <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right" style="margin-left: 10px;"
+      ng-click='print()'>
+      <i class="fa fa-print"></i> {{"print" | translator: "main"}}
+    </a>
+  </div>
+</div>
+<div class="modal-body" style="margin: auto;">
+  <div class="row row-flex">
+    <div style="width: 95%;font-size: 14px;margin: auto;" id="pdf">
+      <style type="text/css">
+        #pdf {
+          font-family: 'TimesNewRoman' !important;
+          word-wrap: break-word;
+        }
+        .modal-lg {
+          width: 35%;
+        }
+        @page{
+          size: A4;
+          margin-top: 80px;
+          margin: 70px;
+        }
+        .title {
+          font-weight: bold;
+          text-align: center
+        }
+        .paragaph {
+          line-height: 150%;
+          text-align: justify;
+          font-size: 14pt !important;
+          margin: 0px !important;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+      </style>
+      <div style="white-space: nowrap;">
+        <div style="width: 50%; display: inline-block;">
+          <p class="title" style="margin-bottom: 3px;">TTYT {{currentUser.agency.name}}</p>
+          <p class="title" style="margin-top: 5px; margin-bottom: 5px;">CƠ SỞ ĐIỀU TRỊ METHADONE</p>
+        </div>
+        <div style="width: 50%; display: inline-block">
+          <p class="title" style="margin-bottom: 3px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+          <p class="title" style="margin-top: 5px; margin-bottom: 5px;">Độc lập - Tự do - Hạnh phúc</p>
+        </div>
+      </div>
+      <p style="text-align: right">................, ngày {{ currentDate }} tháng {{ currentMonth }} năm {{ currentYear }}</p>
+      <p class="title" style="font-size: 14pt !important;">BIÊN BẢN</p>
+      <p class="title" style="margin-bottom: 5px; font-size: 14pt !important;">Hao hụt và dư thừa thuốc</p>
+      <p class="title">Tháng {{currentMonth}} năm {{currentYear}}</p>
+      <p class="paragaph">1. Thời gian: {{ hour }} giờ {{ minute }} phút</p>
+      <p class="paragaph">2. Tại: {{currentUser.agency.name}}</p>
+      <p class="paragaph">3. Địa điểm: {{currentUser.agency.address}}</p>
+      <p class="paragaph">4. Thành phần gồm có:</p>
+      
+      <div class="paragaph" ng-repeat="council in councils.data" style="white-space: nowrap;">
+        <div style="width: 40%; display: inline-block;">
+          {{council.name}}</div>
+        <div style="width: 60%; display: inline-block;">
+          Chức vụ: {{council.title}}
+        </div>
+      </div>
+
+      <p class="paragaph" style="margin-left: 10px !important ;">Cùng chứng kiến và ghi nhận:</p>
+      <p class="paragaph" style="margin-left: 10px !important;">a. Mô tả tình huống:</p>
+      <p class="paragaph" style="margin-left: 20px !important;">Từ ngày ....., đến ngày ....., sau khi cấp phát hết .... chai thuốc, kiểm tra thuốc dư thừa ....ml và hao hụt ...ml, cụ thể như sau:</p>
+      <table style="vertical-align: middle;">
+        <thead>
+          <tr>
+            <th>Stt</th>
+            <th>Ngày tháng</th>
+            <th>Diễn giải</th>
+            <th>SL cấp phát trong tháng</th>
+            <th>Hao hụt(ml)</th>
+            <th>Dư thừa(ml)</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td>
+              <p ng-repeat="a in list_medicine">
+                Lô SX: {{a.production_batch}}<br>
+                HSD: {{a.expiration_date | date:'dd/MM/yyyy'}}
+              </p>
+            </td>
+            <td>{{total_allocation}}</td>
+            <td>{{loss}}</td>
+            <td>{{redundancy}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;">Tổng</td>
+            <td></td>
+            <td></td>
+            <td>{{loss}}</td>
+            <td>{{redundancy}}</td>
+          </tr>
+        </thead>
+      </table>
+      <p class="paragaph" style="margin-left: 10px !important;">b. Số lượng vỏ chai rỗng tích lũy đến ngày ..., ... chiếc vỏ đã được làm thủng</p>
+      <p class="paragaph" style="margin-left: 10px !important;">Biên bản được lập vào hồi ... giờ, cùng ngày.</p>
+      <br>
+      <div>
+        <div style="width: 25%; display: table-cell;">
+          <b>Người chứng kiến 1</b>
+        </div>
+        <div style="width: 25%; display: table-cell;">
+          <b>Người chứng kiến 2</b>
+        </div>
+        <div style="width: 25%; display: table-cell;">
+          <b>Dược sỹ phụ trách kho</b>
+        </div>
+        <div style="width: 25%; display: table-cell; word-wrap: break-word;">
+          <b>Giám đốc TTYT(Trưỏng CSĐT)</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+</div>

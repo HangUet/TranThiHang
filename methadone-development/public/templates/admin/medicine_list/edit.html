@@ -1,0 +1,171 @@
+<form ng-submit="form.$valid && editMedicineList()" name="form" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <h3 class="modal-title text-bold-header"> {{"add_medicine" | translator: 'category'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"medicine_name" | translator: 'category'}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.name" name="name" class="form-control input-sm" ng-maxlength="255" autofocus required>
+          <div ng-messages="form.name.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="maxlength">{{"maxlength255" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"composition" | translator: "medicine"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.composition" name="composition" class="form-control input-sm" ng-maxlength="255" required>
+          <div ng-messages="form.composition.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="maxlength">{{"maxlength255" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"concentration" | translator: "medicine"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.concentration" name="concentration" class="form-control input-sm" type="number" min=0 required>
+          <div ng-messages="form.concentration.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="min">{{"min" | translator: 'validate' | stringFormat:0}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"packing" | translator: "medicine"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.packing" name="packing" class="form-control input-sm"  type="number" min=0 required>
+          <div ng-messages="form.packing.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="min">{{"min" | translator: 'validate' | stringFormat:0}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"unit" | translator: "category"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.unit" name="unit" class="form-control input-sm" type="text" required>
+          <div ng-messages="form.unit.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label>{{"manufacturer" | translator: "medicine"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <ui-select ng-model="medicine_list.manufacturer" theme="select2" append-to-body="true" name="manufacturer">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected}}
+            </ui-select-match>
+            <ui-select-choices repeat=" manufacturer in manufacturer_list"></span>
+              <span ng-bind-html="manufacturer"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">Loại thuốc:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <ui-select ng-model="medicine_list.medicine_type_id" theme="select2" append-to-body="true" name="medicine_type_id" ng-required="true">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="medicine_type.id as medicine_type in medicine_types"></span>
+              <span ng-bind-html="medicine_type.name"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="form.medicine_type_id.$error" ng-show="form.$submitted"
+            class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+<!--       <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"provider" | translator: "medicine"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.provider" name="provider" class="form-control input-sm" autofocus required>
+          <div ng-messages="form.provider.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label>{{"provider" | translator: 'category'}}</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <ui-select ng-model="medicine_list.provider" theme="select2" append-to-body="true">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected}}
+            </ui-select-match>
+            <ui-select-choices repeat="provider in provider_list | filter: $select.search">
+              <span ng-bind-html="provider | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"source" | translator: "medicine"}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <input ng-model="medicine_list.source" name="source" class="form-control input-sm" autofocus required ng-maxlength="255">
+          <div ng-messages="form.source.$error" ng-show="form.$submitted"
+          class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+            <div ng-message="maxlength">{{"maxlength255" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div> -->
+      <div class="form-group col-xs-12">
+        <div class="col-xs-4 form-group">
+          <label class="required">{{"status" | translator: 'patient'}}:</label>
+        </div>
+        <div class="col-xs-8 form-group">
+          <ui-select ng-model="medicine_list.status" theme="select2"
+            append-to-body="true">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected | translator: 'medicine'}}
+            </ui-select-match>
+            <ui-select-choices repeat="status in ['actived', 'deactived'] | filter: $select.search">
+              <span ng-bind-html="status | translator: 'medicine' | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal"
+    value='{{"close" | translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i>
+    {{"save" | translator: "main"}}</button>
+  </div>
+</form>

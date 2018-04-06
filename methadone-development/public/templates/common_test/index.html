@@ -1,0 +1,162 @@
+<div class="portlet light" style="height: 99vh; margin-bottom: 0 !important">
+  <div class="portlet-title">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"issuing_agencies_list" | translator: 'main'}}
+          </span>
+        </div>
+       <!--  <div class="inputs">
+          <div class="portlet-input input-inline">
+            <div class="input-icon right">
+              <i class="icon-magnifier"></i>
+              <form ng-submit="search()">
+                <input ng-model="keyword" class="form-control input-sm"
+                       placeholder='{{"search" | translator: "main"}}'>
+              </form>
+            </div>
+          </div>
+          <a class="btn blue-custom btn-sm"
+            ng-click='showCreateIssuingAgencyModal()'>
+            <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row">
+
+      <div class="col-xs-6">
+        <div class="max-width-100-pc scrollable">
+          <table class="table table-hover table-custom table-striped" fixed-header>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>{{"code" | translator: 'main'}}</th>
+                <th class="text-left">{{"name_issuing_agency_" | translator: 'main'}}</th>
+                <th>Trạng thái</th>
+                <th>Mô tả</th>
+                <th>Ngày thành lập</th>
+                <th>Tỉnh/Thành phố</th>
+                <th>Huyện/Quận</th>
+                <th>{{ "delete" | translator: 'main' }}</th>
+              </tr>
+            </thead>
+            <tbody class="max-height-table">
+              <tr ng-repeat="issuing_agency in issuing_agencies">
+                <td>{{page.per_page * page.page + $index - page.per_page + 1}}</td>
+                <td>{{issuing_agency.code}}</td>
+
+                <td class="text-center">{{issuing_agency.name}}</td>
+                <td>{{issuing_agency.active}}</td>
+                <td>{{issuing_agency.description}}</td>
+                <td>{{issuing_agency.date}}</td>
+                <td>{{issuing_agency.province}}</td>
+                <td>{{issuing_agency.district}}</td>
+
+                <td>
+                  <a href="#" ng-click='delete($index)' title="Xóa" tooltip>
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="page.total"
+              ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="page.per_page"
+              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+          <div class="pull-right">{{"total_records" | translator: "main"}}: {{page.total}}</div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <form ng-submit="form.$valid && create()" name="form" novalidate>
+
+          <div class="row row-flex">
+            <div class="col-xs-12 col-md-12">
+              <div class="form-group">
+                <label class="required">Tên cơ sở:</label>
+                <input ng-model="object.name" name="name"
+                  class="form-control input-sm" autofocus required>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+              <div class="form-group">
+                <label class="required">Mã:</label>
+                <input ng-model="object.code" name="code" type="number"
+                  class="form-control input-sm" autofocus required>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+              <div class="form-group">
+                <label class="required">Mô tả:</label>
+                <textarea ng-model="object.description" class="form-control input-sm"></textarea>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+              <div class="form-group">
+                <label class="required">Ngày thành lập</label>
+                <label class="input-group">
+                  <input ng-model="patient.birthdate" name="birth_date" class="form-control input-sm" required datepicker>
+                  <span class="input-group-btn">
+                    <span class="btn btn-default btn-sm">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+              <div class="form-group">
+                <label>Tỉnh/Thành phố</label>
+                <ui-select ng-model="object.province" theme="select2" append-to-body="true">
+                  <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                    {{$select.selected}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="province in provinces | filter: $select.search">
+                    <span ng-bind-html="province | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+              <div class="form-group">
+                <label>Huyện/Quận</label>
+                <ui-select ng-model="object.distict" theme="select2" append-to-body="true">
+                  <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                    {{$select.selected}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="distict in districts | filter: $select.search">
+                    <span ng-bind-html="distict | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+              <div class="form-group">
+                <label class="required" style="padding-right: 40px;">Trạng thái</label>
+                <input type="radio" ng-model="object.active" value="Hoạt động"
+                  style="padding-right: 40px;"> Hoạt động
+                <input type="radio" ng-model="object.active" value="Không hoạt động"> Không hoạt động
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+              <button class="btn blue-custom btn-sm" type="submit">Lưu</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

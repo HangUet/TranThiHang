@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav pull-right" style="margin: 0; position: fixed; right: 0">
+  <li class="dropdown dropdown-dark dropdown-language">
+    <a href="javascript:;" class="dropdown-toggle btn btn-default"
+       data-toggle="dropdown" data-hover="dropdown"
+       data-close-others="true" aria-expanded="true"
+       style="padding: 6px 12px">
+      <img alt="" ng-src="{{'/images/flags/' + language + '.png'}}">
+      <span class="langname uppercase"> &nbsp; {{language}} </span>
+      <i class="fa fa-angle-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-default">
+      <li>
+        <a href="javascript:void(0)" ng-click="changeLanguage('vi')">
+          <img alt="Việt Nam" src="/images/flags/vi.png"> Việt Nam </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" ng-click="changeLanguage('en')">
+          <img alt="English" src="/images/flags/en.png"> English </a>
+      </li>
+    </ul>
+  </li>
+</ul>

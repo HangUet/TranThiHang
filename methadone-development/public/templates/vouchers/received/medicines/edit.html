@@ -1,0 +1,105 @@
+<form ng-submit="editMedicineForm.$valid && editMedicine()" name="editMedicineForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header">{{"edit"| translator: 'main'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <div class="form-group col-xs-12 col-md-6">
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"name"| translator: 'medicine'}}:</label>
+          <ui-select ng-model="medicine_info.id" theme="select2"
+                     ng-change="reloadInfoMedicine(medicine_info.id)"
+                     append-to-body="true"
+                     ng-disabled="medicine.medicine_id != undefined"
+                     ng-required="true">
+            <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="medicine.id as medicine in list_medicines | filter: $select.search">
+              <span ng-bind-html="medicine.name | highlight: $select.search">
+              </span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"composition"| translator: 'medicine'}}:</label>
+          <input ng-model="medicine_info.composition" name="composition" class="form-control input-sm" disabled="true">
+          <div ng-messages="editMedicineForm.composition.$error" ng-show="editMedicineForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"concentration"| translator: 'medicine'}}:</label>
+          <input ng-model="medicine_info.concentration" type="number" name="concentration" class="form-control input-sm" disabled="true">
+          <div ng-messages="editMedicineForm.concentration.$error" ng-show="editMedicineForm.$submitted" class="text-error">
+            <div ng-message="required">{{"maxlength" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"packing"| translator: 'medicine'}}:</label>
+          <input ng-model="medicine_info.packing" type="number" name="packing" class="form-control input-sm" disabled="true">
+          <div ng-messages="editMedicineForm.packing.$error" ng-show="editMedicineForm.$submitted" class="text-error">
+            <div ng-message="required">{{"maxlength" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"production_batch"| translator: 'medicine'}}:</label>
+          <input ng-model="edit_medicine.production_batch" type="text" name="production_batch" class="form-control input-sm" required>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"manufacturer"| translator: 'medicine'}}:</label>
+          <input ng-model="medicine_info.manufacturer" name="manufacturer" class="form-control input-sm" disabled="true">
+          <div ng-messages="editMedicineForm.manufacturer.$error" ng-show="editMedicineForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"provider"| translator: 'medicine'}}:</label>
+          <input ng-model="medicine_info.provider" name="provider" class="form-control input-sm" disabled="true">
+          <div ng-messages="editMedicineForm.provider.$error" ng-show="editMedicineForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"source"| translator: 'medicine'}}:</label>
+          <input ng-model="medicine_info.source" name="source" class="form-control input-sm" disabled="true">
+          <div ng-messages="editMedicineForm.source.$error" ng-show="editMedicineForm.$submitted" class="text-error">
+            <div ng-message="required">{{"maxlength" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"expiration_date"| translator: 'medicine'}}:</label>
+          <label class="input-group">
+            <input ng-model="edit_medicine.expiration_date" class="form-control input-sm" datepicker>
+            <span class="input-group-btn no-print">
+              <span class="btn btn-default btn-sm">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <div class="col-xs-12 form-group">
+          <label class="required">{{"remaining_number"| translator: 'medicine'}}:</label>
+          <input ng-model="edit_medicine.remaining_number" type="number" name="remaining_number" class="form-control input-sm" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save"| translator: "main"}}</button>
+  </div>
+</form>

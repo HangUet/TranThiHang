@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  treatment_date: 2017-06-19 23:19:06
+  dosage: 1
+  syndrome: false
+  drug_poisoning: false
+  urine_test: false
+  use_opium_substance: false
+  other_opium_substance: MyString
+  arv_treatment: MyString
+  swap_syringe: MyString
+  provide_condom: MyString
+  counseling_support: MyString
+  note: MyText
+  patient_id: 
+
+two:
+  treatment_date: 2017-06-19 23:19:06
+  dosage: 1
+  syndrome: false
+  drug_poisoning: false
+  urine_test: false
+  use_opium_substance: false
+  other_opium_substance: MyString
+  arv_treatment: MyString
+  swap_syringe: MyString
+  provide_condom: MyString
+  counseling_support: MyString
+  note: MyText
+  patient_id: 

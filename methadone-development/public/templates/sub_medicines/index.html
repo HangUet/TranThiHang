@@ -1,0 +1,59 @@
+<div class="portlet light portlet-fixed-height">
+  <div class="portlet-title">
+    <div class="caption caption-md">
+      <span class="caption-subject font-blue-madison bold uppercase font-custom">
+        {{"medicines_list"| translator: 'medicine'}}
+      </span>
+    </div>
+  </div>
+  <div class="portlet-body" ng-show="sub_medicines.length == 0">
+    <div style="text-align: center;">
+      <h4>Không còn thuốc trong kho</h4>
+    </div>
+  </div>
+  <div class="portlet-body" ng-show="sub_medicines.length > 0">
+    <div class="max-width-100-pc scrollable">
+      <table class="table table-hover table-custom table-striped" fixed-header>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="text-left">{{"name"| translator: 'medicine'}}</th>
+            <th class="text-left">{{"composition"| translator: 'medicine'}}</th>
+            <th>{{"concentration"| translator: 'medicine'}}</th>
+            <th>{{"unit"| translator: 'category'}}</th>
+            <th>{{"packing"| translator: 'medicine'}}</th>
+            <th>{{"production_batch"| translator: 'medicine'}}</th>
+            <th>{{"expiration_date"| translator: 'medicine'}}</th>
+            <th class="text-left">{{"manufacturer"| translator: 'medicine'}}</th>
+            <th class="text-left">{{"provider"| translator: 'medicine'}}</th>
+            <th class="text-left">{{"source"| translator: 'medicine'}}</th>
+            <th>{{"remaining_number"| translator: 'medicine'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="medicine in sub_medicines" ng-class="{'expirated_soon': medicine.expirated_soon == 1}">
+            <!-- <td>{{page.per_page * (page.page - 1) + $index + 1}}</td> -->
+            <td>{{$index + 1}}</td>
+            <td class="text-left">{{medicine.name}}</td>
+            <td class="text-left">{{medicine.composition}}</td>
+            <td>{{medicine.concentration}}</td>
+            <td>{{medicine.unit}}</td>
+            <td>{{medicine.packing}}</td>
+            <td>{{medicine.production_batch}}</td>
+            <td>{{medicine.expiration_date}}</td>
+            <td class="text-left">{{medicine.manufacturer}}</td>
+            <td class="text-left">{{medicine.provider}}</td>
+            <td class="text-left">{{medicine.source}}</td>
+            <td>{{medicine.remaining}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="page.total"
+          ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="page.per_page"
+          previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      <div class="pull-right">{{"total_records"| translator: "main"}}: {{sub_medicines.length}}</div>
+    </div>
+  </div>
+</div>

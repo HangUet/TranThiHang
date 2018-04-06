@@ -1,0 +1,66 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <h3 class="modal-title text-bold-header pull-left"> {{"print_report_fall"| translator: 'patient'}}</h3>
+  <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right" style="margin-left: 10px;"
+      ng-click='print()'>
+      <i class="fa fa-print"></i> {{"print" | translator: "main"}}
+    </a>
+  </div>
+</div>
+<div class="modal-body" style="margin: auto;">
+  <div class="row row-flex">
+    <div style="width: 95%;font-size: 14px;margin: auto;" id="pdf">
+      <style type="text/css">
+        #pdf {
+          font-family: 'TimesNewRoman' !important;
+          font-size: 10pt !important;
+          word-wrap: break-word;
+        }
+        .modal-lg {
+          width: 35%;
+        }
+        @page{
+          size: A4;
+          margin-top: 80px;
+        }
+        .title {
+          font-weight: bold;
+          text-align: center
+        }
+        .paragaph {
+          text-indent: 30px;
+          line-height: 150%;
+          text-align: justify;
+        }
+      </style>
+      <p class="title" style="margin-bottom: 3px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+      <p class="title" style="margin-top: 5px; margin-bottom: 5px;">Độc lập - Tự do - Hạnh phúc</p>
+      <hr style="margin-top: 0px; border-top: 1px solid black;margin-left: 35%;" align="center" width="30%">
+      <p style="text-align: right">................, ngày {{ currentDate }} tháng {{ currentMonth }} năm {{ currentYear }}</p>
+      <p class="title">BIÊN BẢN</p>
+      <p class="title" style="margin-bottom: 5px;">Xác định hiện trạng thuốc Methadone bị đổ</p>
+      <hr style="margin-top: 0px; border-top: 1px solid black;margin-left: 35%;" align="center" width="30%">
+      <p class="paragaph">Thời gian: Ngày {{ currentDate }} tháng {{ currentMonth }} năm {{ currentYear }}</p>
+      <p class="paragaph">Địa điểm: {{currentUser.agency.name}}</p>
+      <p class="paragaph">Người lập biên bản: {{currentUser.first_name + ' ' +currentUser.last_name}}, chức danh: Dược sĩ cấp phát</p>
+      <p class="paragaph">Vào hồi {{ hour }} giờ {{ minute }} phút, ngày {{ currentDate }} tháng {{ currentMonth }} năm {{ currentYear }}, Ông/bà {{history.first_name + " " + history.last_name}} đã thực hiện việc cấp phát thuốc Methadone cho Ông/bà {{ history.name }} với liều Methadone là {{ history.dosage }} mg, tuy nhiên, do không cẩn thận thuốc Methadone đã bị đổ.</p>
+      <p class="paragaph">Trước sự chứng kiến của các Ông/bà có tên trên đây, bác sỹ điều trị đã khám, tư vấn cho bệnh nhân. Ông/bà {{currentUser.first_name + ' ' +currentUser.last_name}} đã cấp lại thuốc Methadone cho người bệnh theo đúng liều bác sỹ đã chỉ định cho người bệnh là {{ history.dosage }} mg.</p>
+      <p class="paragaph">Người bệnh đã thực hiện việc uống lại thuốc Methadone trước sự chứng kiến của các thành viên tham gia lập biên bản.</p>
+      <p class="paragaph">Biên bản này được lập vào hồi {{ hour }} giờ {{ minute }} phút ngày {{ currentDate }} tháng {{ currentMonth }} năm {{ currentYear }}.</p>
+      <p class="title">XÁC NHẬN CỦA CÁC BÊN THAM GIA LẬP BIÊN BẢN</p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <p class="bold">Nơi nhận:</p>
+      <p>-................;</p>
+      <p>-Lưu: ................</p>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+</div>

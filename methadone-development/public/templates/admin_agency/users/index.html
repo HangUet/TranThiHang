@@ -1,0 +1,74 @@
+<div class="portlet light">
+  <div class="portlet-title">
+    <div class="caption caption-md">
+      <span class="caption-subject font-blue-madison bold uppercase font-custom">
+        {{'staff_accounts_list' | translator: 'main'}}
+      </span>
+    </div>
+    <div class="inputs">
+      <div class="portlet-input input-inline">
+        <div class="input-icon right">
+          <i class="icon-magnifier"></i>
+          <form ng-submit="search()">
+            <input ng-model="keyword" class="form-control input-sm"
+                   placeholder='{{"search" | translator: "main"}}'>
+          </form>
+        </div>
+      </div>
+      <a href="#" class="btn blue-custom btn-sm" ng-click='showCreateUserModal()'>
+        <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <!-- <div class="form-group">
+      <input type="button" class="btn btn-success btn-sm" value='{{"add" | translator: "main"}}'
+         ng-click='showCreateUserModal()'>
+    </div> -->
+    <div class="max-width-100-pc scrollable">
+      <table class="table table-hover table-custom table-striped" fixed-header>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="text-left">{{"name"| translator: 'patient'}}</th>
+            <th class="text-left">{{"email"| translator: 'patient'}}</th>
+            <th class="text-left">{{"role"| translator: 'patient'}}</th>
+            <th class="text-left">{{"agency"| translator: 'main'}}</th>
+            <th>{{ "edit" | translator: 'main' }}</th>
+            <th>{{ "delete" | translator: 'main' }}</th>
+          </tr>
+        </thead>
+        <tbody class="max-height-table">
+          <tr ng-repeat="user in users.data">
+            <td>{{users.per_page * users.page + $index - users.per_page + 1}}</td>
+            <td class="text-left">{{user.full_name}}</td>
+            <td class="text-left">
+              <a>
+                {{user.email}}
+              </a>
+            </td>
+            <td class="text-left">{{user.role| translator: 'role'}}</td>
+            <td class="text-left">{{user.issuing_agency}}</td>
+            <td>
+              <a href="#" ng-click='showEditUserModal(user.id)' title='{{"edit" | translator: "main"}}' tooltip>
+                 <i class="fa fa-edit"></i>
+               </a>
+            </td>
+            <td>
+              <a ng-show="currentUser.id != user.id" href="#" ng-click='showDeleteUserModal(user)'
+                title='{{"delete"| translator: "main"}}' tooltip>
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="users.total"
+          ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="users.per_page"
+          previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      <div class="pull-right">{{"total_records"| translator: "main"}}: {{administrators.total}}: {{users.total}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <h3 class="modal-title text-bold-header pull-left">
+    In phiếu xuất kho
+  </h3>
+  <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right" style="margin-left: 10px;"
+      ng-click='print()'>
+      <i class="fa fa-print"></i> In
+    </a>
+  </div>
+</div>
+
+<div class="modal-body">
+  <!-- <div ng-if="medicines.data.length == 0">
+    Không có dữ liệu
+  </div> -->
+  <div id="pdf" style="width: 640px; margin:0 auto;">
+    <style type="text/css">
+      @page {
+        size: A4;
+        margin: 70px;
+      }
+      .table-treatments td {
+        border: 1px solid black;
+      }
+      tr {
+        page-break-inside: avoid !important;
+      }
+
+      tr td {
+        padding: 10px;
+      }
+    </style>
+    <div style="font-size: 13px;">
+      <p style="text-align: center;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+      <p style="text-align: center;"><strong>Độc lập - Tự do - Hạnh phúc</strong></p>
+      <p style="text-align: center;"><strong>..........***..........</strong></p>
+    </div>
+    <div style="font-size: 14px;">
+      <p style="text-align: center;"><strong>PHIẾU XUẤT KHO</strong></p>
+      <p style="text-align: left;">Số: {{voucher.code}}</p>
+      <p style="text-align: left;">Ngày: {{voucher.datee}}</p>
+      <p style="text-align: left;">Xuất thuốc tại kho thuốc: {{currentUser.agency.name}}</p>
+
+      <p style="text-align: left;">Người giao thuốc: {{voucher.sender}}</p>
+      <p style="text-align: left;">Người nhận thuốc: {{voucher.receiver}}</p>
+      <p style="text-align: left;">Lý do: Xuất để cấp phát hàng ngày</p>
+
+      <table style="height: 82px; width: 100%;" border="1" cellspacing="0"
+        cellpadding="0">
+        <caption>&nbsp;</caption>
+        <tbody>
+          <tr style="font-weight: bold;">
+            <td style="width: 28px; text-align: center;">STT</td>
+            <td style="width: 110px; text-align: center;">
+              <p>Tên thuốc</p>
+            </td>
+            <td style="width: 69px; text-align: center;">Đơn vị tính</td>
+            <td style="width: 69px; text-align: center;">Nhà sản xuất</td>
+            <td style="width: 69px; text-align: center;">Số lô</td>
+            <td style="width: 69px; text-align: center;">Hạn sử dụng</td>
+            <td style="width: 69px; text-align: center;">Số lượng</td>
+          </tr>
+          <tr ng-repeat="medicine in voucher.medicines track by $index">
+            <td style="text-align: center;">{{$index + 1}}</td>
+            <td style="text-align: left;">{{medicine.name}} {{medicine.concentration}}mg/ml</td>
+            <td style="text-align: center;">{{medicine.unit}}</td>
+            <td style="text-align: left;">{{medicine.manufacturer}}</td>
+            <td style="text-align: left;">{{medicine.production_batch}}</td>
+            <td style="text-align: center;">{{medicine.expiration_date}}</td>
+            <td style="text-align: right;">{{medicine.number_order}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="text-align: right; margin-top: 50px;">Ngày...tháng...năm....</p>
+    </div>
+    <div style="font-size: 13px;">
+      <table width="100%">
+        <tbody>
+          <tr style="text-align: center;">
+            <td style="width: 33%;"><strong>Người giao thuốc</strong></td>
+            <td style="width: 33%;"><strong>Người  nhận thuốc</strong></td>
+            <td style="width: 33%;"><strong>Người kiểm tra</strong></td>
+          </tr>
+          <tr style="text-align: center;">
+            <td style="width: 33%;"></td>
+            <td style="width: 33%;"></td>
+            <td style="width: 33%;"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm"
+         type="button" data-dismiss="modal"
+         value='{{"close"| translator: "main"}}'>
+</div>

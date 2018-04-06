@@ -1,0 +1,499 @@
+<div class="page-header navbar navbar-fixed-top">
+  <div class="page-header-inner">
+    <div class="page-logo">
+      <a ui-sref="main" ui-sref-opts="{reload: true, inherit: false}">
+        <img src="/images/logo-full.png" height="40" alt="logo" class="logo-default">
+      </a>
+      <div class="menu-toggler sidebar-toggler">
+        <span></span>
+      </div>
+    </div>
+    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> <span></span></a>
+    <div class="title" style="color: white;">{{currentUser.role == 'admin' ?
+    'Cục phòng, chống HIV/AIDS' : currentUser.agency.name}}</div>
+    <div class="page-top">
+      <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+          <li class="separator hide"></li>
+
+          <li class="dropdown dropdown-extended dropdown-notification dropdown-light" id="header_notification_bar">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+              <i class="icon-bell"></i>
+              <span class="badge badge-danger" ng-if="notifications.total_unseen > 0"> {{ notifications.total_unseen }} </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="external">
+                <h3>
+                  <span class="bold">{{ notifications.total_unseen }}</span> {{"notification_new"| translator: 'notification'}}
+                </h3>
+              </li>
+              <li>
+                <ul class="dropdown-menu-list" on-scroll-to-bottom="loadMoreNotification">
+                  <li ng-repeat="notification in notifications.data">
+                    <a href="{{ notification.url }}" ng-click="seeNotification(notification)">
+                      <span ng-if="notification.status == 'unseen'" class="time">{{"label_new"| translator: 'notification'}}</span>
+                      <span class="details">
+                        <span ng-if="notification.status == 'unseen'" class="label label-sm label-icon label-warning">
+                          <i class="fa fa-bullhorn"></i>
+                        </span>
+                        <span ng-if="notification.status == 'seen'" class="label label-sm label-icon label-success">
+                          <i class="fa fa-bell"></i>
+                        </span>
+                        <span>{{ notification.content }}</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li ng-show="loadingMoreNotification" class="text-center">
+                    <i class="fa fa-spinner fa-pulse"></i>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown dropdown-user dropdown-light">
+            <a href="#" class="dropdown-toggle"
+               data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+              <span class="username username-hide-on-mobile">{{currentUser.full_name}}</span>
+              <img alt="" class="img-circle" src="/images/avatar.jpg" /></a>
+            <ul class="dropdown-menu dropdown-menu-default">
+              <li>
+                <a ng-click="showEditNameModal()">
+                <i class="icon-user"></i> {{"change_name"| translator: 'main'}} </a>
+              </li>
+              <li>
+                <a ng-click="showEditPasswordModal()">
+                <i class="icon-lock"></i> {{"change_password"| translator: 'main'}} </a>
+              </li>
+              <li>
+                <a href="#" ng-click="signOut()">
+                <i class="icon-key"></i> {{"logout"| translator: 'main'}} </a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown dropdown-light dropdown-language">
+            <a href="javascript:;" class="dropdown-toggle"
+               data-toggle="dropdown" data-hover="dropdown"
+               data-close-others="true" aria-expanded="true">
+              <img alt="" ng-src="{{'/images/flags/' + language + '.png'}}">
+              <span class="langname uppercase"> &nbsp; {{language}} </span>
+              <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-default">
+              <li>
+                <a href="javascript:void(0)" ng-click="changeLanguage('vi')">
+                  <img alt="Việt Nam" src="/images/flags/vi.png"> Việt Nam </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" ng-click="changeLanguage('en')">
+                  <img alt="English" src="/images/flags/en.png"> English </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"> </div>
+<div class="page-container">
+  <div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
+      <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200"
+          ng-class="{'page-sidebar-menu-closed':pageSidebarClosed}">
+
+        <li class="start nav-item"
+            ng-class="{'active': state.current.name == 'main.dashboard1'}"
+            ng-show="currentUser.role != 'doctor'">
+          <a ui-sref="main.dashboard1">
+            <i class="icon-home"></i>
+            <span class="title">{{"home"| translator: 'main'}}</span>
+          </a>
+        </li>
+
+        <li class="start nav-item"
+            ng-class="{'active': state.current.name == 'main.dashboard_doctor'}"
+            ng-show="currentUser.role == 'doctor'">
+          <a ui-sref="main.dashboard_doctor">
+            <i class="icon-home"></i>
+            <span class="title">{{"home"| translator: 'main'}}</span>
+          </a>
+        </li>
+
+        <!-- <li class="heading">
+          <h3 class="uppercase">{{ 'features' | translator: 'main'}}</h3>
+        </li> -->
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.administrators'}"
+            ng-show="currentUser.role == 'admin'">
+          <a ui-sref="main.administrators">
+            <i class="fa fa-user-md"></i>
+            <span class="title">{{"admin_account"| translator: 'main'}}</span>
+          </a>
+        </li>
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.issuing_agency'}"
+            ng-show="currentUser.role == 'admin'">
+          <a ui-sref="main.issuing_agency" >
+            <i class="fa fa-sitemap"></i>
+            <span class="title">{{"issuing_agency"| translator: 'main'}}</span>
+          </a>
+        </li>
+
+        <li class="nav-item"
+          ng-class="{'active': state.current.name == 'main.employments' ||
+          state.current.name == 'main.maritals' ||
+          state.current.name == 'main.financials' ||
+          state.current.name == 'main.educations' ||
+          state.current.name == 'main.stop_reasons' ||
+          state.current.name == 'main.medicine_list' ||
+          state.current.name == 'main.manufacturers' ||
+          state.current.name == 'main.providers' ||
+          state.current.name == 'main.sources'}"
+          ng-show="currentUser.role == 'admin'">
+          <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="icon-folder"></i>
+            <span class="title">{{"category"| translator: 'category'}}</span>
+            <span class="arrow"></span>
+          </a>
+          <ul class="sub-menu" style="display: none;">
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.employments'}">
+              <a ui-sref="main.employments">
+                <span class="title">{{"employment"| translator: 'category'}}</span>
+              </a>
+            </li>
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.maritals'}">
+              <a ui-sref="main.maritals">
+                <span class="title">{{"marital"| translator: 'category'}}</span>
+              </a>
+            </li>
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.financials'}">
+              <a ui-sref="main.financials">
+                <span class="title">{{"financial"| translator: 'category'}}</span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.educations'}">
+              <a ui-sref="main.educations">
+                <span class="title">{{"education"| translator: 'category'}} </span>
+              </a>
+            </li>
+             <li class="nav-item" ng-class="{'active': state.current.name == 'main.stop_reasons'}">
+              <a ui-sref="main.stop_reasons">
+                <span class="title">{{"stop_reason"| translator: 'category'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.medicine_list'}">
+              <a ui-sref="main.medicine_list">
+                <span class="title">{{"medicines_list" | translator: 'medicine'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.manufacturer'}">
+              <a ui-sref="main.manufacturers">
+                <span class="title">{{"list_manufacturer"| translator: 'category'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.provider'}">
+              <a ui-sref="main.providers">
+                <span class="title">{{"list_provider"| translator: 'category'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name == 'main.source'}">
+              <a ui-sref="main.sources">
+                <span class="title">{{"source"| translator: 'category'}} </span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item"
+          ng-class="{'active': state.current.name == 'main.users'}"
+          ng-show="currentUser.role == 'admin_agency'">
+          <a ui-sref="main.users">
+            <i class="fa fa-user-md"></i>
+            <span class="title">{{"staff_account"| translator: 'main'}}</span>
+          </a>
+        </li>
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name.match('main.patients')}"
+            ng-show="currentUser.role == 'doctor' ||
+              currentUser.role == 'executive_staff' ||
+              currentUser.role == 'admin_agency' ||
+              currentUser.role == 'admin'">
+          <a ui-sref="main.patients" ui-sref-opts="{reload: true, inherit: fasle}">
+            <i class="icon-users"></i>
+            <span class="title"> {{"patient"| translator: 'main'}} </span>
+          </a>
+        </li>
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name.match('main.summary_report')}"
+            ng-show="currentUser.role == 'admin'">
+          <a ui-sref="main.summary_report"
+            ui-sref-opts="{reload: true, inherit: fasle}">
+            <i class="icon-book-open"></i>
+            <span class="title"> {{"report_summary"| translator: 'main'}} </span>
+          </a>
+        </li>
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name.match('main.nurse_patients')}"
+            ng-show="currentUser.role == 'nurse'">
+          <a ui-sref="main.nurse_patients" ui-sref-opts="{reload: true, inherit: fasle}">
+            <i class="icon-users"></i>
+            <span class="title"> {{"patient"| translator: 'main'}} </span>
+          </a>
+        </li>
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.history_falled'
+            || state.current.name == 'main.lost_medicine' }"
+            ng-if="currentUser.role == 'nurse'">
+          <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="icon-list"></i>
+            <span class="title">{{"list_report"| translator: 'patient'}}</span>
+            <span class="arrow"></span>
+          </a>
+          <ul class="sub-menu" style="display: none;">
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.history_falled')}">
+              <a ui-sref="main.history_falled">
+                <span class="title"> {{"fall_report"| translator: 'patient'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.give_up_report')}">
+              <a ui-sref="main.give_up_report">
+                <span class="title"> {{"give_up_report"| translator: 'patient'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.lost_report')}">
+              <a ui-sref="main.lost_report">
+                <span class="title"> {{"lost_report"| translator: 'patient'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.redundancy_report')}">
+              <a ui-sref="main.redundancy_report">
+                <span class="title"> {{"redundancy_report"| translator: 'patient'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.redundancy_lost_report')}">
+              <a ui-sref="main.redundancy_lost_report">
+                <span class="title"> {{"redundancy_lost_report"| translator: 'patient'}} </span>
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.delivery_vouchers'
+            || state.current.name == 'main.sub_voucher_medicine_received' }"
+            ng-show="currentUser.role == 'nurse'">
+          <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-folder-open"></i>
+            <span class="title">{{"storehouse"| translator: 'main'}}</span>
+            <span class="arrow"></span>
+          </a>
+          <ul class="sub-menu" style="display: none;">
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.sub_medicines')}">
+              <a ui-sref="main.sub_medicines">
+                <span class="title">Thuốc trong kho</span>
+              </a>
+            </li>
+
+            <li class="nav-item"
+                ng-class="{'active': state.current.name.match('main.delivery_vouchers')}">
+              <a ui-sref="main.delivery_sub_vouchers">
+                <span class="title">{{"storage"| translator: 'main'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item"
+              ng-class="{'active': state.current.name.match('main.sub_voucher_medicine_received')}">
+              <a ui-sref="main.received_sub_vouchers">
+                <span class="title">{{"stock_received_docket"| translator: 'main'}} </span>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+
+        <!-- <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.delivery_vouchers'
+            || state.current.name == 'main.sub_voucher_medicine_received' }"
+            ng-show="currentUser.role == 'nurse'">
+          <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="icon-layers"></i>
+            <span class="title">{{"report"| translator: 'main'}}</span>
+            <span class="arrow"></span>
+          </a>
+          <ul class="sub-menu" style="display: none;">
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.nurse_card_store')}">
+              <a ui-sref="main.nurse_card_store">
+                <i class="icon-docs"></i>
+                <span class="title">Thẻ kho</span>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+
+        <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.medicines' ||
+            state.current.name == 'main.medicine_plan' ||
+            state.current.name == 'main.stock_received_docket' ||
+            state.current.name.match('main.received_vouchers') ||
+            state.current.name == 'main.received_vouchers.medicines' ||
+            state.current.name.match('main.delivery_vouchers') ||
+            state.current.name.match('received_end_day_vouchers') }"
+            ng-show="currentUser.role == 'storekeeper'">
+          <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="fa fa-folder-open"></i>
+            <span class="title">{{"storehouse"| translator: 'main'}}</span>
+            <span class="arrow"></span>
+          </a>
+          <ul class="sub-menu" style="display: none;">
+            <li class="nav-item"
+              ng-class="{'active': state.current.name.match('main.medicines')}"
+              ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.medicines">
+                <span class="title"> {{"medicine"| translator: 'main'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item"
+                ng-class="{'active': state.current.name.match('main.delivery_vouchers')}">
+              <a ui-sref="main.delivery_vouchers">
+                <span class="title"> {{"storage"| translator: 'main'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item"
+              ng-class="{'active': state.current.name.match('main.received_vouchers')}"
+              ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.received_vouchers">
+                <span class="title"> {{"stock_received_docket"| translator: 'main'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item"
+              ng-class="{'active': state.current.name.match('main.received_end_day_vouchers')}"
+              ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.received_end_day_vouchers">
+                <span class="title"> Phiếu nhập cuối ngày </span>
+              </a>
+            </li>
+
+           <!--  <li class="nav-item" ng-class="{'active': state.current.name.match('main.medicine_plan')}">
+              <a ui-sref="main.medicine_plan">
+                <i class="icon-docs"></i>
+                <span class="title"> {{"medicine_plan"| translator: 'main'}} </span>
+              </a>
+            </li> -->
+          </ul>
+        </li>
+        <li class="nav-item"
+            ng-class="{'active': state.current.name == 'main.medicine_allocations_report' ||
+            state.current.name == 'main.report_today' ||
+            state.current.name == 'main.other_report' ||
+            state.current.name == 'main.store_report' ||
+            state.current.name == 'main.situation_report' ||
+            state.current.name == 'main.card_store' ||
+            state.current.name == 'main.import_export_medicine' ||
+            state.current.name == 'main.check_received_stock_report'}"
+            ng-show="currentUser.role == 'storekeeper'">
+          <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="icon-bar-chart"></i>
+            <span class="title">{{"report"| translator: 'main'}}</span>
+            <span class="arrow"></span>
+          </a>
+          <ul class="sub-menu" style="display: none;">
+
+            <li class="nav-item"
+              ng-class="{'active': state.current.name.match('main.check_received_stock_report')}"
+              ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.check_received_stock_report">
+                <span class="title"> Biên bản kiểm nhập </span>
+              </a>
+            </li>
+
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.medicine_allocations_report')}">
+              <a ui-sref="main.medicine_allocations_report">
+                <span class="title"> {{"allocations_report"| translator: 'main'}} </span>
+              </a>
+            </li>
+           <!--  <li class="nav-item" ng-class="{'active': state.current.name.match('main.report_today')}">
+              <a ui-sref="main.report_today">
+                <span class="title"> {{"medicine_today"| translator: 'main'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.situation_report')}">
+              <a ui-sref="main.situation_report">
+                <span class="title"> {{"situation_methadone"| translator: 'main'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item" ng-class="{'active': state.current.name.match('main.store_report')}">
+              <a ui-sref="main.store_report">
+                <span class="title"> {{"store_situation"| translator: 'storekeeper'}} </span>
+              </a>
+            </li>
+
+
+            <li class="nav-item"
+              ng-class="{'active': state.current.name.match('main.import_export_medicine')}"
+              ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.import_export_medicine">
+                <span class="title"> {{"import_export_medicine"| translator: 'main'}} </span>
+              </a>
+            </li> -->
+
+            <li class="nav-item"
+                ng-class="{'active': state.current.name.match('main.card_store')}"
+                ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.card_store">
+                <span class="title"> {{"card_store"| translator: 'storekeeper'}} </span>
+              </a>
+            </li>
+
+            <li class="nav-item"
+                ng-class="{'active': state.current.name.match('main.situation_use')}"
+                ng-show="currentUser.role == 'storekeeper'">
+              <a ui-sref="main.situation_use">
+                <span class="title"> Tình hình sử dụng </span>
+              </a>
+            </li>
+
+            <!-- <li class="nav-item" ng-class="{'active': state.current.name.match('main.other_report')}">
+              <a ui-sref="main.other_report">
+                <i class="icon-docs"></i>
+                <span class="title"> {{"other_detail"| translator: 'main'}} </span>
+              </a>
+            </li> -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="page-content-wrapper">
+      <div class="page-content">
+        <div ui-view></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'templates/layouts/footer.html'" class="page-footer"></div>

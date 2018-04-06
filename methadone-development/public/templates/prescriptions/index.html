@@ -1,0 +1,194 @@
+<div id="print_container">
+
+  <!-- <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right" style="margin-left: 10px;"
+      ng-click='showCreatePrescriptionModal()'>
+      <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+    </a>
+  </div> -->
+
+ <!--  <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right"
+      ng-show="patient.actived == 'deactived'"
+      ng-click='continueTreatment()'>
+      <i class="fa fa-plus"></i> {{"continue_treatment" | translator: "main"}}
+    </a>
+  </div> -->
+
+  <!-- <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right"
+      ng-show="patient.actived == 'actived'"
+      ng-click='showStopTreatmentModal()'>
+      <i class="fa fa-stop"></i> {{"stop_treatment" | translator: "main"}}
+    </a>
+  </div> -->
+  <div class="mt-content border-grey-steel">
+    <form ng-submit="form.$valid && filterPrescription()" name="form" novalidate>
+      <div class="form-group col-xs-12" style="display: inline;">
+        <div class="row row-flex form-horizontal">
+          <div class="col-xs-2">
+            <label class="control-label">{{"begin_date"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-2">
+            <label class="control-label pull-right">{{"begin_date_to"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-3">
+            <label class="input-group">
+              <input ng-model="begin_date_from" name="begin_date_from" class="form-control input-sm" datepicker>
+              <span class="input-group-btn">
+                <span class="btn btn-default btn-sm">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </span>
+              </span>
+            </label>
+          </div>
+          <div class="col-xs-2">
+            <label class="control-label pull-right">{{"end_date_to"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-3">
+            <label class="input-group">
+              <input ng-model="begin_date_to" name="begin_date_to" class="form-control input-sm" datepicker>
+              <span class="input-group-btn">
+                <span class="btn btn-default btn-sm">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row row-flex form-horizontal">
+          <div class="col-xs-2">
+            <label class="control-label">{{"end_date"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-2">
+            <label class="control-label pull-right">{{"begin_date_to"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-3">
+            <label class="input-group">
+              <input ng-model="end_date_from" name="end_date_from" class="form-control input-sm" datepicker>
+              <span class="input-group-btn">
+                <span class="btn btn-default btn-sm">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </span>
+              </span>
+            </label>
+          </div>
+          <div class="col-xs-2">
+            <label class="control-label pull-right">{{"end_date_to"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-3">
+            <label class="input-group">
+              <input ng-model="end_date_to" name="end_date_to" class="form-control input-sm" datepicker>
+              <span class="input-group-btn">
+                <span class="btn btn-default btn-sm">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row row-flex">
+          <div class="col-xs-4">
+            <label class="control-label">{{"doctor_name"| translator: 'prescription'}}</label>
+          </div>
+          <div class="col-xs-3">
+            <ui-select ng-model="doctor.id" name="doctor_name" theme="select2"
+              append-to-body="true" search-enabled="false">
+              <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                data-allow-clear="true">
+                {{$select.selected.first_name + ' ' + $select.selected.last_name}}
+              </ui-select-match>
+              <ui-select-choices repeat="doctor.id as doctor in listDoctor track by $index">
+                <span ng-bind-html="doctor.first_name + ' ' + doctor.last_name"></span>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-xs-2">
+            <button class="btn blue-custom btn-sm">
+              <i class="fa fa-search"></i> {{"search"| translator: "main"}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div ng-show="list_prescription.data.length == 0" style="overflow-x: visible !important;">
+        <p>{{"zero_prescription"| translator: 'prescription'}}</p>
+    </div>
+    <div ng-show="list_prescription.data.length > 0">
+
+      <div class="max-width-100-pc scrollable" style="overflow-x: visible !important;">
+        <table class="table table-hover table-bordered table-custom">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>{{"name"| translator: 'medicine'}}</th>
+              <th>{{"dosage"| translator: 'prescription'}}</th>
+              <th>{{"doctor_prescription"| translator: 'main'}}</th>
+              <th>{{"begin_date"| translator: 'prescription'}}</th>
+              <th>{{"end_date_expected"| translator: 'prescription'}}</th>
+              <th>{{"end_date"| translator: 'prescription'}}</th>
+              <th>{{"description"| translator: 'prescription'}}</th>
+              <!-- <th>{{"type_prescription" | translator: 'prescription'}}</th> -->
+              <th>{{"type_treatment"| translator: 'prescription'}}</th>
+              <th>{{"status_close"| translator: 'prescription'}}</th>
+              <th>{{"print"| translator: 'main'}}</th>
+              <th>{{"edit"| translator: 'prescription'}}</th>
+              <th>{{"delete"| translator: 'prescription'}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="prescription in list_prescription.data">
+              <td>{{$index + 1}}</td>
+              <td>{{prescription.medication_name}} <br>({{prescription.medication_composition}})</td>
+              <td>{{prescription.dosage}}</td>
+              <td>{{prescription.doctor_name}}</td>
+              <td>{{prescription.begin_date}}</td>
+              <td>{{prescription.end_date_expected}}</td>
+              <td>{{check_end_date(prescription.check_end_date, prescription.end_date)}}</td>
+              <td>
+                <a ng-click='showPrescriptionDescriptionModal(prescription.description)'
+                  title="{{'see_more'| translator: 'main'}}" tooltip>
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </a>
+              </td>
+              <!-- <td>{{prescription.prescription_type | translator: 'prescription'}}</td> -->
+              <td>{{prescription.type_treatment | translator: 'prescription'}}</td>
+              <td>
+                <div ng-if="prescription_type != 'temp_afternoon' && prescription_type != 'temp_morning' && prescription_type != 'temp_day'">{{prescription.close_status | translator: 'prescription' }}</div>
+                <div ng-if="prescription.prescription_type == 'temp_morning' || prescription.prescription_type == 'temp_afternoon' || prescription.prescription_type == 'temp_day'">Đơn bổ sung sau nôn</div>
+                </td>
+              <td>
+                <a ng-click='showPrintModal(prescription.id)'
+                  title='{{"show_prescription" | translator: "prescription"}}' tooltip>
+                  <i class="fa fa-print"></i>
+                </a>
+              </td>
+              <td>
+                <a ng-click='showEditPrescriptionModal(prescription.id)'
+                  title="{{'edit'| translator: 'main'}}" tooltip
+                  ng-show="prescription.check_edit">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+              </td>
+              <td>
+                <a href="#" ng-click='showDeletePrescriptionModal(prescription)'
+                  title="{{'delete'| translator: 'main'}}" tooltip
+                  ng-show="prescription.check_edit">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <!-- <div class="row row-flex" style="margin-top: 40px;">
+      <button ng-click="printElement('#print_container')" class="btn btn-default no-print" type="button"><i class="glyphicon glyphicon-print"></i>
+        <span style="padding-left: 10px;">{{"print_prescription"| translator: 'prescription'}}</span>
+      </button>
+      <input ui-sref="main.patients" class="btn btn-default btn-sm no-print"
+        type="button" value="Return to Patient Dashboad">
+    </div> -->
+  <!-- </form> -->
+</div>

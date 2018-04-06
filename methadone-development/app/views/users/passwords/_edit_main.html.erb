@@ -1,0 +1,33 @@
+<div class="text-center">
+  <h1 class="title">
+    <%= t "password.reset_password" %>
+  </h1>
+</div>
+
+<div class="panel panel-default box-xs-100">
+  <div class="panel-body panel-body-custom">
+    <%= form_for(resource, as: resource_name, url: user_password_path(resource_name),
+      html: {method: :put}) do |f| %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="form-group margin-bottom-15px">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control",
+          placeholder: true, required: true %>
+      </div>
+
+      <div class="form-group margin-bottom-15px">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control",
+          placeholder: true, required: true %>
+      </div>
+
+      <div class="margin-bottom-5px">
+        <%= f.submit t("password.reset_password"), class: "btn btn-success btn-block" %>
+      </div>
+
+      <%= render "main_links" %>
+
+    <% end %>
+  </div>
+</div>

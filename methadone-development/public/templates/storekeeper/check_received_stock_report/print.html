@@ -1,0 +1,121 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <h3 class="modal-title text-bold-header pull-left">
+    Biên bản kiểm nhập
+  </h3>
+  <div class="inputs" ng-if="medicines.data.length > 0">
+    <a class="btn blue-custom btn-sm pull-right" style="margin-left: 10px;"
+      ng-click='print()'>
+      <i class="fa fa-print"></i> In
+    </a>
+  </div>
+</div>
+
+<div class="modal-body">
+  <div ng-if="medicines.data.length == 0">
+    Không có dữ liệu
+  </div>
+  <div id="pdf" style="width: 640px; margin:0 auto;" ng-if="medicines.data.length > 0">
+    <style type="text/css">
+      @page {
+        size: A4;
+        margin: 70px;
+      }
+      .table-treatments td {
+        border: 1px solid black;
+      }
+      tr {
+        page-break-inside: avoid !important;
+      }
+    </style>
+    <div style="font-size: 13px;">
+      <p style="text-align: center;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+      <p style="text-align: center;"><strong>Độc lập - Tự do - Hạnh phúc</strong></p>
+      <p style="text-align: center;"><strong>..........***..........</strong></p>
+    </div>
+    <div style="font-size: 14px;">
+      <p style="text-align: right;"><em>........, ngày {{datee[0]}} tháng {{datee[1]}} năm {{datee[2]}}</em></p>
+      <p style="text-align: center;"><strong>BIÊN BẢN KIỂM NHẬP</strong></p>
+      <p style="text-align: center;">(Từ ngày {{voucher.from_date}} đến ngày {{voucher.to_date}})</p>
+      <p style="text-align: left;">Thành phần:</p>
+      <table style="height: 25px;" width="100%">
+        <tbody>
+          <tr ng-repeat="council in councils.data track by $index">
+            <td style="width: 292px; text-align: left;">{{$index + 1}}. {{council.name}}</td>
+            <td style="width: 292px; text-align: left;">Chức vụ: {{council.title}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-if="check == 0">
+        <p>Hôm nay, ngày {{datee[0]}} tháng {{datee[1]}} năm {{datee[2]}} </p>
+        <p>Đã tiến hành kiểm nhập thuốc tại: {{currentUser.agency.name}}</p>
+      </div>
+
+      <div ng-if="check == 2">
+        <p>Hôm nay, ngày {{datee[0]}} tháng {{datee[1]}} năm {{datee[2]}} </p>
+        <p>Đã tiến hành kiểm nhập thuốc của: {{medicines.data.length > 0 ? medicines.data[0].provider: ""}}</p>
+      </div>
+
+      <div ng-if="check == 1">
+         <p>Hôm nay, ngày {{datee[0]}} tháng {{datee[1]}} năm {{datee[2]}} </p>
+        <p>Đã tiến hành kiểm nhập thuốc (theo hóa đơn {{voucher.invoice_number}})</p>
+        <p>của {{medicines.data.length > 0 ? medicines.data[0].provider: ""}}</p>
+      </div>
+
+      <table style="height: 82px; width: 100%;" border="1" cellspacing="0"
+        cellpadding="0">
+        <caption>&nbsp;</caption>
+        <tbody>
+          <tr style="font-weight: bold;">
+            <td style="width: 28px; text-align: center;">STT</td>
+            <td style="width: 110px; text-align: center;">
+              <p>Tên thuốc <br> (Hàm lượng)</p>
+            </td>
+            <td style="width: 69px; text-align: center;">Đơn vị</td>
+            <td style="width: 69px; text-align: center;">Nơi sản xuất</td>
+            <td style="width: 69px; text-align: center;">Số kiểm soát - Lô</td>
+            <td style="width: 69px; text-align: center;">Hạn dùng</td>
+            <td style="width: 69px; text-align: center;">Số <br> lượng</td>
+            <td style="width: 70px; text-align: center;">Ghi chú</td>
+          </tr>
+          <tr ng-repeat="medicine in medicines.data track by $index">
+            <td style="text-align: center;">{{$index + 1}}</td>
+            <td style="text-align: left;">{{medicine.name}} {{medicine.concentration}}mg/ml</td>
+            <td style="text-align: center;">{{medicine.unit}}</td>
+            <td style="text-align: left;">{{medicine.manufacturer}}</td>
+            <td style="text-align: left;">{{medicine.production_batch}}</td>
+            <td style="text-align: center;">{{medicine.expiration_date}}</td>
+            <td style="text-align: right;">{{medicine.number}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Tổng cộng: {{medicines.data.length}} khoản</strong></p>
+      <p><strong>Ý kiến Hội đồng kiểm nhập: {{voucher.opinion}}</strong></p>
+      <p></p>
+      <p style="text-align: center;"><strong>Các thành viên kiểm nhập ký</strong></p>
+    </div>
+    <div style="font-size: 13px;">
+      <table width="100%">
+        <tbody>
+          <tr style="text-align: center;">
+            <td style="width: 35%;"><strong>CHỦ TỊCH HỘI ĐỒNG</strong></td>
+            <td style="width: 25%;"><strong>TRƯỞNG CSĐT</strong></td>
+            <td style="width: 20%;"><strong>THÀNH VIÊN</strong></td>
+            <td style="width: 20%;"><strong>THƯ KÝ</strong></td>
+          </tr>
+          <tr style="text-align: center;">
+            <td style="width: 35%;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 20%;"></td>
+            <td style="width: 20%;"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm"
+         type="button" data-dismiss="modal"
+         value='{{"close"| translator: "main"}}'>
+</div>

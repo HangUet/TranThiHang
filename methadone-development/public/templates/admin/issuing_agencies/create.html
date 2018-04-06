@@ -1,0 +1,94 @@
+<form ng-submit="createForm.$valid && createIssuingAgency()" name="createForm" novalidate>
+  <div class="modal-header bg-blue-custom padding-title">
+    <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+    <h3 class="modal-title text-bold-header"> {{"add_issuing_agency" | translator: 'main'}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row row-flex">
+
+      <div class="form-group col-xs-12 col-md-6 row row-flex">
+        <div class="col-xs-12 col-md-3 form-group">
+          <label class="required">{{"name" | translator: 'main'}}:</label>
+        </div>
+        <div class="col-xs-12 col-md-9 form-group">
+          <input ng-model="issuing_agency.name" name="name"
+            class="form-control input-sm" autofocus ng-maxlength="80" required>
+          <div ng-messages="createForm.name.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="maxlength">{{"maxlength80" | translator: 'validate'}}
+            </div>
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3 form-group">
+          <label class="required">{{"address" | translator: 'main'}}:</label>
+        </div>
+        <div class="col-xs-12 col-md-9 form-group">
+          <input ng-model="issuing_agency.address" name="address" class="form-control input-sm" maxlength="255" required>
+          <div ng-messages="createForm.address.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"maxlength" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6 row row-flex">
+        <div class="col-xs-12 col-md-5 form-group">
+          <label class="required">{{"province" | translator: 'main'}}:</label>
+        </div>
+        <div class="col-xs-12 col-md-7 form-group">
+          <ui-select ng-model="issuing_agency.province_id" on-select="reloadDistrict(issuing_agency.province_id)"
+                     name="province_id" theme="select2" append-to-body="true" ng-required="true">
+            <ui-select-match placeholder="{{'please_select_province'| translator: 'main'}}">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item.id as item in provinces | filter: $select.search">
+              <span ng-bind-html="item.name | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.province_id.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-5 form-group">
+          <label class="required">{{"district" | translator: 'main'}}:</label>
+        </div>
+        <div class="col-xs-12 col-md-7 form-group">
+          <ui-select ng-model="issuing_agency.district_id" on-select="reloadWard(issuing_agency.district_id)"
+                     name="district_id" theme="select2" append-to-body="true" ng-required="true">
+            <ui-select-match placeholder="{{'please_select_district'| translator: 'main'}}">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item.id as item in districts | filter: $select.search">
+              <span ng-bind-html="item.name | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.district_id.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-5 form-group">
+          <label class="required">{{"ward" | translator: 'main'}}:</label>
+        </div>
+        <div class="col-xs-12 col-md-7 form-group">
+          <ui-select ng-model="issuing_agency.ward_id" name="ward_id" theme="select2" append-to-body="true" ng-required="true">
+            <ui-select-match placeholder="{{'please_select_ward'| translator: 'main'}}">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item.id as item in wards | filter: $select.search">
+              <span ng-bind-html="item.name | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="createForm.ward_id.$error" ng-show="createForm.$submitted" class="text-error">
+            <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close" | translator: "main"}}'>
+    <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-save"></i> {{"save" | translator: "main"}}</button>
+  </div>
+</form>

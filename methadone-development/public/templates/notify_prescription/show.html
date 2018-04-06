@@ -1,0 +1,48 @@
+<div class="portlet light">
+  <div class="portlet-title">
+    <div class="caption caption-md">
+        <i class="icon-globe theme-font hide"></i>
+        <span class="caption-subject font-blue-madison bold uppercase">{{"notify_fall"| translator: 'patient'}}</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row row-flex">
+      <div class="col-xs-12 col-md-6">
+        <div class="row fow-flex">
+          <div class="col-xs-3">
+            <img class="img-thumbnail" ng-src="{{patient.avatar || '/images/avatar.jpg'}}">
+            <div class="profile-usertitle">
+              <div class="profile-usertitle-name"> {{patient.card_number}}</div>
+            </div>
+            <!-- <h2 class="profile-usertitle-name">{{patient.card_number}}</h2> -->
+          </div>
+          <div class="col-xs-9">
+              <p class="text-bold">{{patient.name}}</p>
+              <p>{{"admitted"| translator: 'patient'}}: {{patient.admission_date}}</p>
+
+              <p>{{"household"| translator: 'main'}}: {{patient.household}}</p>
+
+              <p>{{"date_of_birth"| translator: 'patient'}}: {{patient.birthdate}}</p>
+
+              <p>{{"gender" | translator: 'patient'}}: {{patient.gender|translator: 'patient'}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 row row-flex">
+        <table class="table table-custom table-bordered table-hover">
+          <thead>
+            <th>{{"notification"| translator: "main"}}</th>
+          </thead>
+          <tbody>
+            <td>{{status | translator: 'main'}}</td>
+          </tbody>
+        </table>
+        <div class="margin-top-15px clearfix text-right">
+          <button class="btn blue-custom btn-sm" ng-click="view_prescription()">
+            <i class="fa fa-external-link"></i>{{"detail"| translator: "main"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

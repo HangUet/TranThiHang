@@ -1,0 +1,10 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+  <h3 class="modal-title text-bold-header"> {{"description"| translator: 'prescription'}}</h3>
+</div>
+<div class="modal-body">
+  <pre>{{description}}</pre>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+</div>

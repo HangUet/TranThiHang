@@ -1,0 +1,9 @@
+<p><%= t("mailer.welcome") %> <%= @name %>,</p>
+
+<p><%= t("mailer.confirmation.sentence1") %></p>
+
+<p style='background: #e1e8fa;display: inline;'><a href="<%= root_url %>user/confirmation?user=<%= @resource.id %>&&confirmation_token=<%= @resource.confirmation_token %>">dsfsdfsfd</a></p>
+
+<p><%= t("common.regard") %></p>
+
+<p><%= t("common.sachmem_team") %></p>

@@ -1,0 +1,228 @@
+  <div class="padding-right-3">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <i class="font-green"></i>
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"report_today_title" | translator: "main"}}
+          </span>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> {{"print" | translator: "main"}} </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> {{"send_" | translator: "main"}} </a>
+        </div>
+      </div>
+      <div class="portlet-body no-padding">
+        <div>
+          <div style="height: 40px;">
+            <form ng-submit="createForm.$valid && applyDay()" name="createForm" novalidate>
+              <div class="col-xs-2 no-padding-left">
+                <label class="input-group">
+                  <input ng-model="date" name="date" class="form-control input-sm" required datepicker>
+                  <span class="input-group-btn">
+                    <span class="btn btn-default btn-sm">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                  </span>
+                </label>
+              </div>
+              <div class="col-xs-2">
+                <button class="btn blue-custom btn-sm ng-binding" type="submit"><i class="fa fa-search"></i> {{"search"| translator: 'main'}}</button>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="portlet box base-color">
+            <div class="portlet-title" style="background-color: #3c66a0;">
+              <div class="caption">
+                {{"import_export_internal"| translator: 'main'}}
+              </div>
+              <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+              </div>
+            </div>
+            <div class="portlet-body no-padding">
+              <table class="bootstrap-table table table-hover table-bordered table-custom">
+                <thead>
+                  <tr>
+                    <th class="col-xs-1">{{"no."| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"batch_number"| translator: 'main'}}</th>
+                    <th class="col-xs-2">{{"expiration_date"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"inventory_start_day"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"export_start_day"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"import_end_day"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"source_medicine"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"loss"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"reason_loss_redundancy"| translator: 'main'}}</th>
+                    <th class="col-xs-2">{{"deliver_name"| translator: 'main'}}</th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="import_export in import_exports.data">
+                    <td>{{$index+1}}</td>
+                    <td>{{import_export.production_batch}}</td>
+                    <td>{{import_export.expiration_date}}</td>
+                    <td>-</td>
+                    <td>{{import_export.export_number}}</td>
+                    <td>{{import_export.import_number}}</td>
+                    <td>{{import_export.sourse}}</td>
+                    <td rowspan="{{getHalf(import_exports.data.length)}}"
+                        ng-if="$first">
+                        {{import_exports.total.loss}}
+                    </td>
+                    <td ng-if="$index == getHalf(import_exports.data.length)" class="bold">
+                      {{"redundancy"| translator: 'main'}}
+                    </td>
+                    <td rowspan="{{import_exports.data.length - getHalf(import_exports.data.length) - 1}}"
+                        ng-if="$index == getHalf(import_exports.data.length) + 1">
+                        {{import_exports.total.redundancy}}
+                    </td>
+                    <td rowspan="{{import_exports.data.length}}" ng-if="$first"></td>
+                    <td rowspan="{{getHalf(import_exports.data.length)}}"
+                        ng-if="$first">
+                      {{import_exports.total.sender}}
+                    </td>
+                    <td ng-if="$index == getHalf(import_exports.data.length)" class="bold">
+                      {{"receiver_name"| translator: 'main'}}
+                    </td>
+                    <td rowspan="{{import_exports.data.length - getHalf(import_exports.data.length) - 1}}"
+                        ng-if="$index == getHalf(import_exports.data.length) + 1">
+                      {{import_exports.total.receiver}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">{{"total"| translator: 'main'}}</td>
+                    <td></td>
+                    <td>{{import_exports.total.export_total}}</td>
+                    <td>{{import_exports.total.import_total}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="portlet box base-color">
+            <div class="portlet-title" style="background-color: #3c66a0;">
+              <div class="caption">
+                {{ "import_export_other_source" | translator: 'main'}}
+              </div>
+              <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+              </div>
+            </div>
+            <div class="portlet-body no-padding">
+              <table class="table table-hover table-bordered table-custom">
+                <thead>
+                  <tr>
+                    <th class="col-xs-1">{{"no."| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"batch_number"| translator: 'main'}}</th>
+                    <th class="col-xs-2">{{"expiration_date"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"number_import"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"source_medicine"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"name_agency_deliver"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"deliver_name"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"number_export"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"source_medicine"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"name_agency_receive"| translator: 'main'}}</th>
+                    <th class="col-xs-1">{{"deliver_name"| translator: 'main'}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="other_source in import_exports.other">
+                    <td>{{$index+1}}</td>
+                    <td>{{other_source.production_batch}}</td>
+                    <td>{{other_source.expiration_date}}</td>
+                    <td>{{other_source.import_number}}</td>
+                    <td>{{other_source.sourse}}</td>
+                    <td>{{other_source.issuing_name}}</td>
+                    <td rowspan="{{getHalf(import_exports.other.length)}}"
+                        ng-if="$first">
+                      {{import_exports.total_other.sender}}
+                    </td>
+                    <td ng-if="$index == getHalf(import_exports.other.length)" class="bold">
+                      {{"receiver_name"| translator: 'main'}}
+                    </td>
+                    <td rowspan="{{import_exports.other.length - getHalf(import_exports.other.length) - 1}}"
+                        ng-if="$index == getHalf(import_exports.other.length) + 1">
+                      {{import_exports.total_other.receiver}}
+                    </td>
+                    <td>{{other_source.export_number}}</td>
+                    <td>{{other_source.sourse}}</td>
+                    <td></td>
+                    <td rowspan="{{getHalf(import_exports.other.length)}}"
+                        ng-if="$first">
+                      {{import_exports.total_other.sender}}
+                    </td>
+                    <td ng-if="$index == getHalf(import_exports.other.length)" class="bold">
+                      {{"receiver_name"| translator: 'main'}}
+                    </td>
+                    <td rowspan="{{import_exports.other.length - getHalf(import_exports.other.length) - 1}}"
+                        ng-if="$index == getHalf(import_exports.other.length) + 1">
+                      {{import_exports.total_other.receiver}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">{{"total"| translator: 'main'}}</td>
+                    <td>{{import_exports.total_other.import_total}}</td>
+                    <td colspan="2"></td>
+                    <td></td>
+                    <td>{{import_exports.total_other.export_total}}</td>
+                    <td colspan="3"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> -->
+          <div class="portlet light">
+            <div class="portlet-title">
+              <div class="caption-md">
+                <div class="caption-subject font-blue-madison bold uppercase font-custom">
+                  {{"change_case_log"| translator: 'main'}}
+                </div>
+              </div>
+            </div>
+            <div class="portlet-body no-padding">
+              <table class="table table-hover table-bordered table-custom" fixed-header>
+                <thead>
+                  <tr>
+                    <th>{{"no."| translator: 'main'}}</th>
+                    <th>{{"id_code"| translator: 'main'}}</th>
+                    <th>{{"full_name"| translator: 'main'}}</th>
+                    <th>{{"amount_yesterday_today"| translator: 'main'}}</th>
+                    <th>{{"start_treat_treat_again"| translator: 'main'}}</th>
+                    <th>{{"increase_dose"| translator: 'main'}}</th>
+                    <th>{{"decrease_dose"| translator: 'main'}}</th>
+                    <th>{{"dosage_give_up"| translator: 'main'}}</th>
+                    <th>{{"drink_again_dose"| translator: 'main'}}</th>
+                    <th>{{"additional_dose"| translator: 'main'}}</th>
+                    <th>{{"stop_follow"| translator: 'main'}}</th>
+                  </tr>
+                </thead>
+                <tbody class="max-height-table" style="max-height: calc(100vh - 410px) !important">
+                  <tr ng-repeat="patient in patients_change.data" style="text-align: center;">
+                    <td>{{$index + 1}}</td>
+                    <td>{{patient.card_number}}</td>
+                    <td>{{patient.name}}</td>
+                    <td>{{patient.before_dosage}}/{{patient.dosage}}</td>
+                    <td>{{patient.beginn}}</td>
+                    <td ng-if="patient.increase != 0">{{patient.increase}}</td>
+                    <td ng-if="patient.increase == 0">-</td>
+                    <td ng-if="patient.decrease != 0">{{patient.decrease}}</td>
+                    <td ng-if="patient.decrease == 0">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

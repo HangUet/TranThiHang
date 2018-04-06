@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 padding-right-3">
+    <div class="portlet light">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <i class="font-green"></i>
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"situation_report" | translator: "main"}}
+          </span>
+        </div>
+        <div class="actions">
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-print"></i> {{"print" | translator: "main"}} </a>
+          <a href="#" class="btn blue-custom btn-sm">
+            <i class="fa fa-send"></i> {{"send_" | translator: "main"}} </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row row-flex">
+          <div class="col-xs-6 form-group">
+            <form ng-submit="createForm.$valid && submit()" name="createForm" novalidate>
+              <div class="col-xs-3 no-padding-left">
+                <label class="input-group">
+                  <input ng-model="month" name="month" class="form-control input-sm" required monthpicker>
+                  <span class="input-group-btn">
+                    <span class="btn btn-default btn-sm">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                  </span>
+                </label>
+              </div>
+              <div class="col-xs-2">
+                <button class="btn blue-custom btn-sm ng-binding" type="submit">
+                  {{"apply"| translator: 'main'}}
+                </button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+        <div class="max-width-100-pc scrollable">
+          <div class="col-md-6 col-md-offset-3" style="text-align: center; font-size: 20px;">
+            {{"situation_report"| translator: 'main'}}
+          </div>
+          <table class="table table-hover table-bordered table-custom">
+            <thead>
+              <tr>
+                <th rowspan="2">{{ "no." | translator: "main" }}</th>
+                <th class="text-left" rowspan="2">{{ "content_index" | translator: "main" }}
+                <th colspan="3">{{"total_in_month"| translator: 'main'}}</th>
+              </tr>
+              <tr>
+                <th>{{"male"| translator: 'patient'}}</th>
+                <th>{{"female"| translator: 'patient'}}</th>
+                <th>{{"total"| translator: 'main'}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="text-left">{{"patient_give_up_medicine"| translator: 'main'}}</td>
+                <td>{{ patients_report.male_give_up }}</td>
+                <td>{{ patients_report.female_give_up }}</td>
+                <td>{{ patients_report.male_give_up + patients_report.female_give_up }}</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="text-left">{{"turn_give_up_medicine"| translator: 'main'}}</td>
+                <td>{{ patients_report.male_turn_give_up }}</td>
+                <td>{{ patients_report.female_turn_give_up }}</td>
+                <td>{{ patients_report.male_turn_give_up + patients_report.female_turn_give_up }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

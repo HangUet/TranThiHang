@@ -1,0 +1,317 @@
+<div class="portlet light portlet-fixed-height">
+  <div class="portlet-title tabbable-line">
+    <div class="caption caption-md">
+        <i class="icon-globe theme-font hide"></i>
+        <span class="caption-subject font-blue-madison bold uppercase font-custom">{{"medicine_allocation"| translator: 'patient'}}</span>
+    </div>
+    <div class="inputs">
+      <a class="btn blue-custom btn-sm"
+        ng-click='showMedicineNotifyModal()'>
+        <i class="fa fa-bell-o"></i> {{"notify_fall"| translator: 'patient'}}
+      </a>
+      <a class="btn blue-custom btn-sm"
+        ng-click='reportFall()' ng-show="medicineAllocations[0].notify_status != 'vommited' && medicineAllocations[1].notify_status != 'vommited' && patient_warnings.level != 'obligatory'
+        && patient_warnings.level != 'empty_prescription'">
+        <i class="fa fa-print"></i> {{"print_report_fall"| translator: 'patient'}}
+      </a>
+      <a class="btn blue-custom btn-sm"
+        ng-click='giveUpReport()'>
+        <i class="fa fa-print"></i> {{"give_up_report"| translator: 'patient'}}
+      </a>
+      <a class="btn blue-custom btn-sm"
+        ng-click='showExportExcelModal()' ng-show="patient_warnings.level != 'empty_prescription'">
+        <i class="fa fa-file-excel-o"></i> {{"export_excel"| translator: 'patient'}}
+      </a>
+      <a class="btn blue-custom btn-sm"
+        ng-click='showHistoryMedicineAllocationModal()'>
+        <i class="fa fa-history"></i> {{"history_medicine_allocation"| translator: 'patient'}}
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="box-container box-space-around box-center">
+      <div class="box-xs-20 padding-right-5">
+        <div>
+          <div class="box-container box-center">
+            <div class="col-xs-12 col-md-170px">
+              <img class="img-thumbnail patient-avatar"
+                ng-src="{{patient.avatar || '/images/avatar.jpg'}}" preview="$file">
+            </div>
+          </div>
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name"> {{patient.card_number}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="box-xs-55 padding-left-5">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <td class="text-bold align-left">{{"f_name"| translator: 'main'}}:</td>
+              <td class="text-bold align-left">{{patient.name}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"admitted"| translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.admission_date}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"address"| translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.household}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"date_of_birth"| translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.birthdate}}</td>
+            </tr>
+            <tr>
+              <td class="align-left">{{"gender"| translator: 'patient'}}:</td>
+              <td class="align-left">{{patient.gender|translator: 'patient'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box-xs-40 box-container box-center box-space-around box-middle"
+        ng-show="patient_warnings.level == 'obligatory'">
+        <div class="text-red-thunderbird">
+          <div class="medicine-allocation-icon">
+            <i class="fa fa-warning fa-2x"></i>
+          </div>
+          <div class="box-container box-center box-space-around box-middle"
+            style="font-size: 20px;">
+            {{ "ban_for_medication" | translator: "main"}}
+          </div>
+        </div>
+      </div>
+
+      <div class="box-xs-40 box-container box-center box-space-around box-middle"
+        ng-show="patient_warnings.level == 'empty_prescription' && patient.actived == 'actived'">
+        <div class="text-red-thunderbird">
+          <div class="medicine-allocation-icon">
+            <i class="fa fa-warning fa-2x"></i>
+          </div>
+          <div class="box-container box-center box-space-around box-middle"
+            style="font-size: 20px;">
+            {{ "empty_prescription" | translator: "main"}}
+          </div>
+        </div>
+      </div>
+
+      <div class="box-xs-40 box-container box-center box-space-around box-middle"
+        ng-show="patient_warnings.level == 'empty_prescription' && patient.actived == 'deactived'">
+        <div class="text-red-thunderbird">
+          <div class="medicine-allocation-icon">
+            <i class="fa fa-warning fa-2x"></i>
+          </div>
+          <div class="box-container box-center box-space-around box-middle"
+            style="font-size: 20px;">
+            {{ "patient_stop_treatment" | translator: "main"}}
+          </div>
+        </div>
+      </div>
+
+      <div class="box-xs-40 box-container box-center box-space-around box-middle"
+        ng-show="patient_warnings.level == 'optional' && !waiting_doctor">
+        <div class="text-yellow-lemon">
+          <div class="medicine-allocation-icon">
+            <i class="fa fa-warning fa-2x"></i>
+          </div>
+          <div class="box-container box-center box-space-around box-middle" style="font-size: 20px;">
+            {{ "warning_for_medication" | translator: "main"}}
+          </div>
+        </div>
+      </div>
+
+      <div class="box-xs-40 box-container box-center box-space-around box-middle"
+          ng-show="!patient_warnings && medicineAllocations[0].dosage && !waiting_doctor">
+        <div class="text-green-jungle">
+          <div class="medicine-allocation-icon">
+            <i class="fa fa-check fa-2x"></i>
+          </div>
+          <div class="box-container box-center box-space-around box-middle"
+            style="font-size: 20px;">
+            {{ "eligible_for_medication" | translator: "main"}}
+          </div>
+<!--           <div class="box-container box-center box-space-around box-middle" ng-show="medicineAllocation.typee == 'morning'"
+          style="font-size: 20px;">
+            {{ "remind_patient" | translator: "main"}}
+          </div> -->
+        </div>
+      </div>
+      <div class="box-xs-40 box-container box-center box-space-around box-middle"
+        ng-show="waiting_doctor">
+        <div class="text-yellow-lemon">
+          <div class="medicine-allocation-icon">
+            <i class="fa fa-warning fa-2x"></i>
+          </div>
+          <div class="box-container box-center box-space-around box-middle"
+            style="font-size: 20px;">
+            {{ "waiting_for_doctor" | translator: "main"}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row row-flex">
+      <div class="width-100-pc" novalidate>
+        <div class="max-width-100-pc scrollable">
+        <!-- check neu co thuoc -->
+          <div ng-if="(patient_warnings.level != 'empty_prescription') && (day_medicines == null || day_medicines.length <= 0)">
+            <p class="text-center" style="font-size: 2em;font-weight: bold;">Hết thuốc!</p>
+            <p class="text-center" style="font-size: 1.3em;font-weight: bold;">Vui lòng xuất thuốc trước khi cấp phát.</p>
+          </div>
+          <div ng-if="day_medicines.length > 0">
+            <div class="">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Chọn thuốc để cấp phát: </label>
+                  <div class="col-sm-9">
+                    <ui-select ng-model="drinked_day_medicine_id" name="typee" search-enabled="false"
+                               theme="select2" append-to-body="true" ng-required="true">
+                      <ui-select-match placeholder="{{'please_select'| translator: 'main'}}">
+                        {{$select.selected.production_batch | translator: 'medicine'}}
+                      </ui-select-match>
+                      <ui-select-choices repeat="day_medicine.id as day_medicine in day_medicines" ui-disable-choice="day_medicine.name == 'Tên thuốc'">
+                        <table class="table-select" style="width: 100%;">
+                          <tr>
+                            <td style="width: 20%;" ng-bind-html="day_medicine.name"></td>
+                            <td style="width: 16%;" ng-bind-html="day_medicine.production_batch"></td>
+                            <td style="width: 10%;" ng-bind-html="day_medicine.expiration_date"></td>
+                            <td style="width: 16%;" ng-bind-html="day_medicine.manufacturer"></td>
+                            <td ng-if="day_medicine.name == 'Tên thuốc'" style="width: 10%">
+                              Số lượng khả dụng
+                            </td>
+                            <td style="width: 10%;" ng-bind-html="day_medicine.remaining_number - day_medicine.booking > 0 ?  day_medicine.remaining_number - day_medicine.booking : 0" ng-if="day_medicine.name != 'Tên thuốc'"></td>
+                          </tr>
+                        </table>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="table table-light" fixed-header>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody style="max-height: 100%">
+                <tr ng-repeat="medicineAllocation in medicineAllocations track by $index">
+                  <td class="verticalLine">
+                    <button class="btn padding-bottom-62" type="button" ng-click="back($index)"
+                       ng-class="{done: medicineAllocation.status_integer >= 0}"
+                       ng-disabled="medicineAllocation.status == 'waiting' || patient.actived == 'deactived' ||
+                        medicineAllocation.notify_status != 'not_fall'"
+                       style="background-color: white;">
+                      <i class="fa fa-arrow-left fa-4x iconuser"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <div class="mt-element-step verticalLine">
+                      <div class="row step-line">
+                        <div class="col-md-4 mt-step-col first padding-top-0"
+                          ng-class="{done: medicineAllocation.status_integer >= 0}">
+                            <div class="mt-step-number bg-white fix-height">
+                              <i class="fa fa-user"></i>
+                            </div>
+                            <div class="mt-step-title uppercase"
+                              ng-if="$index == 0 && medicineAllocations.length == 2">
+                              {{ "wait_morning" | translator: "patient" }}
+                            </div>
+                            <div class="mt-step-title uppercase"
+                              ng-if="$index == 1 && medicineAllocations.length == 2">
+                              {{ "wait_afternoon" | translator: "patient" }}
+                            </div>
+                            <div class="mt-step-title uppercase"
+                              ng-if="medicineAllocations.length == 1">
+                              {{ "wait" | translator: "patient" }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-step-col padding-top-0"
+                          ng-class="{done: medicineAllocation.status_integer >= 1}">
+                            <div class="mt-step-number bg-white fix-height"
+                              ng-class="{iconuser: medicineAllocation.status_integer < 1}">
+                                <span style="font-size: 32px; display: block; margin-top: 2%;">
+                                  {{ medicineAllocation.dosage/day_medicines[1].concentration }}
+                                </span>
+                                <span style="font-size: 15px; display: block; margin-top: -12%;">
+                                  ml
+                                </span>
+                            </div>
+                            <div class="mt-step-title uppercase iconuser">
+                              {{ "allocated" | translator: "patient" }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-step-col last padding-top-0"
+                          ng-class="{done: medicineAllocation.status_integer >= 2}">
+                            <div class="mt-step-number bg-white fix-height">
+                              <i class="fa fa-check"
+                                ng-class="{iconuser: medicineAllocation.status_integer < 2}"></i>
+                            </div>
+                            <div class="mt-step-title uppercase iconuser">
+                              {{ "confirm" | translator: "patient" }}
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="verticalLine">
+                    <button class="btn padding-bottom-62"
+                      ng-click="create_medicineAllocation(medicineAllocation.id, $index)"
+                      style="background-color: white;"
+                      ng-disabled="medicineAllocation.status == 'taked' || patient.actived == 'deactived' ||
+                        medicineAllocation.notify_status != 'not_fall'">
+                      <i class="fa fa-arrow-right fa-4x" style="color: #26C281;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" style="margin-left: 10px;" data-spacing="60">
+          <div class="events-content">
+            <ol>
+              <li class="selected" data-date="16/01/2014">
+                <div class="mt-content border-grey-steel" style="color: black!important;padding-top: 7px;">
+                  <div class="portlet-title">
+                    <div class="caption caption-md">
+                      <i class="icon-globe theme-font hide"></i>
+                      <span class="caption-subject font-blue-madison bold uppercase">{{"treatment_info_now"| translator: 'patient'}}</span>
+                    </div>
+                  </div>
+                  <div style="padding-top: 8px;" class="margin-0">
+                    <p>
+                      {{"description_old" | translator: 'patient'}} {{
+                        description ? description : "no_info" | translator: 'patient'}}
+                    </p>
+                    <p ng-if="medicineAllocations.length == 1">
+                      <span class="bold">
+                        {{"dosage" | translator: 'prescription'}}: {{dosage + " mg"}}
+                      </span>
+                    </p>
+                    <p ng-if="medicineAllocations.length == 2" class="bold">
+                      {{"dosage" | translator: 'prescription'}}: {{dosage_morning + "mg (sáng), " + " " + dosage_afternoon + "mg (chiều)"}}
+                    </p>
+                    <p class="bold">
+                      {{"medicine_name" | translator: 'category'}}: {{medicine}}
+                    </p>
+                    <p>
+                      {{"notify" | translator: 'patient'}} {{patient.notifi ?
+                     patient.notifi : "no_info" | translator: 'patient'}}
+                    </p>
+                    <p ng-if="medicineAllocations.length == 2">
+                      {{"note" | translator: 'main'}}: {{ "remind_patient" | translator: "main"}}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

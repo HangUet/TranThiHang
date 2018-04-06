@@ -1,0 +1,142 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <h3 class="modal-title text-bold-header pull-left"> {{ name_report | translator: 'patient'}}</h3>
+</div>
+<div class="modal-body" style="margin: auto;">
+  <div class="form-group col-xs-12">
+    <div class="caption caption-md" ng-if="timedrop">
+      <span class="caption-subject font-blue-madison bold uppercase font-custom">
+        Thời gian bỏ liều:
+      </span>
+      <p ng-if="timedrop">{{timedrop}}</p>
+    </div>
+  </div>
+  <form ng-submit="form.$valid && exportReport()" name="form" novalidate>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="portlet light bordered">
+          <div class="portlet-title">
+            <div class="caption caption-md">
+              <i class="font-green"></i>
+              <span class="caption-subject font-blue-madison bold uppercase font-custom">
+                Hội đồng lập biên bản gồm
+              </span>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn blue-custom btn-sm" ng-click="addCouncil()">
+              <i class="fa fa-plus"></i> Thêm </a>
+            </div>
+          </div>
+
+          <div class="portlet-body">
+            <div class="row row-flex">
+              <div class="col-xs-12" ng-repeat="council in councils.data track by $index">
+                <div class="col-xs-1">
+                  <p>{{$index + 1}}.</p>
+                </div>
+                <div class="col-xs-1">
+                  <label class="required">Ông/Bà:</label>
+                </div>
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <input ng-model="council.name" name="name{{$index}}" class="form-control input-sm" required>
+                  </div>
+                  <div ng-messages="form['name' + $index].$error"
+                     class="text-error">
+                    <div ng-message="required" ng-show="form.$submitted">{{"require" | translator: 'validate'}}</div>
+                  </div>
+                </div>
+                <div class="col-xs-1">
+                  <label class="required">Chức danh:</label>
+                </div>
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <input ng-model="council.title" name="title{{$index}}" class="form-control input-sm" required>
+                  </div>
+                  <div ng-messages="form['title' + $index].$error"
+                     class="text-error">
+                    <div ng-message="required" ng-show="form.$submitted">{{"require" | translator: 'validate'}}</div>
+                  </div>
+                </div>
+                <div class="col-xs-1">
+                  <a href="#" class="btn btn-sm" ng-click="deleteCouncil($index)">
+                  <i class="fa fa-trash-o"></i> Xóa </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="portlet light bordered">
+          <div class="portlet-title">
+            <div class="caption caption-md">
+              <i class="font-green"></i>
+              <span class="caption-subject font-blue-madison bold uppercase font-custom">
+                Chọn thời gian bỏ thuốc:
+              </span>
+            </div>
+          </div>
+
+          <div class="portlet-body">
+            <div class="row row-flex">
+              <div class="col-xs-12">
+                <div class="col-xs-3">
+                  <label class="required">Bỏ thuốc từ ngày:</label>
+                </div>
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <label class="input-group">
+                      <input ng-model="from_date" name="from_date" class="form-control input-sm" datepicker required>
+                      <span class="input-group-btn">
+                        <span class="btn btn-default btn-sm">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+
+                  <div ng-messages="form.from_date.$error"
+                     class="text-error">
+                    <div ng-message="required" ng-show="form.$submitted">{{"require" | translator: 'validate'}}</div>
+                  </div>
+                </div>
+
+                <div class="col-xs-2">
+                  <label class="required">Đến ngày:</label>
+                </div>
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <label class="input-group">
+                      <input ng-model="to_date" name="to_date" class="form-control input-sm" datepicker required>
+                      <span class="input-group-btn">
+                        <span class="btn btn-default btn-sm">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <div ng-messages="form.to_date.$error"
+                     class="text-error">
+                    <div ng-message="required" ng-show="form.$submitted">{{"require" | translator: 'validate'}}</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <button class="btn blue-custom btn-sm" type="submit">
+      {{"export_report" | translator: "patient"}}</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+</div>

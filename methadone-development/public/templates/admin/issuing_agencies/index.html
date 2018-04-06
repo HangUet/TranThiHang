@@ -1,0 +1,73 @@
+<div class="portlet light">
+  <div class="portlet-title">
+    <div class="caption caption-md">
+      <span class="caption-subject font-blue-madison bold uppercase font-custom">
+        {{"issuing_agencies_list" | translator: 'main'}}
+      </span>
+    </div>
+    <div class="inputs">
+      <div class="portlet-input input-inline">
+        <div class="input-icon right">
+          <i class="icon-magnifier"></i>
+          <form ng-submit="search()">
+            <input ng-model="keyword" class="form-control input-sm"
+                   placeholder='{{"search" | translator: "main"}}'>
+          </form>
+        </div>
+      </div>
+      <a class="btn blue-custom btn-sm"
+        ng-click='showCreateIssuingAgencyModal()'>
+        <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body">
+
+    <div class="max-width-100-pc scrollable">
+      <table class="table table-hover table-custom table-striped" fixed-header>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{{"code" | translator: 'main'}}</th>
+            <th class="text-left">{{"name_issuing_agency_" | translator: 'main'}}</th>
+            <th class="text-left">{{"province" | translator: 'main'}}</th>
+            <th class="text-left">{{"district" | translator: 'main'}}</th>
+            <th class="text-left">{{"ward" | translator: 'main'}}</th>
+            <th class="text-left">{{"address" | translator: 'main'}}</th>
+            <th class="text-left">{{"patient_count" | translator: 'patient'}}</th>
+            <th>{{ "edit" | translator: 'main' }}</th>
+            <th>{{ "delete" | translator: 'main' }}</th>
+          </tr>
+        </thead>
+        <tbody class="max-height-table">
+          <tr ng-repeat="issuing_agency in issuing_agencies">
+            <td>{{page.per_page * page.page + $index - page.per_page + 1}}</td>
+            <td>{{issuing_agency.code}}</td>
+            <td class="text-left">{{issuing_agency.name}}</td>
+            <td class="text-left">{{issuing_agency.province}}</td>
+            <td class="text-left">{{issuing_agency.district}}</td>
+            <td class="text-left">{{issuing_agency.ward}}</td>
+            <td class="text-left">{{issuing_agency.address}}</td>
+            <td class="text-left">{{issuing_agency.count}}</td>
+            <td>
+              <a href="#" ng-click='showEditIssuingAgencyModal(issuing_agency.id)' title="Sửa" tooltip>
+                <i class="fa fa-edit"></i>
+              </a>
+            </td>
+            <td>
+              <a href="#" ng-click='showDeleteIssuingAgencyModal(issuing_agency)' title="Xóa" tooltip>
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="page.total"
+          ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="page.per_page"
+          previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      <div class="pull-right">{{"total_records" | translator: "main"}}: {{page.total}}</div>
+    </div>
+  </div>
+</div>

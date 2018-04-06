@@ -1,0 +1,503 @@
+<div class="row">
+  <div class="col-md-4 padding-right-5" ng-class="{'hidden-sm hidden-xs': state.current.name != 'main.patients'}">
+    <div class="portlet light portlet-fixed-height">
+      <div class="portlet-title">
+        <div class="caption caption-md">
+          <span class="caption-subject font-blue-madison bold uppercase font-custom">
+            {{"patient_list"| translator: 'main'}} {{agency_name}}
+          </span>
+        </div>
+        <div class="inputs">
+          <!--<div class="portlet-input input-collapse input-inline">
+            <div class="input-icon right">
+              <i class="icon-magnifier"></i>
+              <form ng-submit="search()">
+                <input ng-model="keyword" class="form-control input-sm"
+                       placeholder='{{"search" | translator: "main"}}'>
+              </form>
+            </div>
+          </div>-->
+          <a ui-sref="main.patients.new" class="btn blue-custom btn-sm" ui-sref-opts="{reload: true}"
+            ng-if="currentUser.role != 'admin'">
+            <i class="fa fa-plus"></i> {{"add" | translator: "main"}}
+          </a>
+          <button class="btn blue-custom btn-sm" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+            <i class="fa fa-search"></i>{{"advance_search" | translator: "main"}}
+          </button>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <!-- <div">
+          <form class="form-inline" ng-submit="search()">
+            <div class="form-group">
+              <input ui-sref="main.patients.new" type="button"
+                     class="btn btn-success btn-sm" value='{{"add" | translator: "main"}}'>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                  <input ng-model="keyword" class="form-control input-sm"
+                  placeholder='{{"search" | translator: "main"}}'>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default btn-sm" type="submit">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+            </div>
+          </form>
+        </div> -->
+        <div class="max-width-100-pc scrollable">
+          <div class="col-xs-12" style="padding-left: 0px; margin-bottom: 10px;">
+            <div class="">
+                <div class="input-icon right">
+                  <i ng-click="search()" class="icon-magnifier" style="margin: 8px 2px 4px 10px;"></i>
+                  <form ng-submit="search()">
+                    <input ng-model="keyword" class="form-control input-sm"
+                          placeholder='{{"search" | translator: "main"}}'>
+                  </form>
+                </div>
+              </div>
+          </div>
+          <table class="table table-hover table-striped table-custom" fixed-header>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="text-left">{{"card_number"| translator: 'patient'}}</th>
+                <th class="text-left">{{"name"| translator: 'patient'}}</th>
+                <th ng-if="patients.sent != 1 && currentUser.role != 'admin'">{{ "edit" | translator: 'prescription' }}</th>
+                <th ng-if="currentUser.role == 'admin_agency'">{{ "delete" | translator: 'main' }}</th>
+              </tr>
+            </thead>
+            <tbody style="max-height: calc(100vh - 330px) !important">
+              <tr ng-repeat="patient in patients.data" ng-class="{active_patient: state.params.id == patient.id}">
+                <td>{{patients.per_page * patients.page + $index - patients.per_page + 1}}</td>
+                <td class="text-left">
+                  <a ui-sref="main.patients.action.detail.executive_info({id: patient.id})">
+                    {{patient.card_number}}
+                  </a>
+                </td>
+                <td class="text-left">
+                  <a ui-sref="main.patients.action.detail.executive_info({id: patient.id})">
+                    {{patient.name}}
+                  </a>
+                </td>
+                <td ng-if="patients.sent != 1 && currentUser.role != 'admin'">
+                  <a href="#" ui-sref="main.patients.edit({id: patient.id})"
+                    ng-if="patient.status == 'allow'"
+                    ng-click="check_change_agency(patient)" tooltip>
+                    <i class="fa fa-pencil-square-o"></i>
+                  </a>
+                </td>
+                <td ng-if="currentUser.role == 'admin_agency'">
+                  <a href="#" ng-click='showDeletePatientModal(patient)'
+                    ng-if="patient.status == 'allow'">
+                    <i class="fa fa fa-trash-o"></i>
+                  </a>
+                </td>
+                <!-- <td>
+                  <a href="#" ng-click='showDeleteEmployeeModal(patient.id)'
+                    title="Delete" tooltip>
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <ul uib-pagination ng-change="pageChanged()" boundary-links="true" total-items="patients.total"
+              ng-model="currentPage" class="pagination-sm" max-size="10" items-per-page="patients.per_page"
+              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+          <div class="pull-right">{{"total_records"| translator: "main"}}: {{patients.total}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 padding-left-5">
+    <div ui-view></div>
+  </div>
+</div>
+
+<form ng-submit="form.$valid && searchPatient()" name="form" novalidate id="myModal" class="modal fade" role="dialog" style="z-index: 1050 !important;">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+      <div class="modal-header bg-blue-custom padding-title">
+        <div class="modal-close" ng-click="close()" data-dismiss="modal">&times;</div>
+        <h3 class="modal-title text-bold-header">{{'advance_search' | translator: 'main'}}</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row row-flex">
+
+          <div class="col-xs-12 col-md-3" ng-if="currentUser.role == 'admin'" >
+            <div class="form-group">
+              <label class="required">{{"agency_name"| translator: 'main'}}</label>
+              <ui-select ng-model="patient.agency" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected.name | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="agency.id as agency in issuingAgencies">
+                  <span ng-bind-html="agency.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"type_address"| translator: 'main'}}</label>
+              <ui-select ng-model="patient.type_address" search-enabled="false" theme="select2"
+                append-to-body="true" on-select="reloadAddress()">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                data-allow-clear="true">
+                  {{$select.selected | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="type_address in ['resident_address', 'household']">
+                  <span ng-bind-html="type_address | translator: 'patient' | highlight: $select.search" style="z-index: 1100;"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"province"| translator: 'main'}}</label>
+              <ui-select ng-model="patient.province_id" on-select="reloadDistrict(patient.province_id)"
+                name="province_id" theme="select2" append-to-body="true"
+                ng-disabled="!patient.type_address">
+                <ui-select-match placeholder="{{'please_select_province'| translator: 'main'}}" data-allow-clear="true">
+                  {{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="item.id as item in provinces | filter: $select.search">
+                  <span ng-bind-html="item.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+              <div ng-messages="form.province_id.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"district"| translator: 'main'}}</label>
+              <ui-select ng-model="patient.district_id" on-select="reloadWard(patient.district_id)"
+                name="district_id" theme="select2" append-to-body="true"
+                ng-disabled="!patient.type_address">
+                <ui-select-match placeholder="{{'please_select_district'| translator: 'main'}}" data-allow-clear="true">
+                  {{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="item.id as item in districts | filter: $select.search">
+                  <span ng-bind-html="item.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+              <div ng-messages="form.district_id.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"ward"| translator: 'main'}}</label>
+              <ui-select ng-model="patient.ward_id" name="ward_id" theme="select2" append-to-body="true" ng-disabled="!patient.type_address">
+                <ui-select-match placeholder="{{'please_select_ward'| translator: 'main'}}" data-allow-clear="true">
+                  {{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="item.id as item in wards | filter: $select.search">
+                  <span ng-bind-html="item.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+              <div ng-messages="form.ward_id.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>
+                {{"identification_type"| translator: 'patient'}}
+              </label>
+              <ui-select ng-model="patient.identification_type" name="identification_type"
+                theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected.name | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="identy.id as identy in identification_types | filter: $select.search">
+                  <span ng-bind-html="identy.name | translator: 'patient' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+              <div ng-messages="form.identification_type.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"number"| translator: 'patient'}}</label>
+              <input ng-model="patient.identification_number" name="identification_number" class="form-control input-sm">
+              <div ng-messages="form.identification_number.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"name"| translator: 'patient'}}</label>
+              <input ng-model="patient.name" name="name" class="form-control input-sm">
+              <div ng-messages="form.name.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"employment"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.jobs" search-enabled="true" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="job in ['Trẻ > 6 tuổi đi học, <15 tuổi không đi học',
+                    'Sinh viên,  học sinh', 'Hưu và > 60 tuổi', 'Công nhân',
+                    'Nông dân', 'Lực lượng vũ trang', 'Trí thức', 'Hành chính, Sự nghiệp', 'Y tế', 'Dịch vụ', 'Việt Kiều', 'Ngoại kiều', 'Khác']">
+                  <span ng-bind-html="job | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"birthdate_from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.birthdate_from" name="birthdate_from" class="form-control input-sm" datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.birthdate_from.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"birthdate_to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.birthdate_to" name="birthdate_to" class="form-control input-sm" datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.birthdate_to.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"admission_date_from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.admission_date_from" name="admission_date_from" class="form-control input-sm" datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.admission_date_from.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"admission_date_to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.admission_date_to" name="admission_date_to" class="form-control input-sm" datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.admission_date_to.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"marital_status"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.marital_status" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="marital_status in ['single', 'married', 'divorced', 'widowed', 'difference']">
+                  <span ng-bind-html="marital_status | translator: 'patient' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"education_level"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.education_level" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}" data-allow-clear="true">
+                  {{$select.selected | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="education_level in ['Children', 'Illiteracy','Primary', 'Middle', 'High', 'Tertiary', 'Difference']">
+                  <span ng-bind-html="education_level | translator: 'patient' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"financial_status"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.financial_status" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}" data-allow-clear="true">
+                  {{$select.selected | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="financial_status in ['poor', 'average', 'rich', 'difference']">
+                  <span ng-bind-html="financial_status | translator: 'patient' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"enthnicity"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.ethnicity_id" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}" data-allow-clear="true">
+                  {{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="ethnicity.id as ethnicity in ethnicities | filter: $select.search">
+                  <span ng-bind-html="ethnicity.name | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"treatment_status"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.treatment_status" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected | translator: 'main'}}
+                </ui-select-match>
+                <ui-select-choices repeat="status in ['give_up_medicine', 'expirate_prescription']">
+                  <span ng-bind-html="status | translator: 'main' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3" ng-show="patient.treatment_status == 'expirate_prescription'">
+            <div class="form-group">
+              <label class="required">{{"from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.treatment_status_from" name="treatment_status_from" class="form-control input-sm" ng-required="patient.treatment_status == 'expirate_prescription'" datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.treatment_status_from.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3" ng-show="patient.treatment_status == 'expirate_prescription'">
+            <div class="form-group">
+              <label class="required">{{"to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.treatment_status_to" name="treatment_status_to" class="form-control input-sm" ng-required="patient.treatment_status == 'expirate_prescription'" datepicker>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.treatment_status_to.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"change_dosage"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.prescription_status" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected.name | translator: 'prescription'}}
+                </ui-select-match>
+                <ui-select-choices repeat="prescription_status.value as prescription_status in prescription_status">
+                  <span ng-bind-html="prescription_status.name | translator: 'prescription' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="form-group">
+              <label>{{"status_patient"| translator: 'patient'}}</label>
+              <ui-select ng-model="patient.status" search-enabled="false" theme="select2" append-to-body="true">
+                <ui-select-match placeholder="{{'please_select'| translator: 'main'}}"
+                  data-allow-clear="true">
+                  {{$select.selected | translator: 'patient'}}
+                </ui-select-match>
+                <ui-select-choices repeat="status in ['deactived', 'sent', 'reiceved', 'treatmenting']">
+                  <span ng-bind-html="status | translator: 'patient' | highlight: $select.search"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3" ng-show="patient.status">
+            <div class="form-group">
+              <label>{{"from"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.status_from" name="status_from" class="form-control input-sm" datepicker ng-required="patient.status">
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.status_from.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3" ng-show="patient.status">
+            <div class="form-group">
+              <label>{{"to"| translator: 'patient'}}</label>
+              <label class="input-group">
+                <input ng-model="patient.status_to" name="status_to" class="form-control input-sm" datepicker ng-required="patient.status">
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-sm">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                </span>
+              </label>
+              <div ng-messages="form.status_to.$error" ng-show="form.$submitted" class="text-error">
+                <div ng-message="required">{{"require" | translator: 'validate'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+
+        <button ng-click="searchAndExport()" class="btn blue-custom btn-sm" type="button" data-dismiss="modal"><i class="fa fa-file-excel-o"></i> {{"export" | translator: "main"}}</button>
+
+        <button class="btn blue-custom btn-sm" type="submit"><i class="fa fa-search"></i> {{"search"| translator: "main"}}</button>
+      </div>
+    </div>
+  </div>
+</form>

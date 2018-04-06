@@ -1,0 +1,40 @@
+<div class="portlet-body">
+  <div class="tabbable-custom">
+    <ul class="nav nav-tabs">
+      <li ng-class="{'active': state.current.name ==
+        'main.patients.action.detail.executive_info'}">
+        <a href="#" ui-sref="main.patients.action.detail.executive_info"
+          class="text-dark">
+          {{"executive_info" | translator: "patient"}}
+        </a>
+      </li>
+
+      <li ng-class="{'active': state.current.name ==
+        'main.patients.action.detail.info'}">
+        <a href="#" ui-sref="main.patients.action.detail.info"
+          class="text-dark">
+          {{"info_patient" | translator: "patient"}}
+        </a>
+      </li>
+
+      <li ng-class="{'active': state.current.name ==
+        'main.patients.action.detail.prescription'}">
+        <a href="#" ui-sref="main.patients.action.detail.prescription"
+          class="text-dark">
+          {{"prescription_info" | translator: "patient"}}
+        </a>
+      </li>
+
+      <li ng-class="{'active': state.current.name ==
+        'main.patients.action.detail.change_agency_info'}">
+        <a href="#" ui-sref="main.patients.action.detail.change_agency_info"
+          class="text-dark">
+          {{"patient_agency_history_info" | translator: "main"}}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content" style="margin-top: -1px;">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

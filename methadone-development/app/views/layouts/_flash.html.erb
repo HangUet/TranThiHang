@@ -1,0 +1,14 @@
+<% if flash.any? %>
+  <div class="flash-container container box-xs-100">
+    <% flash.each do |message_type, message| %>
+      <% if message != true && message != false && !message.nil? && !message.blank? %>
+        <div class="box-container box-center">
+          <div class="box-xs-max-100 alert <%= bootstrap_class_for(message_type) %>">
+            <button class="close">×</button>
+            <strong class="margin-right-10px"><%= message %></strong>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

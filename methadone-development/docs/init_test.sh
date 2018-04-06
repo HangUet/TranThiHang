@@ -1,0 +1,19 @@
+bundle install
+rake db:migrate:reset
+rake address:init
+rake issuing_agency:init
+rake ethnicity:init
+rake patient:init
+rake patient_contacts:init
+rake user_test:init
+rake prescription:init
+rake dashboard_data:init
+rake medicine_type:init
+rake medicine_list:init
+rake medicine:init
+# rake total_in_stock:init
+rake category:init
+rake change_agency_temporary:init
+rake newcategory:init
+rake patient_sequences:init
+rake medicine_list_prescription:init

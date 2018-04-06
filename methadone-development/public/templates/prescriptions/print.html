@@ -1,0 +1,125 @@
+<div class="modal-header bg-blue-custom padding-title">
+  <h3 class="modal-title text-bold-header pull-left"> {{"prescription"| translator: 'patient'}}</h3>
+  <div class="inputs">
+    <a class="btn blue-custom btn-sm pull-right" style="margin-left: 10px;"
+      ng-click='print()'>
+      <i class="fa fa-print"></i> {{"print" | translator: "main"}}
+    </a>
+  </div>
+</div>
+<div class="modal-body" style="margin: auto;">
+  <div class="row row-flex">
+    <div style="width: 95%;font-size: 14px;margin: auto;" id="pdf">
+      <style type="text/css">
+        #pdf {
+          font-family: 'TimesNewRoman' !important;
+          font-size: 10pt !important;
+        }
+        .modal-lg {
+          width: 32%;
+        }
+        @page{
+          size: A5;
+          margin-top: 80px;
+        }
+        input[type=checkbox] {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          border: 1px solid #000;
+          width: 15px;
+          height: 15px;
+          margin: 0;
+          padding: 0;
+          display: inline-block;
+        }
+        input[type=checkbox]:checked:before {
+          content: '';
+          display: block;
+          width: 5px;
+          height: 16px;
+          border: solid #000;
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          margin-left: 7px;
+          margin-top: -6px;
+        }
+      </style>
+      <p>Cơ sở điều trị: {{listPDF.issuing_agency.name}}</p>
+      <p>Địa chỉ: {{listPDF.issuing_agency.address}}, {{listPDF.ward}}, {{listPDF.district}},  {{listPDF.province}} </p>
+      <p style="margin: auto;text-align: center;font-size: 15pt">ĐƠN THUỐC “N”</p>
+      <p style="margin: auto;text-align: center;font-style: italic;">(Bản lưu tại phòng khám của bác sỹ điều trị)</p>
+      <p style="margin-top: 40px;">Mã số người bệnh: {{listPDF.patient.card_number}}</p>
+      <p>Họ tên người bệnh: {{ listPDF.patient.name}}</p>
+      <p>Giới tính:<span style="margin-left: 30px;">Nam <input type="checkbox" name="" value="" ng-checked="{{listPDF.checkmale}}" disabled></span>
+      <span style="margin-left: 30px;">Nữ <input type="checkbox" name="" value="" ng-checked="{{listPDF.checkfemale}}" disabled></span></p>
+      <p>Địa chỉ: {{household}}</p>
+      <p class="bold">Tên thuốc: {{listPDF.medicine_name}}</p>
+      <p class="bold" ng-if="listPDF.prescription.dosage_morning == 0 || !listPDF.prescription.dosage_morning">Liều dùng: {{ listPDF.prescription.dosage}} mg</p>
+      <p class="bold" ng-if="listPDF.prescription.dosage_morning != 0 && listPDF.prescription.dosage_morning">Liều dùng: {{ listPDF.prescription.dosage}} mg     Sáng: {{ listPDF.prescription.dosage_morning }} mg    Chiều: {{ listPDF.prescription.dosage - listPDF.prescription.dosage_morning }} mg</p>
+      <p>Liều dùng bằng chữ: {{listPDF.text}} miligam</p>
+      <p>Y lệnh: {{ listPDF.prescription.description }} </p>
+      <p>Từ ngày {{listPDF.begin_date}} đến hết ngày {{listPDF.end_date}}</p>
+      <div style="float: right;display: inline-block;">
+        <p>Ngày {{day}} tháng {{month}} năm {{year}}</p>
+        <p style="margin: auto;text-align: center;">Bác sỹ kê đơn</p>
+        <p style="margin: auto;text-align: center;font-style: italic;">(ký và ghi rõ họ tên)</p>
+        <p style="margin: auto;text-align: center;margin-top: 35px;">{{listPDF.doctor_name}}</p>
+      </div>
+      <div class="divide"></div>
+      <div style="page-break-before: always;"></div>
+      <p>Cơ sở điều trị: {{listPDF.issuing_agency.name}}</p>
+      <p>Địa chỉ: {{listPDF.issuing_agency.address}}, {{listPDF.ward}}, {{listPDF.district}},  {{listPDF.province}} </p>
+      <p style="margin: auto;text-align: center;font-size: 15pt">ĐƠN THUỐC “N”</p>
+      <p style="margin: auto;text-align: center;font-style: italic;">(Bản lưu tại phòng cấp, phát thuốc)</p>
+      <p style="margin-top: 40px;">Mã số người bệnh: {{listPDF.patient.card_number}}</p>
+      <p>Họ tên người bệnh: {{ listPDF.patient.name}}</p>
+      <p>Giới tính:<span style="margin-left: 30px;">Nam <input type="checkbox" name="" value="" ng-checked="{{listPDF.checkmale}}" disabled></span>
+      <span style="margin-left: 30px;">Nữ <input type="checkbox" name="" value="" ng-checked="{{listPDF.checkfemale}}" disabled></span></p>
+      <p>Địa chỉ: {{household}}</p>
+      <p class="bold">Tên thuốc: {{listPDF.medicine_name}}</p>
+      <p class="bold" ng-if="listPDF.prescription.dosage_morning == 0 || !listPDF.prescription.dosage_morning">Liều dùng: {{ listPDF.prescription.dosage}} mg</p>
+      <p class="bold" ng-if="listPDF.prescription.dosage_morning != 0 && listPDF.prescription.dosage_morning">Liều dùng: {{ listPDF.prescription.dosage}} mg     Sáng: {{ listPDF.prescription.dosage_morning }} mg    Chiều: {{ listPDF.prescription.dosage - listPDF.prescription.dosage_morning }} mg</p>
+      <p>Liều dùng bằng chữ: {{listPDF.text}} miligam</p>
+      <p>Y lệnh: {{ listPDF.prescription.description }} </p>
+      <p>Từ ngày {{listPDF.begin_date}} đến hết ngày {{listPDF.end_date}}</p>
+      <br>
+      <div style="float: left;display: inline-block;">
+        <p style="margin-bottom: 0">Người nhận thuốc</p>
+        <p style="margin: auto;text-align: center;font-style: italic;">(ký, ghi rõ họ tên)</p>
+      </div>
+      <div style="float: right;display: inline-block;">
+        <p>Ngày {{day}} tháng {{month}} năm {{year}}</p>
+        <p style="margin: auto;text-align: center;">Bác sỹ kê đơn</p>
+        <p style="margin: auto;text-align: center;font-style: italic;">(ký và ghi rõ họ tên)</p>
+        <p style="margin: auto;text-align: center;margin-top: 35px;">{{listPDF.doctor_name}}</p>
+      </div>
+      <div class="divide"></div>
+      <div style="page-break-before: always;"></div>
+      <p>Cơ sở điều trị: {{listPDF.issuing_agency.name}}</p>
+      <p>Địa chỉ: {{listPDF.issuing_agency.address}}, {{listPDF.ward}}, {{listPDF.district}},  {{listPDF.province}} </p>
+      <p style="margin: auto;text-align: center; font-size: 15pt;">ĐƠN THUỐC “N”</p>
+      <p style="margin: auto;text-align: center;font-style: italic;">(Bản giao cho bệnh nhân)</p>
+      <p style="margin-top: 40px;">Mã số người bệnh: {{listPDF.patient.card_number}}</p>
+      <p>Họ tên người bệnh: {{ listPDF.patient.name}}</p>
+      <p>Giới tính:<span style="margin-left: 30px;">Nam <input type="checkbox" name="" value="" ng-checked="{{listPDF.checkmale}}" disabled></span>
+      <span style="margin-left: 30px;">Nữ <input type="checkbox" name="" value="" ng-checked="{{listPDF.checkfemale}}" disabled></span></p>
+      <p>Địa chỉ: {{household}}</p>
+      <p class="bold">Tên thuốc: {{listPDF.medicine_name}}</p>
+      <p class="bold" ng-if="listPDF.prescription.dosage_morning == 0 || !listPDF.prescription.dosage_morning">Liều dùng: {{ listPDF.prescription.dosage}} mg</p>
+      <p class="bold" ng-if="listPDF.prescription.dosage_morning != 0 && listPDF.prescription.dosage_morning">Liều dùng: {{ listPDF.prescription.dosage}} mg     Sáng: {{ listPDF.prescription.dosage_morning }} mg    Chiều: {{ listPDF.prescription.dosage - listPDF.prescription.dosage_morning }} mg</p>
+      <p>Liều dùng bằng chữ: {{listPDF.text}} miligam</p>
+      <p>Y lệnh: {{ listPDF.prescription.description }} </p>
+      <p>Từ ngày {{listPDF.begin_date}} đến hết ngày {{listPDF.end_date}}</p>
+      <div style="float: right;display: inline-block;">
+        <p>Ngày {{day}} tháng {{month}} năm {{year}}</p>
+        <p style="margin: auto;text-align: center;">Bác sỹ kê đơn</p>
+        <p style="margin: auto;text-align: center;font-style: italic;">(ký và ghi rõ họ tên)</p>
+        <p style="margin: auto;text-align: center;margin-top: 35px;">{{listPDF.doctor_name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <input ng-click="close()" class="btn btn-default btn-sm" type="button" data-dismiss="modal" value='{{"close"| translator: "main"}}'>
+</div>
